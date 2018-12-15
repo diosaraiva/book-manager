@@ -1,22 +1,23 @@
-ID	Tipo	Requisito
 =====================================================================================================================================
-001 NF		Implementar diagramas das tecnologias aplicadas. (Diagramas de Componentes, Pacotes e Implantação).
-002 NF		Diagrama da divisão de camadas e exposição de serviços em uma implantação hipotética para uma arquitetura distribuída.
+ID	Tipo	Rastreabilidade							Requisito
+=====================================================================================================================================
+001 NF		UML/Package, Component, Deployment		Implementar diagramas das tecnologias aplicadas. (Diagramas de Componentes, Pacotes e Implantação).
+002 NF												Diagrama da divisão de camadas e exposição de serviços em uma implantação hipotética para uma arquitetura distribuída.
 
-004	NF		O modelo arquitetural a ser usado é o MVVM.
-005	NF		A tecnologia servidora pode ser escolhida por você dentre as opções: SpringBoot ou Java EE tradicional.
-006	NF		A tecnologia cliente deve ser baseada em JS, escolhida livremente por você.
-007	NF		Outras tecnologias podem ser aportadas livremente por você, conforme necessário. (ex. AngularJS, React)
+004	NF		UML/Package, Component					O modelo arquitetural a ser usado é o MVVM.
+005	NF		pom.xml									A tecnologia servidora pode ser escolhida por você dentre as opções: SpringBoot ou Java EE tradicional.
+006	NF												A tecnologia cliente deve ser baseada em JS, escolhida livremente por você.
+007	NF												Outras tecnologias podem ser aportadas livremente por você, conforme necessário. (ex. AngularJS, React)
 
-008 FN		Pesquisa de livros por código (ISBN)
-009 FN		Pesquisa de livros de um autor.
-010 FN		Manutenção de livros (incluir, remover e alterar)
-011 FN		Um livro possui as seguintes informações:
-			- ISBN (chave primária)
-			- Título
-			- Autores (um ou mais)
-			- Editora
-			- Data de publicação
-			- Preço (em reais)
-			- Críticas de leitores (uma ou mais)
-012	FN		O preço deve ser listado por extenso pela API e tela. Por exemplo, se um livro custa R$ 39,45 ele deve aparecer na tela como Trinta e nove reais e quarenta e cinco centavos.
+008 FN												Pesquisa de livros por código (ISBN)
+009 FN												Pesquisa de livros de um autor.
+010 FN												Manutenção de livros (incluir, remover e alterar)
+011 FN		UML/Class								Um livro possui as seguintes informações:
+														- ISBN (chave primária)
+														- Título
+														- Autores (um ou mais)
+														- Editora
+														- Data de publicação
+														- Preço (em reais)
+														- Críticas de leitores (uma ou mais)
+012	FN												O preço deve ser listado por extenso pela API e tela. Por exemplo, se um livro custa R$ 39,45 ele deve aparecer na tela como Trinta e nove reais e quarenta e cinco centavos.
