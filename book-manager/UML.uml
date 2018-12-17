@@ -8,7 +8,7 @@
   </packageImport>
   <packagedElement xmi:type="uml:Class" xmi:id="_0o0OkACJEemHs4ezSHmv-g" name="Livro">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_v0iKwACKEemHs4ezSHmv-g" name="isbn" visibility="public">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELong"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_OgjWsACMEemHs4ezSHmv-g" name="titulo" isUnique="false">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
@@ -25,7 +25,7 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_W9H6YACMEemHs4ezSHmv-g" name="Autor">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_QJ2aUACNEemHs4ezSHmv-g" name="id">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELong"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_LidREACQEemHs4ezSHmv-g" name="nomeAutor" isUnique="false">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
@@ -39,7 +39,7 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_bmLJIACMEemHs4ezSHmv-g" name="Editora">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_1v314ACMEemHs4ezSHmv-g" name="id">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELong"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_FTDIgACQEemHs4ezSHmv-g" name="nomeEditora">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
@@ -50,7 +50,7 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_qkEPUACNEemHs4ezSHmv-g" name="Critica">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_0A0doACNEemHs4ezSHmv-g" name="id">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELong"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_U8IWMACQEemHs4ezSHmv-g" name="nomeCritico" isUnique="false">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
@@ -61,19 +61,6 @@
     <ownedAttribute xmi:type="uml:Property" xmi:id="_NWYQUACREemHs4ezSHmv-g" name="texto" isUnique="false">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
     </ownedAttribute>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_Sg7TgACaEemfZYeC4JvFUw" memberEnd="_Sg7TgwCaEemfZYeC4JvFUw _Sg7ThACaEemfZYeC4JvFUw">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Sg7TgQCaEemfZYeC4JvFUw" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Sg7TggCaEemfZYeC4JvFUw" key="nature" value="UML_Nature"/>
-    </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_Sg7TgwCaEemfZYeC4JvFUw" name="autor" type="_W9H6YACMEemHs4ezSHmv-g" association="_Sg7TgACaEemfZYeC4JvFUw">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_f2HzAACaEemfZYeC4JvFUw" value="1"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_f2aG4ACaEemfZYeC4JvFUw" value="*"/>
-    </ownedEnd>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_Sg7ThACaEemfZYeC4JvFUw" name="livro" type="_0o0OkACJEemHs4ezSHmv-g" association="_Sg7TgACaEemfZYeC4JvFUw">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_euCJkACaEemfZYeC4JvFUw" value="1"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eugqsACaEemfZYeC4JvFUw" value="*"/>
-    </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_lzRG4ACaEemfZYeC4JvFUw" memberEnd="_lzRG4wCaEemfZYeC4JvFUw _lzRG5ACaEemfZYeC4JvFUw">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_lzRG4QCaEemfZYeC4JvFUw" source="org.eclipse.papyrus">
@@ -94,5 +81,27 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3epjgACaEemfZYeC4JvFUw" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3e1wwACaEemfZYeC4JvFUw" value="*"/>
     </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_inefMAItEemncdrpsHAfnQ" name="Livro_Autor">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_HG0KEAIuEemncdrpsHAfnQ" name="isbn_Livro" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELong"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_PpLMsAIuEemncdrpsHAfnQ" name="id_Autor" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELong"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_Y9X78AIuEemncdrpsHAfnQ" memberEnd="_Y9powAIuEemncdrpsHAfnQ _Y9qP0AIuEemncdrpsHAfnQ">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Y9aYMAIuEemncdrpsHAfnQ" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Y9a_QAIuEemncdrpsHAfnQ" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_Y9powAIuEemncdrpsHAfnQ" name="livro_autor" type="_inefMAItEemncdrpsHAfnQ" association="_Y9X78AIuEemncdrpsHAfnQ"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_Y9qP0AIuEemncdrpsHAfnQ" name="livro" type="_0o0OkACJEemHs4ezSHmv-g" association="_Y9X78AIuEemncdrpsHAfnQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_hP-EQAIuEemncdrpsHAfnQ" memberEnd="_hP_5cQIuEemncdrpsHAfnQ _hQBHkAIuEemncdrpsHAfnQ">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_hP_SYAIuEemncdrpsHAfnQ" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hP_5cAIuEemncdrpsHAfnQ" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_hP_5cQIuEemncdrpsHAfnQ" name="autor" type="_W9H6YACMEemHs4ezSHmv-g" association="_hP-EQAIuEemncdrpsHAfnQ"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_hQBHkAIuEemncdrpsHAfnQ" name="livro_autor" type="_inefMAItEemncdrpsHAfnQ" association="_hP-EQAIuEemncdrpsHAfnQ"/>
   </packagedElement>
 </uml:Model>
