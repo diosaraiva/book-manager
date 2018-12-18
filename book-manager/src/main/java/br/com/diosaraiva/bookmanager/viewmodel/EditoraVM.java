@@ -2,7 +2,7 @@ package br.com.diosaraiva.bookmanager.viewmodel;
 
 import java.util.List;
 
-import br.com.diosaraiva.bookmanager.model.Editora;
+import br.com.diosaraiva.bookmanager.model.entity.Editora;
 
 public class EditoraVM {
 

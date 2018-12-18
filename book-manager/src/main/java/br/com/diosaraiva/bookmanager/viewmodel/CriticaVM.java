@@ -2,7 +2,7 @@ package br.com.diosaraiva.bookmanager.viewmodel;
 
 import java.util.List;
 
-import br.com.diosaraiva.bookmanager.model.Critica;
+import br.com.diosaraiva.bookmanager.model.entity.Critica;
 
 public class CriticaVM {
 

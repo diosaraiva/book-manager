@@ -1,4 +1,4 @@
-package br.com.diosaraiva.bookmanager.model;
+package br.com.diosaraiva.bookmanager.model.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

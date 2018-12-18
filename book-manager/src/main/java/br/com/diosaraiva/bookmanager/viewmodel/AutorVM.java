@@ -2,7 +2,7 @@ package br.com.diosaraiva.bookmanager.viewmodel;
 
 import java.util.List;
 
-import br.com.diosaraiva.bookmanager.model.Autor;
+import br.com.diosaraiva.bookmanager.model.entity.Autor;
 
 public class AutorVM {
 

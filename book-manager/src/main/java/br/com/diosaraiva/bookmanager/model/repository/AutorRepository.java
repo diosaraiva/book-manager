@@ -1,5 +1,9 @@
-package br.com.diosaraiva.bookmanager.model;
+package br.com.diosaraiva.bookmanager.model.repository;
 
-public class AutorRepository {
+import org.springframework.data.repository.CrudRepository;
 
+import br.com.diosaraiva.bookmanager.model.entity.Autor;
+
+public interface AutorRepository extends CrudRepository<Autor, Long>  {
+	
 }

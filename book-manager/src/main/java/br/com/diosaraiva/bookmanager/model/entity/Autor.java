@@ -1,4 +1,4 @@
-package br.com.diosaraiva.bookmanager.model;
+package br.com.diosaraiva.bookmanager.model.entity;
 
 import java.util.List;
 
