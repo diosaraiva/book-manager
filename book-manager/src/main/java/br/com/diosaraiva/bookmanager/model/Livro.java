@@ -92,5 +92,29 @@ public class Livro {
 	public void setSinopse(String sinopse) {
 		this.sinopse = sinopse;
 	}
+
+	public List<Autor> getAutores() {
+		return autores;
+	}
+
+	public void setAutores(List<Autor> autores) {
+		this.autores = autores;
+	}
+
+	public Editora getEditora() {
+		return editora;
+	}
+
+	public void setEditora(Editora editora) {
+		this.editora = editora;
+	}
+
+	public List<Critica> getCriticas() {
+		return criticas;
+	}
+
+	public void setCriticas(List<Critica> criticas) {
+		this.criticas = criticas;
+	}
     
 }

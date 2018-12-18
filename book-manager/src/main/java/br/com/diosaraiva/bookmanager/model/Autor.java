@@ -1,7 +1,6 @@
 package br.com.diosaraiva.bookmanager.model;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -61,5 +60,13 @@ public class Autor {
 	public void setSite(String site) {
 		this.site = site;
 	}
-    
+
+	public List<Autor> getAutores() {
+		return autores;
+	}
+
+	public void setAutores(List<Autor> autores) {
+		this.autores = autores;
+	}
+
 }
