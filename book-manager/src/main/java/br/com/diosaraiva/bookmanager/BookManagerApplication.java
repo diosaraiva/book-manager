@@ -16,7 +16,7 @@ public class BookManagerApplication {
 		SpringApplication.run(BookManagerApplication.class, args);
 	}
 
-	//Lista os Beans do servidor
+	//Lista os Beans do servidor no Console
 	@Bean
 	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
 		return args -> {

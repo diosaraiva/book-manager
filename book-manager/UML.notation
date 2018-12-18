@@ -251,7 +251,7 @@
     <children xmi:type="notation:Shape" xmi:id="_gVYIkACfEemfZYeC4JvFUw" type="Comment_Shape">
       <children xmi:type="notation:DecorationNode" xmi:id="_gVYIkgCfEemfZYeC4JvFUw" type="Comment_BodyLabel"/>
       <element xmi:type="uml:Comment" href="UML.uml#_gVL7UACfEemfZYeC4JvFUw"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gVYIkQCfEemfZYeC4JvFUw" x="280" y="20" height="21"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gVYIkQCfEemfZYeC4JvFUw" x="280" y="20" width="121" height="21"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_intvwAItEemncdrpsHAfnQ" type="Class_Shape">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__RyukAItEemncdrpsHAfnQ" source="PapyrusCSSForceValue">
