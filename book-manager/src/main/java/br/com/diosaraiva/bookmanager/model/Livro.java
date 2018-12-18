@@ -1,9 +1,16 @@
 package br.com.diosaraiva.bookmanager.model;
 
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "livro")
@@ -16,6 +23,25 @@ public class Livro {
     private Date dataPublicacao;
     private double preco;
     private String sinopse;
+    
+    //Many-to-many Autor
+    @ManyToMany
+    @JoinTable(
+        name = "livro_autor",
+        joinColumns = @JoinColumn(name = "livro_isbn"),
+        inverseJoinColumns = @JoinColumn(name = "autor_id")
+    )
+    private List<Autor> autores;
+    
+    //Many-to-one Editora
+    @ManyToOne
+    @JoinColumn(name = "editora_id")
+    private Editora editora;
+    
+    //One-to-many Critica
+    @OneToMany
+    @JoinColumn(name = "critica_id")
+    private List<Critica> criticas;
     
     protected Livro() {}
 

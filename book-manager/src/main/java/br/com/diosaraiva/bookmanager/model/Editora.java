@@ -1,9 +1,13 @@
 package br.com.diosaraiva.bookmanager.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +20,11 @@ public class Editora {
     private String nomeCritico;
     private double nota;
     private String texto;
+    
+    //One-to-many Livro
+    @OneToMany
+    @JoinColumn(name = "livro_isbn")
+    private List<Livro> livros;
 
     protected Editora() {}
 

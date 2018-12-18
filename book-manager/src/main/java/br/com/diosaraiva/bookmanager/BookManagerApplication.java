@@ -28,7 +28,6 @@ public class BookManagerApplication {
 			for (String beanName : beanNames) {
 				System.out.println("Bean: "+beanName);
 			}
-
 		};
 	}
 }
