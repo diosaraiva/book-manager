@@ -1,12 +1,13 @@
-package br.com.diosaraiva.bookmanager.model.entity;
+package br.com.diosaraiva.bookmanager.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -14,8 +15,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "livro")
-public class Livro {
+public class Livro implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
     @Id
     //@GeneratedValue(strategy=GenerationType.AUTO) //--> Deve ser fornecido pelo Usuário cadastrante.
     private Long isbn;
@@ -24,14 +27,15 @@ public class Livro {
     private double preco;
     private String sinopse;
     
+    /*
     //Many-to-many Autor
     @ManyToMany
     @JoinTable(
-        name = "livro_autor",
-        joinColumns = @JoinColumn(name = "livro_isbn"),
-        inverseJoinColumns = @JoinColumn(name = "autor_id")
+        name = "livro_autores",
+        joinColumns = @JoinColumn(name = "isbn"),
+        inverseJoinColumns = @JoinColumn(name = "id")
     )
-    private List<Autor> autores;
+    private List<Autor> autores;*/
     
     //Many-to-one Editora
     @ManyToOne
@@ -42,16 +46,6 @@ public class Livro {
     @OneToMany
     @JoinColumn(name = "critica_id")
     private List<Critica> criticas;
-    
-    protected Livro() {}
-
-    public Livro(Long isbn, String titulo, Date dataPublicacao, double preco, String sinopse) {
-        this.isbn = isbn;
-        this.titulo = titulo;
-        this.dataPublicacao = dataPublicacao;
-        this.preco = preco;
-        this.sinopse = sinopse;
-    }
 
 	public Long getIsbn() {
 		return isbn;
@@ -93,6 +87,7 @@ public class Livro {
 		this.sinopse = sinopse;
 	}
 
+	/*
 	public List<Autor> getAutores() {
 		return autores;
 	}
@@ -100,6 +95,7 @@ public class Livro {
 	public void setAutores(List<Autor> autores) {
 		this.autores = autores;
 	}
+	*/
 
 	public Editora getEditora() {
 		return editora;
