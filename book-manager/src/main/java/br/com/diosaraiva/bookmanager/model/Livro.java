@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -27,15 +28,17 @@ public class Livro implements Serializable {
     private double preco;
     private String sinopse;
     
-    /*
     //Many-to-many Autor
-    @ManyToMany
-    @JoinTable(
-        name = "livro_autores",
-        joinColumns = @JoinColumn(name = "isbn"),
-        inverseJoinColumns = @JoinColumn(name = "id")
-    )
-    private List<Autor> autores;*/
+    @ManyToMany(
+	        targetEntity=Autor.class,
+	        cascade=CascadeType.ALL
+	)
+        @JoinTable(
+          name="livro_autor",
+          joinColumns=@JoinColumn(name="livro_isbn"),
+          inverseJoinColumns=@JoinColumn(name="autor_id")
+        )
+    private List<Autor> autores;
     
     //Many-to-one Editora
     @ManyToOne
@@ -87,7 +90,6 @@ public class Livro implements Serializable {
 		this.sinopse = sinopse;
 	}
 
-	/*
 	public List<Autor> getAutores() {
 		return autores;
 	}
@@ -95,7 +97,6 @@ public class Livro implements Serializable {
 	public void setAutores(List<Autor> autores) {
 		this.autores = autores;
 	}
-	*/
 
 	public Editora getEditora() {
 		return editora;

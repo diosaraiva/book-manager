@@ -2,6 +2,7 @@ package br.com.diosaraiva.bookmanager.viewmodel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,8 +31,8 @@ public class LivroVMImpl implements ILivroVM {
 
 	@Override
 	public boolean adicionarLivro(Livro livro) {
-		List<Livro> livros = livroRepository.findByIsbn(livro.getIsbn()); 	
-		if (livros.size() > 0) {
+		Optional<Livro> livros = livroRepository.findById(livro.getIsbn()); 	
+		if (livros == null) {
 			return false;
 		} else {
 			livroRepository.save(livro);
