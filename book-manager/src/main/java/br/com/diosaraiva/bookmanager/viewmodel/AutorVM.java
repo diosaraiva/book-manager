@@ -2,9 +2,15 @@ package br.com.diosaraiva.bookmanager.viewmodel;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import br.com.diosaraiva.bookmanager.model.entity.Autor;
+import br.com.diosaraiva.bookmanager.model.repository.AutorRepository;
 
 public class AutorVM {
+	
+	@Autowired
+	private AutorRepository autorRepository;
 
 	private List<Autor> autores;
 	private Autor autor;

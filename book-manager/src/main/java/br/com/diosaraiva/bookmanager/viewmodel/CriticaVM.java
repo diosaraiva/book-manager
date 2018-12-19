@@ -2,9 +2,15 @@ package br.com.diosaraiva.bookmanager.viewmodel;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import br.com.diosaraiva.bookmanager.model.entity.Critica;
+import br.com.diosaraiva.bookmanager.model.repository.CriticaRepository;
 
 public class CriticaVM {
+	
+	@Autowired
+	private CriticaRepository criticaRepository;
 
 	private List<Critica> criticas;
 	private Critica critica;

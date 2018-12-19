@@ -2,9 +2,15 @@ package br.com.diosaraiva.bookmanager.viewmodel;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import br.com.diosaraiva.bookmanager.model.entity.Editora;
+import br.com.diosaraiva.bookmanager.model.repository.EditoraRepository;
 
 public class EditoraVM {
+	
+	@Autowired
+	private EditoraRepository editoraRepository;
 
 	private List<Editora> editoras;
 	private Editora editora;
