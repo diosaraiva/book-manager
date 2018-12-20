@@ -26,8 +26,30 @@ public class Autor implements Serializable{
 
 	//Many-to-many Autor Bidirecional
 	@ManyToMany(mappedBy="autores")
-    Set<Livro> livros;
+	Set<Livro> livros;
 
+	//Construtores
+	public Autor() {
+	}
+
+	public Autor(String nomeAutor, String nacionalidade, Date nascimento, 
+			Set<Livro> livros) {
+		this.nomeAutor = nomeAutor;
+		this.nacionalidade = nacionalidade;
+		this.nascimento = nascimento;
+		this.livros = livros;
+	}
+
+	public Autor(long id, String nomeAutor, String nacionalidade, Date nascimento, 
+			Set<Livro> livros) {
+		this.id = id;
+		this.nomeAutor = nomeAutor;
+		this.nacionalidade = nacionalidade;
+		this.nascimento = nascimento;
+		this.livros = livros;
+	}
+
+	//Getters e Setters
 	public Long getId() {
 		return id;
 	}
@@ -67,5 +89,7 @@ public class Autor implements Serializable{
 	public void setLivros(Set<Livro> livros) {
 		this.livros = livros;
 	}
+	
+	//Overrides
 
 }

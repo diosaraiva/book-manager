@@ -12,5 +12,7 @@ public interface ILivroService {
     void atualizarLivro(Livro livro);					//Update
     void removerLivro(long isbn);						//Delete
     
+    boolean exists(Livro livro);
+    
     List<Livro> listarLivrosPorAutor(long id_autor);	//Requisito 009
 }

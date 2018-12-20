@@ -18,9 +18,27 @@ public class Critica implements Serializable{
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private String nomeCritico;
-    private double nota;
+    private int nota;
     private String texto;
 	
+    //Construtores
+  	public Critica() {
+  	}
+
+  	public Critica(String nomeCritico, int nota, String texto) {
+  		this.nomeCritico = nomeCritico;
+  		this.nota = nota;
+  		this.texto = texto;
+  	}
+
+  	public Critica(long id, String nomeCritico, int nota, String texto) {
+  		this.id = id;
+  		this.nomeCritico = nomeCritico;
+  		this.nota = nota;
+  		this.texto = texto;
+  	}
+    
+  	//Getters e Setters
     public Long getId() {
 		return id;
 	}
@@ -33,10 +51,10 @@ public class Critica implements Serializable{
 	public void setNomeCritico(String nomeCritico) {
 		this.nomeCritico = nomeCritico;
 	}
-	public double getNota() {
+	public int getNota() {
 		return nota;
 	}
-	public void setNota(double nota) {
+	public void setNota(int nota) {
 		this.nota = nota;
 	}
 	public String getTexto() {
@@ -46,4 +64,6 @@ public class Critica implements Serializable{
 		this.texto = texto;
 	}
 
+	//Overrides
+	
 }

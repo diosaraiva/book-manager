@@ -2,7 +2,6 @@ package br.com.diosaraiva.bookmanager.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -20,37 +19,65 @@ import javax.persistence.Table;
 public class Livro implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-    @Id
-    //@GeneratedValue(strategy=GenerationType.AUTO) //--> Deve ser fornecido pelo Usuário cadastrante.
-    private Long isbn;
-    private String titulo;
-    private Date dataPublicacao;
-    private double preco;
-    private String sinopse;
-    
-    //Many-to-many Autor
-    @ManyToMany(
-	        targetEntity=Autor.class,
-	        cascade=CascadeType.ALL
-	)
-        @JoinTable(
-          name="livro_autor",
-          joinColumns=@JoinColumn(name="livro_isbn"),
-          inverseJoinColumns=@JoinColumn(name="autor_id")
-        )
-    private Set<Autor> autores;
-    
-    //Many-to-one Editora
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "editora_id")
-    private Editora editora;
-    
-    //One-to-many Critica
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name = "critica_id")
-    private Set<Critica> criticas;
 
+	@Id
+	//@GeneratedValue(strategy=GenerationType.AUTO) //--> Deve ser fornecido pelo Usuário cadastrante.
+	private Long isbn;
+	private String titulo;
+	private Date dataPublicacao;
+	private double preco;
+	private String sinopse;
+
+	//Many-to-many Autor
+	@ManyToMany(
+			targetEntity=Autor.class,
+			cascade=CascadeType.ALL
+			)
+	@JoinTable(
+			name="livro_autor",
+			joinColumns=@JoinColumn(name="livro_isbn"),
+			inverseJoinColumns=@JoinColumn(name="autor_id")
+			)
+	private Set<Autor> autores;
+
+	//Many-to-one Editora
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "editora_id")
+	private Editora editora;
+
+	//One-to-many Critica
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name = "critica_id")
+	private Set<Critica> criticas;
+
+	//Construtores
+	public Livro() {
+	}
+
+	public Livro(String titulo, Date dataPublicacao, double preco, String sinopse, 
+			Set<Autor> autores, Editora editora, Set<Critica> criticas) {
+		this.titulo = titulo;
+		this.dataPublicacao = dataPublicacao;
+		this.preco = preco;
+		this.sinopse = sinopse;
+		this.autores = autores;
+		this.editora = editora;
+		this.criticas = criticas;
+	}
+
+	public Livro(long isbn, String titulo, Date dataPublicacao, double preco, 
+			String sinopse, Set<Autor> autores, Editora editora, Set<Critica> criticas) {
+		this.isbn = isbn;
+		this.titulo = titulo;
+		this.dataPublicacao = dataPublicacao;
+		this.preco = preco;
+		this.sinopse = sinopse;
+		this.autores = autores;
+		this.editora = editora;
+		this.criticas = criticas;
+	}
+
+	//Getters e Setters
 	public Long getIsbn() {
 		return isbn;
 	}
@@ -115,4 +142,65 @@ public class Livro implements Serializable {
 		this.criticas = criticas;
 	}
 
+	//Overrides
+	@Override
+	public String toString() {
+		String livro = "Livro{" +
+				"isbn=" + isbn +
+				", titulo='" + titulo +
+				", dataPublicacao='" + dataPublicacao + 
+				", preco='" + preco +
+				", sinopse='" + sinopse;
+
+		for (Autor autor : autores) {
+			livro = livro + 
+					", autor='" + autor;
+		}
+
+		livro = livro + 
+				", editora='" + editora;
+		
+		for (Critica critica : criticas) {
+			livro = livro + 
+					", critica='" + critica;
+		}
+
+		livro = livro +	'\'' + '}';
+		
+		return livro;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Livro livro = (Livro) o;
+
+		if (isbn != livro.isbn) return false;
+		if (titulo != null ? !livro.equals(livro.titulo) : livro.titulo != null) return false;
+		if (dataPublicacao != livro.dataPublicacao) return false;
+		if (preco != livro.preco) return false;
+		if (sinopse != null ? !livro.equals(livro.sinopse) : livro.sinopse != null) return false;
+		if (autores != null ? !livro.equals(livro.autores) : livro.autores != null) return false;
+		if (editora != null ? !livro.equals(livro.editora) : livro.editora != null) return false;
+		if (criticas != null ? !livro.equals(livro.criticas) : livro.criticas != null) return false;
+		
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		long result = isbn;
+		result = 31 * result 
+				+ (titulo != null ? titulo.hashCode() : 0)
+				+ (dataPublicacao != null ? dataPublicacao.hashCode() : 0)
+				+ (preco != 0 ? 1 : 0)
+				+ (sinopse != null ? sinopse.hashCode() : 0)
+				+ (autores != null ? autores.hashCode() : 0)
+				+ (editora != null ? editora.hashCode() : 0)
+				+ (criticas != null ? criticas.hashCode() : 0);
+		
+		return (int)result;
+	}
 }

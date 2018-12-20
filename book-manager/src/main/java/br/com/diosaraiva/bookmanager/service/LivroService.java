@@ -57,4 +57,8 @@ public class LivroService implements ILivroService {
 		return null;
 	}
 
+	@Override
+    public boolean exists(Livro livro) {
+		return selecionarLivroPorISBN(livro.getIsbn()) != null;
+    }
 }
