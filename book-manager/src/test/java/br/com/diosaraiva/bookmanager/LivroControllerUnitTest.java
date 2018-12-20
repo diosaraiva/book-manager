@@ -104,13 +104,10 @@ public class LivroControllerUnitTest {
 		when(livroService.listarLivros()).thenReturn(listaLivros);
 
 		mockMvc.perform(get("/livros"))
-		.andExpect(status().isOk()) //ERRO A PARTIR DAQUI PELO BREAKPOINT
+		.andExpect(status().isOk())
 		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
 		.andExpect(jsonPath("$", hasSize(1)))
-		.andExpect(jsonPath("$[0].id", is(1)))
-		.andExpect(jsonPath("$[0].username", is("Daenerys Targaryen")))
-		.andExpect(jsonPath("$[1].id", is(2)))
-		.andExpect(jsonPath("$[1].username", is("John Snow")));
+		.andExpect(jsonPath("$[0].isbn", is(1)));
 
 		verify(livroService, times(1)).listarLivros();
 		verifyNoMoreInteractions(livroService);

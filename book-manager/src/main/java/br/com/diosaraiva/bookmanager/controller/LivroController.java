@@ -16,7 +16,6 @@ import br.com.diosaraiva.bookmanager.model.Livro;
 import br.com.diosaraiva.bookmanager.service.ILivroService;
 
 @RestController
-@RequestMapping("user")
 public class LivroController {
 
 	private final Logger LOG = LoggerFactory.getLogger(LivroController.class);
@@ -43,7 +42,7 @@ public class LivroController {
     }
 	
 	//RETRIEVE - Selcionar livro por ISBN
-	@GetMapping("livros/{isbn}")
+	@GetMapping("/livros/{isbn}")
 	public ResponseEntity<Livro> get(@PathVariable("isbn") long isbn){
         LOG.info("Selecionando Livro com o ISBN: {}", isbn);
         Livro livro = livroService.selecionarLivroPorISBN(isbn);

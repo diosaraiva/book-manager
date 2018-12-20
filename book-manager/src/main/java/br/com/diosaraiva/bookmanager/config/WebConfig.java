@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @EnableWebMvc
 @Configuration
-@ComponentScan("com.memorynotfound")
+@ComponentScan("br.com.diosaraiva.bookmanager")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Bean
