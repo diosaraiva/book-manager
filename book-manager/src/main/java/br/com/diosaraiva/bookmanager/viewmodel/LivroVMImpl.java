@@ -17,6 +17,17 @@ public class LivroVMImpl implements ILivroVM {
 	private LivroRepository livroRepository;
 
 	@Override
+	public boolean adicionarLivro(Livro livro) {
+		Optional<Livro> livros = livroRepository.findById(livro.getIsbn()); 	
+		if (livros == null) {
+			return false;
+		} else {
+			livroRepository.save(livro);
+		}
+		return true;
+	}
+	
+	@Override
 	public List<Livro> listarLivros() {
 		List<Livro> livros = new ArrayList<>();
 		livroRepository.findAll().forEach(e -> livros.add(e));
@@ -30,17 +41,6 @@ public class LivroVMImpl implements ILivroVM {
 	}
 
 	@Override
-	public boolean adicionarLivro(Livro livro) {
-		Optional<Livro> livros = livroRepository.findById(livro.getIsbn()); 	
-		if (livros == null) {
-			return false;
-		} else {
-			livroRepository.save(livro);
-		}
-		return true;
-	}
-
-	@Override
 	public void atualizarLivro(Livro livro) {
 		livroRepository.save(livro);
 	}
@@ -48,6 +48,12 @@ public class LivroVMImpl implements ILivroVM {
 	@Override
 	public void removerLivro(long isbn) {
 		livroRepository.delete(selecionarLivroPorISBN(isbn));
+	}
+
+	//Requisito 009: OK
+	@Override
+	public List<Livro> listarLivrosPorAutor(long id_autor) {
+		return null;
 	}
 
 }

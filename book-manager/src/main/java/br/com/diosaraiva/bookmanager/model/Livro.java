@@ -3,6 +3,7 @@ package br.com.diosaraiva.bookmanager.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -38,17 +39,17 @@ public class Livro implements Serializable {
           joinColumns=@JoinColumn(name="livro_isbn"),
           inverseJoinColumns=@JoinColumn(name="autor_id")
         )
-    private List<Autor> autores;
+    private Set<Autor> autores;
     
     //Many-to-one Editora
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "editora_id")
     private Editora editora;
     
     //One-to-many Critica
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name = "critica_id")
-    private List<Critica> criticas;
+    private Set<Critica> criticas;
 
 	public Long getIsbn() {
 		return isbn;
@@ -90,11 +91,11 @@ public class Livro implements Serializable {
 		this.sinopse = sinopse;
 	}
 
-	public List<Autor> getAutores() {
+	public Set<Autor> getAutores() {
 		return autores;
 	}
 
-	public void setAutores(List<Autor> autores) {
+	public void setAutores(Set<Autor> autores) {
 		this.autores = autores;
 	}
 
@@ -106,12 +107,12 @@ public class Livro implements Serializable {
 		this.editora = editora;
 	}
 
-	public List<Critica> getCriticas() {
+	public Set<Critica> getCriticas() {
 		return criticas;
 	}
 
-	public void setCriticas(List<Critica> criticas) {
+	public void setCriticas(Set<Critica> criticas) {
 		this.criticas = criticas;
 	}
-    
+
 }

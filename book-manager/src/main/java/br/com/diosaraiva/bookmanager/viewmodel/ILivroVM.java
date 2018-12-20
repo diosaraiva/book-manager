@@ -6,10 +6,11 @@ import br.com.diosaraiva.bookmanager.model.Livro;
 
 public interface ILivroVM {
 	
-	List<Livro> listarLivros();
-    Livro selecionarLivroPorISBN(long isbn);
-    boolean adicionarLivro(Livro livro);
-    void atualizarLivro(Livro livro);
-    void removerLivro(long isbn);
+	boolean adicionarLivro(Livro livro);				//Create
+	List<Livro> listarLivros();							//Retrieve
+    Livro selecionarLivroPorISBN(long isbn);			//Retrieve
+    void atualizarLivro(Livro livro);					//Update
+    void removerLivro(long isbn);						//Delete
     
+    List<Livro> listarLivrosPorAutor(long id_autor);	//Requisito 009
 }

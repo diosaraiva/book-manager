@@ -10,7 +10,7 @@ ID	Tipo	Rastreabilidade							Requisito
 007	NF												Outras tecnologias podem ser aportadas livremente por você, conforme necessário. (ex. AngularJS, React)
 
 008 FN												Pesquisa de livros por código (ISBN)
-009 FN												Pesquisa de livros de um autor.
+009 FN		LivroVM.java							Pesquisa de livros de um autor.
 010 FN												Manutenção de livros (incluir, remover e alterar)
 011 FN		UML/Class								Um livro possui as seguintes informações:
 														- ISBN (chave primária)

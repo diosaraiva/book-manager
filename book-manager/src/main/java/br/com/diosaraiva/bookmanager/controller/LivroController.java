@@ -55,7 +55,7 @@ public class LivroController {
 		return new ResponseEntity<Livro>(livro, HttpStatus.OK);
 	}
 	
-	@DeleteMapping("livro/{id}")
+	@DeleteMapping("livro/{isbn}")
 	public ResponseEntity<Void> removerLivro(@PathVariable("isbn") Long isbn) {
 		livroVM.removerLivro(isbn);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);

@@ -20,5 +20,30 @@ public class Critica implements Serializable{
     private String nomeCritico;
     private double nota;
     private String texto;
+	
+    public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getNomeCritico() {
+		return nomeCritico;
+	}
+	public void setNomeCritico(String nomeCritico) {
+		this.nomeCritico = nomeCritico;
+	}
+	public double getNota() {
+		return nota;
+	}
+	public void setNota(double nota) {
+		this.nota = nota;
+	}
+	public String getTexto() {
+		return texto;
+	}
+	public void setTexto(String texto) {
+		this.texto = texto;
+	}
 
 }
