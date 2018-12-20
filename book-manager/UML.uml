@@ -104,4 +104,14 @@
     <ownedEnd xmi:type="uml:Property" xmi:id="_hP_5cQIuEemncdrpsHAfnQ" name="autor" type="_W9H6YACMEemHs4ezSHmv-g" association="_hP-EQAIuEemncdrpsHAfnQ"/>
     <ownedEnd xmi:type="uml:Property" xmi:id="_hQBHkAIuEemncdrpsHAfnQ" name="livro_autor" type="_inefMAItEemncdrpsHAfnQ" association="_hP-EQAIuEemncdrpsHAfnQ"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_D812UAR8EemnuIcXXcJ0Zw" name="br.com.diosaraiva.bookmanager.book-manager">
+    <packagedElement xmi:type="uml:Package" xmi:id="_cHD-oAR8EemnuIcXXcJ0Zw" name="config"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_gfxEQAR8EemnuIcXXcJ0Zw" name="controller"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_kSl1oAR8EemnuIcXXcJ0Zw" name="filter"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_rbDGEAR8EemnuIcXXcJ0Zw" name="model"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_6QRN4AR8EemnuIcXXcJ0Zw" name="repository"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="__xs2IAR8EemnuIcXXcJ0Zw" name="service"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_C5GPcAR-EemnuIcXXcJ0Zw" name="unit"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_PijDQAR-EemnuIcXXcJ0Zw" name="br.com.diosaraiva.bookmanager.book-manager-client"/>
 </uml:Model>

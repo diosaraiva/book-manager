@@ -73,7 +73,7 @@ public class LivroControllerUnitTest {
 		Editora editora = new Editora("Editora 1", "http://localhost:8080/");
 
 		Set<Autor> autores = new HashSet<Autor>();
-		autores.add(new Autor("Diogo", "Brasileiro", new Date(), null));
+		autores.add(new Autor("Diogo 1", "Brasileiro", new Date(), null));
 		autores.add(new Autor("Autor 2", "Brasileiro", new Date(), null));
 
 		Set<Livro> livros = new HashSet<Livro>();
