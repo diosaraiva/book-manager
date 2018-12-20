@@ -1,4 +1,4 @@
-package br.com.diosaraiva.bookmanager.viewmodel;
+package br.com.diosaraiva.bookmanager.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import br.com.diosaraiva.bookmanager.model.Livro;
 import br.com.diosaraiva.bookmanager.repository.LivroRepository;
 
 @Service
-public class LivroVMImpl implements ILivroVM {
+public class LivroService implements ILivroService {
 
 	@Autowired
 	private LivroRepository livroRepository;
@@ -28,16 +28,16 @@ public class LivroVMImpl implements ILivroVM {
 	}
 	
 	@Override
+	public Livro selecionarLivroPorISBN(long isbn) {
+		Livro obj = livroRepository.findById(isbn).get();
+		return obj;
+	}
+	
+	@Override
 	public List<Livro> listarLivros() {
 		List<Livro> livros = new ArrayList<>();
 		livroRepository.findAll().forEach(e -> livros.add(e));
 		return livros;
-	}
-
-	@Override
-	public Livro selecionarLivroPorISBN(long isbn) {
-		Livro obj = livroRepository.findById(isbn).get();
-		return obj;
 	}
 
 	@Override
@@ -53,6 +53,7 @@ public class LivroVMImpl implements ILivroVM {
 	//Requisito 009: OK
 	@Override
 	public List<Livro> listarLivrosPorAutor(long id_autor) {
+		//TODO
 		return null;
 	}
 

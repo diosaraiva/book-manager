@@ -1,10 +1,10 @@
-package br.com.diosaraiva.bookmanager.viewmodel;
+package br.com.diosaraiva.bookmanager.service;
 
 import java.util.List;
 
 import br.com.diosaraiva.bookmanager.model.Livro;
 
-public interface ILivroVM {
+public interface ILivroService {
 	
 	boolean adicionarLivro(Livro livro);				//Create
 	List<Livro> listarLivros();							//Retrieve
