@@ -70,7 +70,7 @@ public class LivroController {
     }
 
 	//UPDATE - Atualizar Livro
-	@PutMapping("/{isbn}")
+	@PutMapping("/livros/{isbn}")
 	public ResponseEntity<Livro> update(@PathVariable int isbn, @RequestBody Livro livro){
         LOG.info("Atualizando Livro: {}", livro);
         Livro livroAtual = livroService.selecionarLivroPorISBN(isbn);
@@ -95,7 +95,7 @@ public class LivroController {
     }
 
 	//DELETE - Remover Livro
-	@DeleteMapping("/{isbn}")
+	@DeleteMapping("/livros/{isbn}")
 	public ResponseEntity<Void> delete(@PathVariable("isbn") int isbn){
         LOG.info("Removendo Livro com o ISBN: {}", isbn);
         Livro livro = livroService.selecionarLivroPorISBN(isbn);
