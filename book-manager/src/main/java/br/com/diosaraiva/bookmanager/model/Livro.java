@@ -178,13 +178,6 @@ public class Livro implements Serializable {
 		Livro livro = (Livro) o;
 
 		if (isbn != livro.isbn) return false;
-		if (titulo != null ? !livro.equals(livro.titulo) : livro.titulo != null) return false;
-		if (dataPublicacao != livro.dataPublicacao) return false;
-		if (preco != livro.preco) return false;
-		if (sinopse != null ? !livro.equals(livro.sinopse) : livro.sinopse != null) return false;
-		if (autores != null ? !livro.equals(livro.autores) : livro.autores != null) return false;
-		if (editora != null ? !livro.equals(livro.editora) : livro.editora != null) return false;
-		if (criticas != null ? !livro.equals(livro.criticas) : livro.criticas != null) return false;
 		
 		return true;
 	}

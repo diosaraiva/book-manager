@@ -17,22 +17,19 @@ public class LivroService implements ILivroService {
 	private LivroRepository livroRepository;
 
 	@Override
-	public boolean adicionarLivro(Livro livro) {
+	public void adicionarLivro(Livro livro) {
 		Optional<Livro> livros = livroRepository.findById(livro.getIsbn()); 	
-		if (livros == null) {
-			return false;
-		} else {
+		if (livros != null) {
 			livroRepository.save(livro);
 		}
-		return true;
 	}
-	
+
 	@Override
 	public Livro selecionarLivroPorISBN(long isbn) {
 		Livro obj = livroRepository.findById(isbn).get();
 		return obj;
 	}
-	
+
 	@Override
 	public List<Livro> listarLivros() {
 		List<Livro> livros = new ArrayList<>();
@@ -58,7 +55,7 @@ public class LivroService implements ILivroService {
 	}
 
 	@Override
-    public boolean exists(Livro livro) {
+	public boolean exists(Livro livro) {
 		return selecionarLivroPorISBN(livro.getIsbn()) != null;
-    }
+	}
 }

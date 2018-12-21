@@ -6,7 +6,7 @@ import br.com.diosaraiva.bookmanager.model.Livro;
 
 public interface ILivroService {
 	
-	boolean adicionarLivro(Livro livro);				//Create
+	void adicionarLivro(Livro livro);				//Create
 	List<Livro> listarLivros();							//Retrieve
     Livro selecionarLivroPorISBN(long isbn);			//Retrieve
     void atualizarLivro(Livro livro);					//Update

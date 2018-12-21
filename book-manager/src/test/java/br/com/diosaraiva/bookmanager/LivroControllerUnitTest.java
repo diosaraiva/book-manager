@@ -113,7 +113,7 @@ public class LivroControllerUnitTest {
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(asJsonString(livro)))
 		.andExpect(status().isCreated())
-		.andExpect(header().string("location", containsString("/livros/0"))); //containsString????
+		.andExpect(header().string("location", containsString("/livros/1")));
 
 		verify(livroService, times(1)).exists(livro);
 		verify(livroService, times(1)).adicionarLivro(livro);
@@ -216,7 +216,7 @@ public class LivroControllerUnitTest {
         doNothing().when(livroService).removerLivro(livro.getIsbn());
 
         mockMvc.perform(
-                delete("/users/{isbn}", livro.getIsbn()))
+                delete("/livros/{isbn}", livro.getIsbn()))
                 .andExpect(status().isOk());
 
         verify(livroService, times(1)).selecionarLivroPorISBN(livro.getIsbn());
