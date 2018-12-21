@@ -24,7 +24,7 @@ public class LivroController {
 	private ILivroService livroService;
 
 	//CREATE - Adicionar Livro
-	@PostMapping("/livro/novo")
+	@PostMapping("/livros/novo")
 	public ResponseEntity<Void> adicionarLivro(@RequestBody Livro livro, 
 			UriComponentsBuilder ucBuilder){
         LOG.info("Adicionando novo Livro: {}", livro);

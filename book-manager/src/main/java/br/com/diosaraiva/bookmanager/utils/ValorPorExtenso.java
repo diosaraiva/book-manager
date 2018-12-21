@@ -19,12 +19,12 @@ public class ValorPorExtenso {
 	  }
 	*/
 
-	public static String valorPorExtenso(double vlr) {
-		if (vlr == 0)
+	public static String valorPorExtenso(double valor) {
+		if (valor == 0)
 			return("zero");
 
-		long inteiro = (long)Math.abs(vlr); // parte inteira do valor
-		double resto = vlr - inteiro;       // parte fracionária do valor
+		long inteiro = (long)Math.abs(valor); // parte inteira do valor
+		double resto = valor - inteiro;       // parte fracionária do valor
 
 		String vlrS = String.valueOf(inteiro);
 		if (vlrS.length() > 15)

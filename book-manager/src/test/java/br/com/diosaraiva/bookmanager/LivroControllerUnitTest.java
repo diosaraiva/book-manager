@@ -8,8 +8,14 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,14 +46,11 @@ import br.com.diosaraiva.bookmanager.model.Critica;
 import br.com.diosaraiva.bookmanager.model.Editora;
 import br.com.diosaraiva.bookmanager.model.Livro;
 import br.com.diosaraiva.bookmanager.service.LivroService;
-import br.com.diosaraiva.bookmanager.utils.JSONUtil;
 
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {WebConfig.class})
 public class LivroControllerUnitTest {
-
-	private static final int UNKNOWN_ID = Integer.MAX_VALUE;
 
 	private MockMvc mockMvc;
 
@@ -67,7 +70,7 @@ public class LivroControllerUnitTest {
 	}
 
 	//Cria objetos para Testes
-	private List<Livro> CriarCenarioTeste() {
+	private List<Livro> CriarCenarioTesteLista() {
 
 		Set<Critica> criticas = new HashSet<Critica>();
 		criticas.add(new Critica("Critico 1", 5, "Texto 1"));
@@ -88,9 +91,8 @@ public class LivroControllerUnitTest {
 
 		return listaLivros;
 	}
-
-	@Test
-	public void testarAdicionarLivro() throws Exception {
+	
+	private Livro CriarCenarioTesteLivro() {
 
 		Set<Critica> criticas = new HashSet<Critica>();
 		criticas.add(new Critica("Critico 1", 5, "Texto 1"));
@@ -102,14 +104,20 @@ public class LivroControllerUnitTest {
 		autores.add(new Autor("Diogo 1", "Brasileiro", new Date(), null));
 		autores.add(new Autor("Autor 2", "Brasileiro", new Date(), null));
 
-		Livro livro = new Livro(1, "Titulo 1", new Date(), 10.00, "Sinopse 1", autores, 
+		return new Livro(1, "Titulo 1", new Date(), 10.00, "Sinopse 1", autores, 
 				editora, criticas);
+	}
+
+	@Test
+	public void testarAdicionarLivro() throws Exception {
+
+		Livro livro = CriarCenarioTesteLivro();
 
 		when(livroService.exists(livro)).thenReturn(false);
 		doNothing().when(livroService).adicionarLivro(livro);
 
 		mockMvc.perform(
-				post("/livro/novo")
+				post("/livros/novo")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(asJsonString(livro)))
 		.andExpect(status().isCreated())
@@ -123,18 +131,7 @@ public class LivroControllerUnitTest {
 	@Test
 	public void testarSelecionarLivroPorISBN() throws Exception {
 
-		Set<Critica> criticas = new HashSet<Critica>();
-		criticas.add(new Critica("Critico 1", 5, "Texto 1"));
-		criticas.add(new Critica("Critico 2", 0, "Texto 2"));
-
-		Editora editora = new Editora("Editora 1", "http://localhost:8080/");
-
-		Set<Autor> autores = new HashSet<Autor>();
-		autores.add(new Autor("Diogo 1", "Brasileiro", new Date(), null));
-		autores.add(new Autor("Autor 2", "Brasileiro", new Date(), null));
-
-		Livro livro = new Livro(1, "Titulo 1", new Date(), 10.00, "Sinopse 1", autores, 
-				editora, criticas);
+		Livro livro = CriarCenarioTesteLivro();
 
         when(livroService.selecionarLivroPorISBN(1)).thenReturn(livro);
 
@@ -151,7 +148,7 @@ public class LivroControllerUnitTest {
 	@Test
 	public void testarListarLivros() throws Exception {
 
-		List<Livro> listaLivros = CriarCenarioTeste();
+		List<Livro> listaLivros = CriarCenarioTesteLista();
 
 		when(livroService.listarLivros()).thenReturn(listaLivros);
 
@@ -169,18 +166,7 @@ public class LivroControllerUnitTest {
 	@Test
 	public void testarAtualizarLivro() throws Exception {
 
-		Set<Critica> criticas = new HashSet<Critica>();
-		criticas.add(new Critica("Critico 1", 5, "Texto 1"));
-		criticas.add(new Critica("Critico 2", 0, "Texto 2"));
-
-		Editora editora = new Editora("Editora 1", "http://localhost:8080/");
-
-		Set<Autor> autores = new HashSet<Autor>();
-		autores.add(new Autor("Diogo 1", "Brasileiro", new Date(), null));
-		autores.add(new Autor("Autor 2", "Brasileiro", new Date(), null));
-
-		Livro livro = new Livro(1, "Titulo 1", new Date(), 10.00, "Sinopse 1", autores, 
-				editora, criticas);
+		Livro livro = CriarCenarioTesteLivro();
 
         when(livroService.selecionarLivroPorISBN(livro.getIsbn())).thenReturn(livro);
         doNothing().when(livroService).atualizarLivro(livro);
@@ -199,18 +185,7 @@ public class LivroControllerUnitTest {
 	@Test
 	public void testarRemoverLivro() throws Exception {
 		
-		Set<Critica> criticas = new HashSet<Critica>();
-		criticas.add(new Critica("Critico 1", 5, "Texto 1"));
-		criticas.add(new Critica("Critico 2", 0, "Texto 2"));
-
-		Editora editora = new Editora("Editora 1", "http://localhost:8080/");
-
-		Set<Autor> autores = new HashSet<Autor>();
-		autores.add(new Autor("Diogo 1", "Brasileiro", new Date(), null));
-		autores.add(new Autor("Autor 2", "Brasileiro", new Date(), null));
-
-		Livro livro = new Livro(1, "Titulo 1", new Date(), 10.00, "Sinopse 1", autores, 
-				editora, criticas);
+		Livro livro = CriarCenarioTesteLivro();
 
         when(livroService.selecionarLivroPorISBN(livro.getIsbn())).thenReturn(livro);
         doNothing().when(livroService).removerLivro(livro.getIsbn());

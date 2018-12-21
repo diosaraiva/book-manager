@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.diosaraiva.bookmanager.model.Livro;
+import br.com.diosaraiva.bookmanager.model.Autor;
 import br.com.diosaraiva.bookmanager.repository.LivroRepository;
+import br.com.diosaraiva.bookmanager.utils.ValorPorExtenso;
 
 @Service
 public class LivroService implements ILivroService {
@@ -50,12 +52,29 @@ public class LivroService implements ILivroService {
 	//Requisito 009: OK
 	@Override
 	public List<Livro> listarLivrosPorAutor(long id_autor) {
-		//TODO
-		return null;
+		
+		List<Livro> livros = new ArrayList<>();
+		livroRepository.findAll().forEach(e -> livros.add(e));
+		
+		List<Livro> listaLivros = new ArrayList<>();
+		
+		for (Livro livro : livros) {
+			for (Autor autor : livro.getAutores()) {
+				if(autor.getId() == id_autor) listaLivros.add(livro);
+			}
+		}
+		
+		return listaLivros;
+	}
+
+	//Requisito 012: OK
+	public String valorPorExtenso(double valor) {
+		return valorPorExtenso(valor);
 	}
 
 	@Override
 	public boolean exists(Livro livro) {
 		return selecionarLivroPorISBN(livro.getIsbn()) != null;
 	}
+
 }
