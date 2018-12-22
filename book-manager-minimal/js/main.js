@@ -10,9 +10,17 @@ function handleBookEdit() {
     const row = $(this).parents("tr");
     const cols = row.children("td");
 
-    _activeId = $($(cols[3]).children("button")[0]).data("id");
+    _activeId = $($(cols[8]).children("button")[0]).data("id");
 
-    bookForm.setData($(cols[0]).text(), $(cols[1]).text(), $(cols[2]).text());
+    bookForm.setData(
+	$(cols[0]).text(), 
+	$(cols[1]).text(), 
+	$(cols[2]).text(), 
+	$(cols[3]).text(), 
+	$(cols[4]).text(), 
+	$(cols[5]).text(), 
+	$(cols[6]).text(), 
+	$(cols[7]).text());
 
     bookForm.setSubmitButtonText("Actualizar");
 }

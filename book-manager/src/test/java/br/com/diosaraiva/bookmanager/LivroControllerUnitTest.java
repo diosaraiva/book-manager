@@ -70,7 +70,7 @@ public class LivroControllerUnitTest {
 	}
 
 	//Cria objetos para Testes
-	private List<Livro> CriarCenarioTesteLista() {
+	private List<Livro> criarCenarioTesteLista() {
 
 		Set<Critica> criticas = new HashSet<Critica>();
 		criticas.add(new Critica("Critico 1", 5, "Texto 1"));
@@ -91,8 +91,8 @@ public class LivroControllerUnitTest {
 
 		return listaLivros;
 	}
-	
-	private Livro CriarCenarioTesteLivro() {
+
+	private Livro criarCenarioTesteLivro() {
 
 		Set<Critica> criticas = new HashSet<Critica>();
 		criticas.add(new Critica("Critico 1", 5, "Texto 1"));
@@ -111,7 +111,7 @@ public class LivroControllerUnitTest {
 	@Test
 	public void testarAdicionarLivro() throws Exception {
 
-		Livro livro = CriarCenarioTesteLivro();
+		Livro livro = criarCenarioTesteLivro();
 
 		when(livroService.exists(livro)).thenReturn(false);
 		doNothing().when(livroService).adicionarLivro(livro);
@@ -129,26 +129,54 @@ public class LivroControllerUnitTest {
 	}
 
 	@Test
+	public void testarAdicionarLivroFail_404_not_found() throws Exception {
+
+		Livro livro = criarCenarioTesteLivro();
+
+		when(livroService.exists(livro)).thenReturn(true);
+
+		mockMvc.perform(
+				post("/livros/novo")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(asJsonString(livro)))
+		.andExpect(status().isConflict());
+
+		verify(livroService, times(1)).exists(livro);
+		verifyNoMoreInteractions(livroService);
+	}
+
+	@Test
 	public void testarSelecionarLivroPorISBN() throws Exception {
 
-		Livro livro = CriarCenarioTesteLivro();
+		Livro livro = criarCenarioTesteLivro();
 
-        when(livroService.selecionarLivroPorISBN(1)).thenReturn(livro);
+		when(livroService.selecionarLivroPorISBN(1)).thenReturn(livro);
+
+		mockMvc.perform(get("/livros/{isbn}", 1))
+		.andExpect(status().isOk())
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+		.andExpect(jsonPath("$.isbn", is(1)))
+		.andExpect(jsonPath("$.titulo", is("Titulo 1")));
+
+		verify(livroService, times(1)).selecionarLivroPorISBN(1);
+		verifyNoMoreInteractions(livroService);
+	}
+	
+	@Test
+    public void testarSelecionarLivroPorISBNFail_404_not_found() throws Exception {
+        when(livroService.selecionarLivroPorISBN(1)).thenReturn(null);
 
         mockMvc.perform(get("/livros/{isbn}", 1))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.isbn", is(1)))
-                .andExpect(jsonPath("$.titulo", is("Titulo 1")));
+                .andExpect(status().isNotFound());
 
         verify(livroService, times(1)).selecionarLivroPorISBN(1);
         verifyNoMoreInteractions(livroService);
-	}
+    }
 
 	@Test
 	public void testarListarLivros() throws Exception {
 
-		List<Livro> listaLivros = CriarCenarioTesteLista();
+		List<Livro> listaLivros = criarCenarioTesteLista();
 
 		when(livroService.listarLivros()).thenReturn(listaLivros);
 
@@ -166,48 +194,80 @@ public class LivroControllerUnitTest {
 	@Test
 	public void testarAtualizarLivro() throws Exception {
 
-		Livro livro = CriarCenarioTesteLivro();
+		Livro livro = criarCenarioTesteLivro();
 
-        when(livroService.selecionarLivroPorISBN(livro.getIsbn())).thenReturn(livro);
-        doNothing().when(livroService).atualizarLivro(livro);
+		when(livroService.selecionarLivroPorISBN(livro.getIsbn())).thenReturn(livro);
+		doNothing().when(livroService).atualizarLivro(livro);
+
+		mockMvc.perform(
+				put("/livros/{isbn}", livro.getIsbn())
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(asJsonString(livro)))
+		.andExpect(status().isOk());
+
+		verify(livroService, times(1)).selecionarLivroPorISBN(livro.getIsbn());
+		verify(livroService, times(1)).atualizarLivro(livro);
+		verifyNoMoreInteractions(livroService);
+	}
+	
+	@Test
+    public void testarAtualizarLivroFail_404_not_found() throws Exception {
+
+		Livro livro = criarCenarioTesteLivro();
+
+        when(livroService.selecionarLivroPorISBN(livro.getIsbn())).thenReturn(null);
 
         mockMvc.perform(
                 put("/livros/{isbn}", livro.getIsbn())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(livro)))
-                .andExpect(status().isOk());
+                .andExpect(status().isNotFound());
 
         verify(livroService, times(1)).selecionarLivroPorISBN(livro.getIsbn());
-        verify(livroService, times(1)).atualizarLivro(livro);
         verifyNoMoreInteractions(livroService);
-	}
+    }
 
 	@Test
 	public void testarRemoverLivro() throws Exception {
-		
-		Livro livro = CriarCenarioTesteLivro();
 
-        when(livroService.selecionarLivroPorISBN(livro.getIsbn())).thenReturn(livro);
-        doNothing().when(livroService).removerLivro(livro.getIsbn());
+		Livro livro = criarCenarioTesteLivro();
+
+		when(livroService.selecionarLivroPorISBN(livro.getIsbn())).thenReturn(livro);
+		doNothing().when(livroService).removerLivro(livro.getIsbn());
+
+		mockMvc.perform(
+				delete("/livros/{isbn}", livro.getIsbn()))
+		.andExpect(status().isOk());
+
+		verify(livroService, times(1)).selecionarLivroPorISBN(livro.getIsbn());
+		verify(livroService, times(1)).removerLivro(livro.getIsbn());
+		verifyNoMoreInteractions(livroService);
+	}
+	
+	@Test
+    public void testarRemoverLivroFail_404_not_found() throws Exception {
+
+		Livro livro = criarCenarioTesteLivro();
+
+        when(livroService.selecionarLivroPorISBN(livro.getIsbn())).thenReturn(null);
 
         mockMvc.perform(
                 delete("/livros/{isbn}", livro.getIsbn()))
-                .andExpect(status().isOk());
+                .andExpect(status().isNotFound());
 
         verify(livroService, times(1)).selecionarLivroPorISBN(livro.getIsbn());
-        verify(livroService, times(1)).removerLivro(livro.getIsbn());
         verifyNoMoreInteractions(livroService);
-	}
+    }
 
 	@Test
-    public void testarCabecalhosCORS() throws Exception {
-        mockMvc.perform(get("/livros"))
-                .andExpect(header().string("Access-Control-Allow-Origin", "*"))
-                .andExpect(header().string("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE"))
-                .andExpect(header().string("Access-Control-Allow-Headers", "*"))
-                .andExpect(header().string("Access-Control-Max-Age", "3600"));
-    }
-	
+	public void testarCabecalhosCORS() throws Exception {
+		mockMvc.perform(get("/livros"))
+		.andExpect(header().string("Access-Control-Allow-Origin", "*"))
+		.andExpect(header().string("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE"))
+		.andExpect(header().string("Access-Control-Allow-Headers", "*"))
+		.andExpect(header().string("Access-Control-Max-Age", "3600"));
+	}
+
 	public static String asJsonString(final Object obj) {
 		try {
 			final ObjectMapper mapper = new ObjectMapper();

@@ -21,7 +21,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h2>Livros Cadastrados</h2>
+                    <h2>Meus Livros</h2>
                 </div><!--// .col-md-6 -->
             </div><!--// .row -->
 
@@ -30,16 +30,17 @@
                     <table id="bookTable" class="table table-bordered table-condensed table-striped">
                         <thead>
                         <tr>
+							<!-- Tabela de Registros -->
 							<th>ISBN</th>
-                            <th>Título</th>
+                            <th>Título do Livro</th>
                             <th>Publicacao</th>
-                            <th>Preco</th>
+							<th>Preco</th>
                             <th>Sinopse</th>
-                            <th>Autor</th>
-                            <th>Editora</th>
-                            <th>Critica</th>
-							<th>Editar</th>
-							<th>Remover</th>
+							<th>Autor</th>
+							<th>Editora</th>
+							<th>Critica</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
                         </tr>
                         </thead>
                         <tbody></tbody>
@@ -51,28 +52,54 @@
                         <div class="panel-heading">Dados do Livro</div>
                         <div class="panel-body">
                             <form id="book-form">
-                                <div class="form-group">
+								<!-- Formulario -->
+							
+								<div class="form-group">
                                     <label for="title">ISBN</label>
                                     <input type="text" name="isbn" id="book_isbn" class="form-control input-lg"
                                            placeholder="ISBN do Livro">
                                 </div>
-								
-								<div class="form-group">
+							
+                                <div class="form-group">
                                     <label for="title">Título</label>
                                     <input type="text" name="title" id="book_title" class="form-control input-lg"
                                            placeholder="Título do Livro">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="author">Autor</label>
-                                    <input type="text" name="author" id="book_author" class="form-control input-lg"
-                                           placeholder="Nome do Autor">
+                                    <label for="publicacao">Publicacao</label>
+                                    <input type="text" name="publicacao" id="book_publicacao" class="form-control input-lg"
+                                           placeholder="Data de Publicacao">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="publisher">Editora</label>
-                                    <input type="text" name="publisher" id="book_publisher" class="form-control input-lg"
+                                    <label for="preco">Preco</label>
+                                    <input type="text" name="preco" id="book_preco" class="form-control input-lg"
+                                           placeholder="Preco">
+                                </div>
+								
+								<div class="form-group">
+                                    <label for="sinopse">Sinopse</label>
+                                    <input type="text" name="sinopse" id="book_sinopse" class="form-control input-lg"
+                                           placeholder="Sinopse">
+                                </div>
+								
+								<div class="form-group">
+                                    <label for="autor">Autor</label>
+                                    <input type="text" name="autor" id="book_autor" class="form-control input-lg"
+                                           placeholder="Autor">
+                                </div>
+								
+								<div class="form-group">
+                                    <label for="editora">Editora</label>
+                                    <input type="text" name="editora" id="book_editora" class="form-control input-lg"
                                            placeholder="Editora">
+                                </div>
+								
+								<div class="form-group">
+                                    <label for="critica">Critica</label>
+                                    <input type="text" name="critica" id="book_critica" class="form-control input-lg"
+                                           placeholder="Critica">
                                 </div>
 
                                 <div class="form-group">
@@ -89,14 +116,14 @@
 
         <script type="text/html" id="bookTemplate">
             <tr>
-                <td><%- isbn %></td>
+				<td><%- isbn %></td>
                 <td><%- title %></td>
-                <td>[Publicacao]</td>
-				<td>[Preco]</td>
-				<td>[Sinopse]</td>
-				<td><%- author %></td>
-				<td><%- publisher %></td>
-				<td>[Critica]</td>
+                <td><%- publicacao %></td>
+				<td><%- preco %></td>
+                <td><%- sinopse %></td>
+				<td><%- autor %></td>
+				<td><%- editora %></td>
+				<td><%- critica %></td>
                 <td>
                     <button type='button' class='book-edit btn btn-default' data-id='<%- id %>'>
                         <span class='glyphicon glyphicon-edit'></span>
