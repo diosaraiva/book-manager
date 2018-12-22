@@ -113,5 +113,5 @@
     <packagedElement xmi:type="uml:Package" xmi:id="__xs2IAR8EemnuIcXXcJ0Zw" name="service"/>
     <packagedElement xmi:type="uml:Package" xmi:id="_C5GPcAR-EemnuIcXXcJ0Zw" name="unit"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_PijDQAR-EemnuIcXXcJ0Zw" name="br.com.diosaraiva.bookmanager.book-manager-client"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_PijDQAR-EemnuIcXXcJ0Zw" name="br.com.diosaraiva.bookmanager.book-manager-minimal"/>
 </uml:Model>
