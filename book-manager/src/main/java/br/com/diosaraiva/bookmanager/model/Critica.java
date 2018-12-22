@@ -11,35 +11,35 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "critica")
 public class Critica implements Serializable{
-	
+
 	private static final long serialVersionUID = 1L;
-	
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
-    private String nomeCritico;
-    private int nota;
-    private String texto;
-	
-    //Construtores
-  	public Critica() {
-  	}
 
-  	public Critica(String nomeCritico, int nota, String texto) {
-  		this.nomeCritico = nomeCritico;
-  		this.nota = nota;
-  		this.texto = texto;
-  	}
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
+	private String nomeCritico;
+	private int nota;
+	private String texto;
 
-  	public Critica(long id, String nomeCritico, int nota, String texto) {
-  		this.id = id;
-  		this.nomeCritico = nomeCritico;
-  		this.nota = nota;
-  		this.texto = texto;
-  	}
-    
-  	//Getters e Setters
-    public Long getId() {
+	//Construtores
+	public Critica() {
+	}
+
+	public Critica(String nomeCritico, int nota, String texto) {
+		this.nomeCritico = nomeCritico;
+		this.nota = nota;
+		this.texto = texto;
+	}
+
+	public Critica(long id, String nomeCritico, int nota, String texto) {
+		this.id = id;
+		this.nomeCritico = nomeCritico;
+		this.nota = nota;
+		this.texto = texto;
+	}
+
+	//Getters e Setters
+	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
@@ -65,5 +65,5 @@ public class Critica implements Serializable{
 	}
 
 	//Overrides
-	
+
 }

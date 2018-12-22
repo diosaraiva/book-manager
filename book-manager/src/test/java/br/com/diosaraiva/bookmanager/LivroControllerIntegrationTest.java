@@ -101,7 +101,7 @@ public class LivroControllerIntegrationTest {
 		Livro livro = CriarCenarioTesteLivro();
 
 		try {
-			URI location = template.postForLocation(BASE_URI, livro, Livro.class);
+			URI location = template.postForLocation(BASE_URI + "/novo", livro, Livro.class);
 			fail("should return 409 conflict");
 		} catch (HttpClientErrorException e){
 			assertThat(e.getStatusCode(), is(HttpStatus.CONFLICT));
