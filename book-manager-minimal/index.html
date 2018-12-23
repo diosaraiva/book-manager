@@ -1,34 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="us">
 <head>
+
+<!-- ///////////////////////////// INFORMACOES DA PAGINA ///////////////////////////// -->
 <meta charset="utf-8">
 <title>Gerenciamento de Livros v0.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Gerenciamento de Livros REST API">
 <meta name="author" content="Diogo Saraiva">
 
-<!-- Le styles -->
+
+<!-- ///////////////////////////// JQUERY CSS ///////////////////////////// -->
 <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 <link type="text/css"
 	href="css/custom-theme/jquery-ui-1.10.0.custom.css" rel="stylesheet" />
 <link type="text/css" href="assets/css/font-awesome.min.css"
 	rel="stylesheet" />
-<!--[if IE 7]>
-            <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css">
-            <![endif]-->
-<!--[if lt IE 9]>
-            <link rel="stylesheet" type="text/css" href="css/custom-theme/jquery.ui.1.10.0.ie.css"/>
-            <![endif]-->
 <link href="assets/css/docs.css" rel="stylesheet">
 <link href="assets/js/google-code-prettify/prettify.css"
 	rel="stylesheet">
 
-<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-            <![endif]-->
 
-<!-- Le fav and touch icons -->
+<!-- ///////////////////////////// ICONES ///////////////////////////// -->
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
 	href="assets/ico/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
@@ -44,7 +37,8 @@
 <body data-spy="scroll" data-target=".bs-docs-sidebar"
 	data-twttr-rendered="true">
 
-	<!-- Navbar ================================================== -->
+
+	<!-- ///////////////////////////// NAVBAR ///////////////////////////// -->
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
@@ -67,72 +61,100 @@
 	</div>
 
 	<div class="container">
-		<!-- Docs nav ================================================== -->
+
+
+		<!-- ///////////////////////////// MENU ESQUERDO ///////////////////////////// -->
 		<div class="row">
 			<div class="span3 bs-docs-sidebar">
 				<ul class="nav nav-list bs-docs-sidenav">
-					<li><a href="#adicionar-livro"> <i
-							class="icon-chevron-right"></i> Adicionar Livro
-					</a></li>
-					<li><a href="#consultar-isbn"> <i
+					<li><a href="#consultar-livros"> <i
 							class="icon-chevron-right"></i> Consultar por ISBN
 					</a></li>
-					<li><a href="#accordion"> <i class="icon-chevron-right"></i>
-							Consultar por Autor
+					<li><a href="#consultar-livros"> <i
+							class="icon-chevron-right"></i> Consultar por Autor
 					</a></li>
-					<li><a href="#dialog"> <i class="icon-chevron-right"></i>
-							Atualizar Livro
+					<li><a href="#listar-livros"> <i
+							class="icon-chevron-right"></i> Listar Livros
 					</a></li>
-					<li><a href="#tabs-simple"><i class="icon-chevron-right"></i>
-							Remover Livro</a></li>
+					<li><a href="#gerenciar-livro"> <i
+							class="icon-chevron-right"></i> Adicionar Livro
+					</a></li>
+					<li><a href="#gerenciar-livro"> <i
+							class="icon-chevron-right"></i> Editar Livro
+					</a></li>
+					<li><a href="#gerenciar-livro"><i
+							class="icon-chevron-right"></i> Remover Livro </a></li>
 				</ul>
 			</div>
+
 			<div class="span9">
-				<!-- /////////////////// ADICIONAR LIVRO /////////////////// -->
-				<section id="adicionar-livro">
+
+
+				<!-- ///////////////////////////// CONSULTAR LIVROS ///////////////////////////// -->
+				<section id="consultar-livros">
+
 					<div class="page-header">
-						<h1>Adicionar Livro</h1>
+						<h3>Consultar Livros</h3>
 					</div>
-					Form aqui
+
+					<div id="tabs">
+						<ul>
+							<li><a href="#consultar-isbn">Por ISBN</a></li>
+							<li><a href="#consultar-autor">Por Autor</a></li>
+						</ul>
+
+
+						<!-- ///////////////////////////// CONSULTAR POR ISBN ///////////////////////////// -->
+						<div id="consultar-isbn">Consultar por ISBN.</div>
+
+
+						<!-- ///////////////////////////// CONSULTAR POR AUTOR ///////////////////////////// -->
+						<div id="consultar-autor">Consultar por Autor.</div>
+					</div>
+
+
 				</section>
 
-				<!-- /////////////////// CONSULTAR POR ISBN /////////////////// -->
-				<section id="consultar-isbn">
+				<!-- ///////////////////////////// LISTAR LIVROS ///////////////////////////// -->
+				<section id="listar-livros">
+
 					<div class="page-header">
-						<h1>Consultar por ISBN</h1>
+						<h3>Livros Registrados</h3>
 					</div>
-					Form aqui
+					Tabela de Livros expansível com Autores e Críticas.
 				</section>
 
-				<!-- /////////////////// CONSULTAR POR AUTOR /////////////////// -->
-				<section id="accordion">
-					<div class="page-header">
-						<h1>Consultar por Autor</h1>
-					</div>
-					Form aqui
-				</section>
 
-				<!-- /////////////////// ATUALIZAR LIVRO /////////////////// -->
-				<section id="dialog">
-					<div class="page-header">
-						<h1>Atualizar Livro</h1>
-					</div>
-					Form aqui
-				</section>
+				<!-- ///////////////////////////// GERENCIAR LIVRO ///////////////////////////// -->
+				<section id="gerenciar-livro">
 
-				<!-- /////////////////// REMOVER LIVRO /////////////////// -->
-				<section id="tabs-simple">
 					<div class="page-header">
-						<h1>Remover Livro</h1>
+						<h3>Gerenciar Livro</h3>
 					</div>
+
+					<div id="tabs">
+
+						<ul>
+							<li><a href="#adicionar-livro">Adicionar Livro</a></li>
+							<li><a href="#editar-remover-livro">Editar/Remover Livro</a></li>
+						</ul>
+
+
+						<!-- ///////////////////////////// ADICIONAR LIVRO ///////////////////////////// -->
+						<div id="adicionar-livro">Adicionar Livro.</div>
+
+
+						<!-- ///////////////////////////// EDITAR OU REMOVER LIVRO ///////////////////////////// -->
+						<div id="editar-remover-livro">Editar/Remover Livro.</div>
+					</div>
+
 				</section>
-				<!--end datepicker-->
 			</div>
 		</div>
 	</div>
 
-	<!-- Footer
-================================================== -->
+
+	<!-- ///////////////////////////// CABECALHO ///////////////////////////// -->
 	<footer class="footer">
 		<div class="container">
 			<p>Gerenciamento de Livros &copy; Diogo Saraiva 2018.</p>
@@ -143,7 +165,13 @@
 			</ul>
 		</div>
 	</footer>
-	<!-- Placed at the end of the document so the pages load faster -->
+
+
+	<!-- ///////////////////////////// SCRIPTS ///////////////////////////// -->
+	<!-- /// Placed at the end of the document so the pages load faster. /// -->
+
+
+	<!-- ############################# JQUERY SCRIPTS ############################# -->
 	<script src="assets/js/jquery-1.9.0.min.js" type="text/javascript"></script>
 	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="assets/js/jquery-ui-1.10.0.custom.min.js"
@@ -151,6 +179,44 @@
 	<script src="assets/js/google-code-prettify/prettify.js"
 		type="text/javascript"></script>
 	<script src="assets/js/docs.js" type="text/javascript"></script>
-	<script src="assets/js/demo.js" type="text/javascript"></script>
+
+	<script>$(' #tabs ').tabs();</script>
+
+
+	<!-- ############################# LISTAR LIVROS AJAX ############################# -->
+	<script type="text/javascript">
+		var jsonData = '[{"rank":"9","content":"Alon","UID":"5"},{"rank":"6","content":"Tala","UID":"6"}]';
+
+		$.ajax({
+			url : 'http://localhost:8080/',
+			type : 'GET',
+			data : {
+				json : jsonData
+			},
+			success : function(response) {
+				var trHTML = '';
+				$.each(response, function(i, item) {
+					trHTML += '<tr><td>' + item.rank + '</td><td>'
+							+ item.content + '</td><td>' + item.UID
+							+ '</td></tr>';
+				});
+				$('#records_table').append(trHTML);
+			}
+		});
+	</script>
+
+
+	<!-- ############################# CONSULTAR POR ISBN AJAX ############################# -->
+
+
+	<!-- ############################# CONSULTAR POR AUTOR AJAX ############################# -->
+
+
+	<!-- ############################# ATUALIZAR LIVRO AJAX ############################# -->
+
+
+	<!-- ############################# REMOVER LIVRO AJAX ############################# -->
+
+
 </body>
 </html>
