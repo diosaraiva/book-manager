@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.diosaraiva.bookmanager.model.Livro;
+import br.com.diosaraiva.bookmanager.model.LivroExtenso;
 import br.com.diosaraiva.bookmanager.model.Autor;
 import br.com.diosaraiva.bookmanager.repository.LivroRepository;
 import br.com.diosaraiva.bookmanager.utils.ValorPorExtenso;
@@ -37,6 +38,20 @@ public class LivroService implements ILivroService {
 		List<Livro> livros = new ArrayList<>();
 		livroRepository.findAll().forEach(e -> livros.add(e));
 		return livros;
+	}
+	
+	@Override
+	public List<LivroExtenso> listarLivrosExtenso() {
+		List<Livro> livros = new ArrayList<>();
+		livroRepository.findAll().forEach(e -> livros.add(e));
+		
+		List<LivroExtenso> livrosExtenso = new ArrayList<>();
+		
+		for (Livro livro : livros) {
+			livrosExtenso.add(new LivroExtenso(livro));
+		}
+		
+		return livrosExtenso;
 	}
 
 	@Override

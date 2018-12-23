@@ -3,6 +3,7 @@ package br.com.diosaraiva.bookmanager.service;
 import java.util.List;
 
 import br.com.diosaraiva.bookmanager.model.Livro;
+import br.com.diosaraiva.bookmanager.model.LivroExtenso;
 
 public interface ILivroService {
 	
@@ -15,4 +16,6 @@ public interface ILivroService {
     boolean exists(Livro livro);
     
     List<Livro> listarLivrosPorAutor(long id_autor);	//Requisito 009
+    
+	List<LivroExtenso> listarLivrosExtenso();			//Requisito 012
 }
