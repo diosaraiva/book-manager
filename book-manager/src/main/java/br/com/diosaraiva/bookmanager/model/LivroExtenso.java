@@ -3,7 +3,7 @@ package br.com.diosaraiva.bookmanager.model;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import br.com.diosaraiva.bookmanager.utils.ValorPorExtenso;
+import br.com.diosaraiva.bookmanager.utils.ValorUtil;
 
 //Este Model é usado para fornecer objetos Livro com a String valorPorExtenso. 
 //A String valorPorExtenso não é persistida no banco de dados (somente RETRIEVE).
@@ -32,7 +32,7 @@ public class LivroExtenso extends Livro {
 		this.setCriticas(livro.getCriticas());
 
 		//Requisito 012: OK
-		this.setValorPorExtenso(ValorPorExtenso.valorPorExtenso(livro.getPreco()));
+		this.setValorPorExtenso(ValorUtil.valorPorExtenso(livro.getPreco()));
 	}
 
 	public String getValorPorExtenso() {

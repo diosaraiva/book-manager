@@ -1,24 +1,12 @@
 package br.com.diosaraiva.bookmanager.utils;
 
-//FONTE: https://www.devmedia.com.br/valor-por-extenso-em-uma-aplicacao-java/21897
+import java.text.DecimalFormat;
+import java.util.Random;
 
-public class ValorPorExtenso {
+public class ValorUtil {
 
-	/*	  public static void main(String[] args) {
-	    Scanner ler = new Scanner(System.in);
-
-	    double vlr;
-	    System.out.printf("Informe um valor em R$: ");
-	    try {
-	      vlr = ler.nextDouble();
-	      System.out.printf("\nValor por extenso:\n");
-	      System.out.printf("%s\n", valorPorExtenso(vlr));
-	    } catch (InputMismatchException e) {
-	        System.out.printf("\nErro: valor informado incompatível.\n");
-	    }
-	  }
-	*/
-
+	//Recebe double valor e retorna String com valor por extenso.
+	//FONTE: https://www.devmedia.com.br/valor-por-extenso-em-uma-aplicacao-java/21897
 	public static String valorPorExtenso(double valor) {
 		if (valor == 0)
 			return("zero");
@@ -135,4 +123,18 @@ public class ValorPorExtenso {
 		}
 		return(s);
 	}
+
+	//Usada principalmente para criar cenários de teste.
+	public static double criarValorAleatorio(double min, double max, int casasDecimais) {
+
+		double rand = new Random().nextDouble();
+		double numero = min+(rand*(max - min))+0;
+
+		int temp = (int)(numero * Math.pow(10 , casasDecimais));
+
+		double resultado = ((double)temp)/Math.pow(10,casasDecimais);
+		
+		return resultado;
+	}
+
 }

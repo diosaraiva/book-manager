@@ -114,7 +114,7 @@ public class LivroControllerUnitTest {
 		.andExpect(status().isOk())
 		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
 		.andExpect(jsonPath("$.isbn", is(1)))
-		.andExpect(jsonPath("$.titulo", is("Titulo 1")));
+		.andExpect(jsonPath("$.titulo", is(livroExtenso.getTitulo())));
 
 		verify(livroService, times(1)).selecionarLivroExtensoPorISBN(1);
 		verifyNoMoreInteractions(livroService);
@@ -244,7 +244,7 @@ public class LivroControllerUnitTest {
 		.andExpect(status().isOk())
 		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
 		.andExpect(jsonPath("$.isbn", is(1)))
-		.andExpect(jsonPath("$.titulo", is("Titulo 1")));
+		.andExpect(jsonPath("$.titulo", is(livro.getTitulo())));
 
 		verify(livroService, times(1)).selecionarLivroPorISBN(1);
 		verifyNoMoreInteractions(livroService);

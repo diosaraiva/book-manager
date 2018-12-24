@@ -29,8 +29,8 @@ public class LivroUtil {
 	public static Livro criarLivroTeste(Integer num) {
 
 		Set<Critica> criticas = new HashSet<Critica>();
-		criticas.add(new Critica("Critico " +num.toString()+"a", 5, "Texto " +num.toString()));
-		criticas.add(new Critica("Critico " +num.toString()+"b", 0, "Texto " +num.toString()));
+		criticas.add(new Critica("Critico " +num.toString()+"a", (int)ValorUtil.criarValorAleatorio(0.00,5.00,2), "Texto " +num.toString()));
+		criticas.add(new Critica("Critico " +num.toString()+"b", (int)ValorUtil.criarValorAleatorio(0.00,5.00,2), "Texto " +num.toString()));
 
 		Editora editora = new Editora("Editora " +num.toString(), "http://localhost:8080/");
 
@@ -38,7 +38,7 @@ public class LivroUtil {
 		autores.add(new Autor("Autor " +num.toString()+"a", "Brasileiro", new Date(), null));
 		autores.add(new Autor("Autor " +num.toString()+"b", "Brasileiro", new Date(), null));
 
-		return new Livro(num, "Titulo " +num.toString(), new Date(), 10.00, "Sinopse " +num.toString(),
+		return new Livro(num, StringUtil.gerarTituloLivro(), new Date(), ValorUtil.criarValorAleatorio(0.00,1300.00,2), "Sinopse " +num.toString(),
 				autores, editora, criticas);
 	}
 	
