@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "livro")
 public class Livro implements Serializable {
@@ -31,23 +33,25 @@ public class Livro implements Serializable {
 	//Many-to-many Autor
 	@ManyToMany(
 			targetEntity=Autor.class,
-			cascade=CascadeType.ALL
-			)
+			cascade=CascadeType.ALL)
 	@JoinTable(
 			name="livro_autor",
 			joinColumns=@JoinColumn(name="livro_isbn"),
 			inverseJoinColumns=@JoinColumn(name="autor_id")
 			)
+	@JsonIgnore
 	private Set<Autor> autores;
 
 	//Many-to-one Editora
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "editora_id")
+	@JsonIgnore
 	private Editora editora;
 
 	//One-to-many Critica
 	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name = "critica_id")
+	@JoinColumn(name = "livro_isbn")
+	@JsonIgnore
 	private Set<Critica> criticas;
 
 	//Construtores

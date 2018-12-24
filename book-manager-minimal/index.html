@@ -3,67 +3,67 @@
 <head>
 
 
-<!-- ///////////////////////////// INFORMACOES DA PAGINA ///////////////////////////// -->
-<meta charset="utf-8">
-<title>Gerenciamento de Livros v0.1</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Gerenciamento de Livros REST API">
-<meta name="author" content="Diogo Saraiva">
+	<!-- ///////////////////////////// INFORMACOES DA PAGINA ///////////////////////////// -->
+	<meta charset="utf-8">
+	<title>Gerenciamento de Livros v0.1</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Gerenciamento de Livros REST API">
+	<meta name="author" content="Diogo Saraiva">
 
 
-<!-- ///////////////////////////// JQUERY UI BOOTSTRAP CSS ///////////////////////////// -->
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet"
+	<!-- ///////////////////////////// JQUERY UI BOOTSTRAP CSS ///////////////////////////// -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet"
 	href="css/custom-theme/jquery-ui-1.10.3.custom.css">
-<link rel="stylesheet" href="assets/css/font-awesome.min.css">
-<link rel="stylesheet" href="assets/css/docs.css">
-<link rel="stylesheet"
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/css/docs.css">
+	<link rel="stylesheet"
 	href="assets/js/google-code-prettify/prettify.css">
 
 
-<!-- ///////////////////////////// JQGRID CSS ///////////////////////////// -->
-<link rel="stylesheet"
+	<!-- ///////////////////////////// JQGRID CSS ///////////////////////////// -->
+	<link rel="stylesheet"
 	href="third-party/jqGrid/jqGrid/css/ui.jqgrid.css" />
-<link rel="stylesheet" href="third-party/jqGrid/jqGrid.overrides.css">
+	<link rel="stylesheet" href="third-party/jqGrid/jqGrid.overrides.css">
 
 
-<!-- ///////////////////////////// ICONES ///////////////////////////// -->
-<link rel="apple-touch-icon-precomposed" sizes="144x144"
+	<!-- ///////////////////////////// ICONES ///////////////////////////// -->
+	<link rel="apple-touch-icon-precomposed" sizes="144x144"
 	href="assets/ico/apple-touch-icon-144-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114"
+	<link rel="apple-touch-icon-precomposed" sizes="114x114"
 	href="assets/ico/apple-touch-icon-114-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72"
+	<link rel="apple-touch-icon-precomposed" sizes="72x72"
 	href="assets/ico/apple-touch-icon-72-precomposed.png">
-<link rel="apple-touch-icon-precomposed"
+	<link rel="apple-touch-icon-precomposed"
 	href="assets/ico/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon" href="assets/ico/favicon.png">
+	<link rel="shortcut icon" href="assets/ico/favicon.png">
 
 </head>
 
 <body data-spy="scroll" data-target=".bs-docs-sidebar"
-	data-twttr-rendered="true">
+data-twttr-rendered="true">
 
 
-	<!-- ///////////////////////////// NAVBAR ///////////////////////////// -->
-	<header class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button class="navbar-toggle" type="button" data-toggle="collapse"
-					data-target="navbar-collapse">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="./index.html">BookManager v0.1</a>
-			</div>
-			<nav class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="./index.html"><i
-							class="icon-book"></i> Gerenciamento de Livros</a></li>
-					<li><a href="./projeto.html"><i class="icon-flag"></i>
-							Projeto</a></li>
-					<li><a href="./sobre.html"><i class="icon-question"></i>
-							Sobre</a></li>
-				</ul>
+<!-- ///////////////////////////// NAVBAR ///////////////////////////// -->
+<header class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button class="navbar-toggle" type="button" data-toggle="collapse"
+			data-target="navbar-collapse">
+			<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+			class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="./index.html">BookManager v0.1</a>
+	</div>
+	<nav class="navbar-collapse collapse">
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="./index.html"><i
+				class="icon-book"></i> Gerenciamento de Livros</a></li>
+				<li><a href="./projeto.html"><i class="icon-flag"></i>
+				Projeto</a></li>
+				<li><a href="./sobre.html"><i class="icon-question"></i>
+				Sobre</a></li>
+			</ul>
 
 				<!-- LOGIN E SIGNUP [WIP]
 				<ul class="nav navbar-nav navbar-right">
@@ -72,158 +72,161 @@
 					<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
 							Login</a></li>
 				</ul>
-				-->
+			-->
 
-			</nav>
+		</nav>
+	</div>
+</header>
+
+
+<!-- ///////////////////////////// SUB HEAD ///////////////////////////// -->
+<header class="bs-header" id="overview">
+	<div class="container">
+		<h1>BookManager</h1>
+		<p class="lead">Sistema de Gerenciamento de Livros REST API/JS.</p>
+	</div>
+</header>
+
+
+<!-- ///////////////////////////// CONTAINER ///////////////////////////// -->
+<div class="container" id="layout">
+
+
+	<!-- ///////////////////////////// NAVEGADOR ESQUERDO ///////////////////////////// -->
+	<div class="row">
+		<div class="col-lg-3 col-sm-3" id="sidebar">
+			<div class="bs-sidebar hidden-print" role="complementary">
+				<ul class="nav bs-sidenav">
+					<li><a href="#consultar-livros"> <i
+						class="icon-chevron-right"></i> Consultar Livros
+					</a></li>
+					<li><a href="#listar-livros"> <i
+						class="icon-chevron-right"></i> Listar Livros
+					</a></li>
+					<li><a href="#gerenciar-livro"> <i
+						class="icon-chevron-right"></i> Gerenciar Livro
+					</a></li>
+				</ul>
+			</div>
 		</div>
-	</header>
 
 
-	<!-- ///////////////////////////// SUB HEAD ///////////////////////////// -->
-	<header class="bs-header" id="overview">
-		<div class="container">
-			<h1>BookManager</h1>
-			<p class="lead">Sistema de Gerenciamento de Livros REST API/JS.</p>
-		</div>
-	</header>
+		<!-- ///////////////////////////// INTERFACE PRINCIPAL ///////////////////////////// -->
+		<div class="col-lg-9 col-sm-9" id="article">
 
 
-	<!-- ///////////////////////////// CONTAINER ///////////////////////////// -->
-	<div class="container" id="layout">
+			<!-- ///////////////////////////// CONSULTAR LIVROS ///////////////////////////// -->
+			<section id="consultar-livros">
 
-
-		<!-- ///////////////////////////// NAVEGADOR ESQUERDO ///////////////////////////// -->
-		<div class="row">
-			<div class="col-lg-3 col-sm-3" id="sidebar">
-				<div class="bs-sidebar hidden-print" role="complementary">
-					<ul class="nav bs-sidenav">
-						<li><a href="#consultar-livros"> <i
-								class="icon-chevron-right"></i> Consultar Livros
-						</a></li>
-						<li><a href="#listar-livros"> <i
-								class="icon-chevron-right"></i> Listar Livros
-						</a></li>
-						<li><a href="#gerenciar-livro"> <i
-								class="icon-chevron-right"></i> Gerenciar Livro
-						</a></li>
-					</ul>
+				<div class="page-header">
+					<h3>Consultar Livros</h3>
 				</div>
-			</div>
+
+				<div id="tabs">
+					<ul>
+						<li><a href="#consultar-isbn">Por ISBN</a></li>
+						<li><a href="#consultar-autor">Por Autor</a></li>
+					</ul>
 
 
-			<!-- ///////////////////////////// INTERFACE PRINCIPAL ///////////////////////////// -->
-			<div class="col-lg-9 col-sm-9" id="article">
+					<!-- ///////////////////////////// CONSULTAR POR ISBN ///////////////////////////// -->
+					<div id="consultar-isbn">
+						<h5>Digite o ISBN do Livro a ser consultado:</h5>
 
-
-				<!-- ///////////////////////////// CONSULTAR LIVROS ///////////////////////////// -->
-				<section id="consultar-livros">
-
-					<div class="page-header">
-						<h3>Consultar Livros</h3>
-					</div>
-
-					<div id="tabs">
-						<ul>
-							<li><a href="#consultar-isbn">Por ISBN</a></li>
-							<li><a href="#consultar-autor">Por Autor</a></li>
-						</ul>
-
-
-						<!-- ///////////////////////////// CONSULTAR POR ISBN ///////////////////////////// -->
-						<div id="consultar-isbn">
-							<h5>Digite o ISBN do Livro a ser consultado:</h5>
-
-							<div id="resultado-consulta-isbn">
-								<h5>Resultado da Pesquisa:</h5>
-							</div>
-						</div>
-
-
-						<!-- ///////////////////////////// CONSULTAR POR AUTOR ///////////////////////////// -->
-						<div id="consultar-autor">
-							<h5>Digite o ID do Autor a ser consultado:</h5>
-
-							<div id="resultado-consulta-autor">
-								<h5>Resultado da Pesquisa:</h5>
-							</div>
-						</div>
-
-					</div>
-				</section>
-
-
-				<!-- ///////////////////////////// LISTAR LIVROS ///////////////////////////// -->
-				<section id="listar-livros">
-
-					<div class="page-header">
-						<h3>Listar Livros</h3>
-					</div>
-					<h5>Livros Registrados:</h5>
-
-					[Tabela]
-
-				</section>
-
-
-				<!-- ///////////////////////////// GERENCIAR LIVRO ///////////////////////////// -->
-				<section id="gerenciar-livro">
-
-					<div class="page-header">
-						<h3>Gerenciar Livro</h3>
-					</div>
-
-					<div id="tabs">
-
-						<ul>
-							<li><a href="#adicionar-livro">Adicionar Livro</a></li>
-							<li><a href="#editar-livro">Editar Livro</a></li>
-							<li><a href="#remover-livro">Remover Livro</a></li>
-						</ul>
-
-
-						<!-- ///////////////////////////// ADICIONAR LIVRO ///////////////////////////// -->
-						<div id="adicionar-livro">
-							<h5>Novo Livro:</h5>
-						</div>
-
-
-						<!-- ///////////////////////////// EDITAR LIVRO ///////////////////////////// -->
-						<div id="editar-livro">
-							<h5>Editar Livro:</h5>
-						</div>
-
-
-						<!-- ///////////////////////////// REMOVER LIVRO ///////////////////////////// -->
-						<div id="remover-livro">
-							<h5>Remover Livro:</h5>
+						<div id="resultado-consulta-isbn">
+							<h5>Resultado da Pesquisa:</h5>
 						</div>
 					</div>
 
-				</section>
-			</div>
+
+					<!-- ///////////////////////////// CONSULTAR POR AUTOR ///////////////////////////// -->
+					<div id="consultar-autor">
+						<h5>Digite o ID do Autor a ser consultado:</h5>
+
+						<div id="resultado-consulta-autor">
+							<h5>Resultado da Pesquisa:</h5>
+						</div>
+					</div>
+
+				</div>
+			</section>
+
+
+			<!-- ///////////////////////////// LISTAR LIVROS ///////////////////////////// -->
+			<section id="listar-livros">
+
+				<div class="page-header">
+					<h3>Listar Livros</h3>
+				</div>
+				<h5>Livros Registrados:</h5>
+
+				<ul id="listarLivros">
+				</ul>
+
+				<button onclick="listarLivrosAjax()"> Listar</button>
+
+			</section>
+
+
+			<!-- ///////////////////////////// GERENCIAR LIVRO ///////////////////////////// -->
+			<section id="gerenciar-livro">
+
+				<div class="page-header">
+					<h3>Gerenciar Livro</h3>
+				</div>
+
+				<div id="tabs">
+
+					<ul>
+						<li><a href="#adicionar-livro">Adicionar Livro</a></li>
+						<li><a href="#editar-livro">Editar Livro</a></li>
+						<li><a href="#remover-livro">Remover Livro</a></li>
+					</ul>
+
+
+					<!-- ///////////////////////////// ADICIONAR LIVRO ///////////////////////////// -->
+					<div id="adicionar-livro">
+						<h5>Novo Livro:</h5>
+					</div>
+
+
+					<!-- ///////////////////////////// EDITAR LIVRO ///////////////////////////// -->
+					<div id="editar-livro">
+						<h5>Editar Livro:</h5>
+					</div>
+
+
+					<!-- ///////////////////////////// REMOVER LIVRO ///////////////////////////// -->
+					<div id="remover-livro">
+						<h5>Remover Livro:</h5>
+					</div>
+				</div>
+
+			</section>
 		</div>
 	</div>
+</div>
 
 
-	<!-- ///////////////////////////// RODAPE ///////////////////////////// -->
-	<footer class="bs-footer">
-		<div class="container">
-			<div class="row">
+<!-- ///////////////////////////// RODAPE ///////////////////////////// -->
+<footer class="bs-footer">
+	<div class="container">
+		<div class="row">
 
 
-				<!-- ///////////////////////////// RODAPE: CONTATO ///////////////////////////// -->
-				<div class="col-lg-3 col-sm-3">
-					<h3>
-						<span class="icon-envelope"></span> Contato
-					</h3>
-					<ul class="icons">
-						<li><i class="icon-linkedin"></i> LinkedIn: <a
-							class="targetblank"
-							href="https://www.linkedin.com/in/diogo-saraiva-msc-1675b722/">Diogo
-								Saraiva</a></li>
-						<li><i class="icon-github"></i> Github: <a
-							class="targetblank"
-							href="https://github.com/diosaraiva/book-manager">book-manager</a></li>
+			<!-- ///////////////////////////// RODAPE: CONTATO ///////////////////////////// -->
+			<div class="col-lg-3 col-sm-3">
+				<h3>
+					<span class="icon-envelope"></span> Contato
+				</h3>
+				<ul class="icons">
+					<li><i class="icon-linkedin"></i> LinkedIn: <a
+						class="targetblank"
+						href="https://www.linkedin.com/in/diogo-saraiva-msc-1675b722/">Diogo
+					Saraiva</a></li>
+					<li><i class="icon-github"></i> Github: <a
+						class="targetblank"
+						href="https://github.com/diosaraiva/book-manager">book-manager</a></li>
 					</ul>
 				</div>
 
@@ -236,7 +239,7 @@
 					<ul class="list-unstyled">
 						<li>Arquiteto de Software: <a class="targetblank"
 							href="http://lattes.cnpq.br/0705561377656491" hreflang="en">Diogo
-								Saraiva</a></li>
+						Saraiva</a></li>
 					</ul>
 				</div>
 
@@ -248,84 +251,84 @@
 					</h3>
 					<ul class="list-unstyled">
 						<li>Spring Framework &copy; <strong class="text-info">Rod
-								Johnson</strong> 2002 - 2018.
-						</li>
-						<li>jQuery UI Bootstrap &copy; <strong class="text-info">Addy
-								Osmani</strong> 2012 - 2018.
-						</li>
-						<li>Bootstrap &copy; <strong class="text-info">Twitter,
-								Inc.</strong> 2012 - 2018
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</footer>
+						Johnson</strong> 2002 - 2018.
+					</li>
+					<li>jQuery UI Bootstrap &copy; <strong class="text-info">Addy
+					Osmani</strong> 2012 - 2018.
+				</li>
+				<li>Bootstrap &copy; <strong class="text-info">Twitter,
+				Inc.</strong> 2012 - 2018
+			</li>
+		</ul>
+	</div>
+</div>
+</div>
+</footer>
 
 
-	<!-- ///////////////////////////// SCRIPTS ///////////////////////////// -->
-	<!-- /// Placed at the end of the document so the pages load faster. /// -->
+<!-- ///////////////////////////// SCRIPTS ///////////////////////////// -->
+<!-- /// Placed at the end of the document so the pages load faster. /// -->
 
 
-	<!-- ############################# JQUERY SCRIPTS ############################# -->
-	<script src="assets/js/vendor/jquery-1.9.1.min.js"
-		type="text/javascript"></script>
-	<script src="assets/js/vendor/jquery-migrate-1.2.1.min.js"
-		type="text/javascript"></script>
-	<script src="assets/js/vendor/bootstrap.js" type="text/javascript"></script>
-	<script src="assets/js/vendor/holder.js" type="text/javascript"></script>
-	<script src="assets/js/vendor/jquery-ui-1.10.3.custom.min.js"
-		type="text/javascript"></script>
-	<script src="assets/js/google-code-prettify/prettify.js"
-		type="text/javascript"></script>
-	<script src="assets/js/docs.js" type="text/javascript"></script>
-	<script src="assets/js/demo.js" type="text/javascript"></script>
+<!-- ############################# JQUERY SCRIPTS ############################# -->
+<script src="assets/js/vendor/jquery-1.9.1.min.js"
+type="text/javascript"></script>
+<script src="assets/js/vendor/jquery-migrate-1.2.1.min.js"
+type="text/javascript"></script>
+<script src="assets/js/vendor/bootstrap.js" type="text/javascript"></script>
+<script src="assets/js/vendor/holder.js" type="text/javascript"></script>
+<script src="assets/js/vendor/jquery-ui-1.10.3.custom.min.js"
+type="text/javascript"></script>
+<script src="assets/js/google-code-prettify/prettify.js"
+type="text/javascript"></script>
+<script src="assets/js/docs.js" type="text/javascript"></script>
+<script src="assets/js/demo.js" type="text/javascript"></script>
 
 
-	<!-- ############################# JQGRID SCRIPTS ############################# -->
-	<script src="third-party/jqGrid/jqGrid/js/i18n/grid.locale-pt-br.js"
-		type="text/javascript"></script>
-	<script src="third-party/jqGrid/jqGrid/js/jquery.jqGrid.min.js"
-		type="text/javascript"></script>
+<!-- ############################# JQGRID SCRIPTS ############################# -->
+<script src="third-party/jqGrid/jqGrid/js/i18n/grid.locale-pt-br.js"
+type="text/javascript"></script>
+<script src="third-party/jqGrid/jqGrid/js/jquery.jqGrid.min.js"
+type="text/javascript"></script>
 
 
-	<!-- ############################# LISTAR LIVROS AJAX ############################# -->
-	<script>
-		function listarLivrosAjax() {
-			$.ajax({
-				type : 'GET',
-				url : 'http://localhost:8080/livros',
-				dataType : 'json', // use json only, not jsonp
-				crossDomain : true, // tell browser to allow cross domain
-				xhrFields : {
-					'withCredentials' : true
-				// tell the client to send the cookies if any for the requested domain
-				},
-				success : successResopnse,
+<!-- ############################# LISTAR LIVROS AJAX ############################# -->
+<script>
+	function listarLivrosAjax() {
+		$.ajax({
+			type : 'GET',
+			url : 'http://localhost:8080/livros',
+				dataType : 'jsonp', // use json only, not jsonp
+				success : successResponse,
 				error : failureFunction
 			});
-		}
+	}
 
-		successResponse = function(data) {
-			//functionality goes here;
-		}
+	successResponse = function(data) {
+		console.log("entrei no sucesso")
+		var lista = $('#listaLivros');
+		arr.forEach(data => {
+			lista.append(data.titulo)
+		});
+		
+	}
 
-		failureFunction = function(data) {
-			//functionality goes here;
-		}
-	</script>
-
-
-	<!-- ############################# CONSULTAR POR ISBN AJAX ############################# -->
-
-
-	<!-- ############################# CONSULTAR POR AUTOR AJAX ############################# -->
-
-
-	<!-- ############################# ATUALIZAR LIVRO AJAX ############################# -->
+	failureFunction = function(jqXHR, textStatus, errorThrown) {
+		console.log(errorThrown);
+	}
+</script>
 
 
-	<!-- ############################# REMOVER LIVRO AJAX ############################# -->
+<!-- ############################# CONSULTAR POR ISBN AJAX ############################# -->
+
+
+<!-- ############################# CONSULTAR POR AUTOR AJAX ############################# -->
+
+
+<!-- ############################# ATUALIZAR LIVRO AJAX ############################# -->
+
+
+<!-- ############################# REMOVER LIVRO AJAX ############################# -->
 
 
 </body>

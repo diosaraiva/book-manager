@@ -230,14 +230,6 @@ public class LivroControllerUnitTest {
 		verifyNoMoreInteractions(livroService);
 	}
 
-	@Test
-	public void testarCabecalhosCORS() throws Exception {
-		mockMvc.perform(get("/livros"))
-		.andExpect(header().string("Access-Control-Allow-Origin", "*"))
-		.andExpect(header().string("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE"))
-		.andExpect(header().string("Access-Control-Allow-Headers", "*"))
-		.andExpect(header().string("Access-Control-Max-Age", "3600"));
-	}
 
 	///////////////////////////////// DEPRECADOS /////////////////////////////////
 
