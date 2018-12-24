@@ -46,6 +46,8 @@ import br.com.diosaraiva.bookmanager.utils.StringUtil;
 @ContextConfiguration(classes = {WebConfig.class})
 public class LivroControllerUnitTest {
 
+	//Usa o Mockito para simular a camada de serviço. 
+	//Garante o isolamento do teste do Controller.
 	private MockMvc mockMvc;
 
 	@Mock
@@ -160,7 +162,7 @@ public class LivroControllerUnitTest {
 	@Test
 	public void testarListarLivros() throws Exception {
 
-		List<Livro> listaLivros = LivroUtil.criarCenarioTesteLista();
+		List<Livro> listaLivros = LivroUtil.criarCenarioTesteListaLivro();
 
 		when(livroService.listarLivros()).thenReturn(listaLivros);
 
@@ -180,7 +182,7 @@ public class LivroControllerUnitTest {
 
 		List<LivroExtenso> listaLivrosExtenso = 
 				LivroUtil.ConverteListaLivroParaListaLivroExtenso
-				(LivroUtil.criarCenarioTesteLista());
+				(LivroUtil.criarCenarioTesteListaLivro());
 
 		when(livroService.listarLivrosExtenso()).thenReturn(listaLivrosExtenso);
 

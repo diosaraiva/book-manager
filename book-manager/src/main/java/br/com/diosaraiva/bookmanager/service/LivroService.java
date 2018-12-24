@@ -30,9 +30,11 @@ public class LivroService implements ILivroService {
 
 	@Override
 	public void adicionarListaLivros(List<Livro> listaLivro) {
+		
 		for (Livro livro : listaLivro) {
 			adicionarLivro(livro);
 		}
+		
 	}
 
 	@Override

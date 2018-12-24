@@ -26,7 +26,7 @@ public class LivroUtil {
 	}
 
 	//Cria lista objetos para Testes
-	public static List<Livro> criarCenarioTesteLista() {
+	public static List<Livro> criarCenarioTesteListaLivro() {
 
 		Set<Critica> criticas = new HashSet<Critica>();
 		criticas.add(new Critica("Critico 1", 5, "Texto 1"));
@@ -63,6 +63,35 @@ public class LivroUtil {
 
 		return new Livro(1, "Titulo 1", new Date(), 10.00, "Sinopse 1", autores, 
 				editora, criticas);
+	}
+
+	//Cria objetos ilimitados para Testes
+	public static Livro criarCenarioLivroTeste(Integer num) {
+
+		Set<Critica> criticas = new HashSet<Critica>();
+		criticas.add(new Critica("Critico " +num.toString(), 5, "Texto " +num.toString()));
+		criticas.add(new Critica("Critico " +num.toString(), 0, "Texto " +num.toString()));
+
+		Editora editora = new Editora("Editora " +num.toString(), "http://localhost:8080/");
+
+		Set<Autor> autores = new HashSet<Autor>();
+		autores.add(new Autor("Autor " +num.toString(), "Brasileiro", new Date(), null));
+		autores.add(new Autor("Autor " +num.toString(), "Brasileiro", new Date(), null));
+
+		return new Livro(num, "Titulo " +num.toString(), new Date(), 10.00, "Sinopse " +num.toString(),
+				autores, editora, criticas);
+	}
+	
+	//Cria lista de objetos ilimitados para Testes
+	public static List<Livro> criarCenarioListaLivroTeste(int num){
+		
+		List<Livro> listaLivro = new ArrayList<>();
+		
+		for (int i = 1; i <= num+1; i++) {
+			listaLivro.add(criarCenarioLivroTeste(i));
+		}
+		
+		return listaLivro;
 	}
 
 }
