@@ -14,10 +14,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "livro")
+@JsonIdentityInfo(
+		generator = ObjectIdGenerators.PropertyGenerator.class, 
+		property = "isbn")
 public class Livro implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -39,19 +43,16 @@ public class Livro implements Serializable {
 			joinColumns=@JoinColumn(name="livro_isbn"),
 			inverseJoinColumns=@JoinColumn(name="autor_id")
 			)
-	@JsonIgnore
 	private Set<Autor> autores;
 
 	//Many-to-one Editora
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "editora_id")
-	@JsonIgnore
 	private Editora editora;
 
 	//One-to-many Critica
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name = "livro_isbn")
-	@JsonIgnore
 	private Set<Critica> criticas;
 
 	//Construtores
@@ -163,14 +164,14 @@ public class Livro implements Serializable {
 
 		livro = livro + 
 				", editora='" + editora;
-		
+
 		for (Critica critica : criticas) {
 			livro = livro + 
 					", critica='" + critica;
 		}
 
 		livro = livro +	'\'' + '}';
-		
+
 		return livro;
 	}
 
@@ -182,7 +183,7 @@ public class Livro implements Serializable {
 		Livro livro = (Livro) o;
 
 		if (isbn != livro.isbn) return false;
-		
+
 		return true;
 	}
 
@@ -197,7 +198,7 @@ public class Livro implements Serializable {
 				+ (autores != null ? autores.hashCode() : 0)
 				+ (editora != null ? editora.hashCode() : 0)
 				+ (criticas != null ? criticas.hashCode() : 0);
-		
+
 		return (int)result;
 	}
 }

@@ -11,8 +11,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name = "autor")
+@JsonIdentityInfo(
+		generator = ObjectIdGenerators.PropertyGenerator.class, 
+		property = "id")
 public class Autor implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -89,7 +95,7 @@ public class Autor implements Serializable{
 	public void setLivros(Set<Livro> livros) {
 		this.livros = livros;
 	}
-	
+
 	//Overrides
 
 }
