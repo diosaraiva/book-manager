@@ -20,9 +20,18 @@ public class LivroService implements ILivroService {
 
 	@Override
 	public void adicionarLivro(Livro livro) {
-		Optional<Livro> livros = livroRepository.findById(livro.getIsbn()); 	
-		if (livros != null) {
+
+		Optional<Livro> livroConsultado = livroRepository.findById(livro.getIsbn()); 	
+
+		if (livroConsultado != null) {
 			livroRepository.save(livro);
+		}
+	}
+
+	@Override
+	public void adicionarListaLivros(List<Livro> listaLivro) {
+		for (Livro livro : listaLivro) {
+			adicionarLivro(livro);
 		}
 	}
 
@@ -31,12 +40,12 @@ public class LivroService implements ILivroService {
 		Livro obj = livroRepository.findById(isbn).get();
 		return obj;
 	}
-	
+
 	@Override
 	public LivroExtenso selecionarLivroExtensoPorISBN(long isbn) {
-		
+
 		LivroExtenso livroExtenso = new LivroExtenso(livroRepository.findById(isbn).get());
-		
+
 		return livroExtenso;
 	}
 

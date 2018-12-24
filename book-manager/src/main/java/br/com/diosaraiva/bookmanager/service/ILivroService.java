@@ -8,9 +8,13 @@ import br.com.diosaraiva.bookmanager.model.LivroExtenso;
 public interface ILivroService {
 	
 	void adicionarLivro(Livro livro);						//Create
+	void adicionarListaLivros(List<Livro> listaLivro);		//Create
+	
 	List<Livro> listarLivros();								//Retrieve
     Livro selecionarLivroPorISBN(long isbn);				//Retrieve
+    
     void atualizarLivro(Livro livro);						//Update
+    
     void removerLivro(long isbn);							//Delete
     
     boolean exists(Livro livro);

@@ -120,7 +120,7 @@ public class LivroController {
 
 	///////////////////////////////// DEPRECADOS /////////////////////////////////
 
-	//RETRIEVE - Selcionar livro por ISBN (Redundante e Deprecado)
+	//RETRIEVE - Selcionar livro por ISBN (Sem valor por extenso, redundante e deprecado)
 	@GetMapping("/lista/{isbn}")
 	public ResponseEntity<Livro> selecionarLivroPorISBN(@PathVariable("isbn") long isbn){
 		LOG.info("Selecionando Livro com o ISBN: {}", isbn);
@@ -134,7 +134,7 @@ public class LivroController {
 		return new ResponseEntity<Livro>(livro, HttpStatus.OK);
 	}
 
-	//RETRIEVE - Listar todos os Livros (Redundante e Deprecado)
+	//RETRIEVE - Listar todos os Livros (Sem valor por extenso, redundante e deprecado)
 	@GetMapping("/lista")
 	public ResponseEntity<List<Livro>> listarLivros() {
 		LOG.info("Listando todos os Livros disponiveis");
