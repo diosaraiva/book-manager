@@ -6,8 +6,8 @@ ID	Tipo	Rastreabilidade							Requisito
 
 004	NF		UML/Package, Component					O modelo arquitetural a ser usado é o MVVM.
 005	NF		pom.xml									A tecnologia servidora pode ser escolhida por você dentre as opções: SpringBoot ou Java EE tradicional.
-006	NF												A tecnologia cliente deve ser baseada em JS, escolhida livremente por você.
-007	NF												Outras tecnologias podem ser aportadas livremente por você, conforme necessário. (ex. AngularJS, React)
+006	NF		book-manager-minimal					A tecnologia cliente deve ser baseada em JS, escolhida livremente por você.
+007	NF		book-manager-client						Outras tecnologias podem ser aportadas livremente por você, conforme necessário. (ex. AngularJS, React)
 
 008 FN		LivroService.java						Pesquisa de livros por código (ISBN)
 009 FN		LivroService.java						Pesquisa de livros de um autor.
@@ -20,4 +20,4 @@ ID	Tipo	Rastreabilidade							Requisito
 														- Data de publicação
 														- Preço (em reais)
 														- Críticas de leitores (uma ou mais)
-012	FN												O preço deve ser listado por extenso pela API e tela. Por exemplo, se um livro custa R$ 39,45 ele deve aparecer na tela como Trinta e nove reais e quarenta e cinco centavos.
+012	FN		LivroExtenso.java						O preço deve ser listado por extenso pela API e tela. Por exemplo, se um livro custa R$ 39,45 ele deve aparecer na tela como Trinta e nove reais e quarenta e cinco centavos.

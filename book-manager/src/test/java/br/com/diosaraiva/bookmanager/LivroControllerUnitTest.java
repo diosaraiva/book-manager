@@ -48,6 +48,7 @@ import br.com.diosaraiva.bookmanager.model.Livro;
 import br.com.diosaraiva.bookmanager.model.LivroExtenso;
 import br.com.diosaraiva.bookmanager.service.LivroService;
 import br.com.diosaraiva.bookmanager.utils.LivroUtil;
+import br.com.diosaraiva.bookmanager.utils.StringUtil;
 
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -121,7 +122,7 @@ public class LivroControllerUnitTest {
 		mockMvc.perform(
 				post("/livros/novo")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(asJsonString(livro)))
+				.content(StringUtil.asJsonString(livro)))
 		.andExpect(status().isCreated())
 		.andExpect(header().string("location", containsString("/livros/1")));
 
@@ -140,7 +141,7 @@ public class LivroControllerUnitTest {
 		mockMvc.perform(
 				post("/livros/novo")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(asJsonString(livro)))
+				.content(StringUtil.asJsonString(livro)))
 		.andExpect(status().isConflict());
 
 		verify(livroService, times(1)).exists(livro);
@@ -225,7 +226,7 @@ public class LivroControllerUnitTest {
 	public void testarListarLivrosExtenso() throws Exception {
 
 		List<LivroExtenso> listaLivrosExtenso = 
-				LivroUtil.ConverteParaListaExtenso(criarCenarioTesteLista());
+				LivroUtil.ConverteListaLivroParaListaLivroExtenso(criarCenarioTesteLista());
 
 		when(livroService.listarLivrosExtenso()).thenReturn(listaLivrosExtenso);
 
@@ -251,7 +252,7 @@ public class LivroControllerUnitTest {
 		mockMvc.perform(
 				put("/livros/{isbn}", livro.getIsbn())
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(asJsonString(livro)))
+				.content(StringUtil.asJsonString(livro)))
 		.andExpect(status().isOk());
 
 		verify(livroService, times(1)).selecionarLivroPorISBN(livro.getIsbn());
@@ -269,7 +270,7 @@ public class LivroControllerUnitTest {
 		mockMvc.perform(
 				put("/livros/{isbn}", livro.getIsbn())
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(asJsonString(livro)))
+				.content(StringUtil.asJsonString(livro)))
 		.andExpect(status().isNotFound());
 
 		verify(livroService, times(1)).selecionarLivroPorISBN(livro.getIsbn());
@@ -317,12 +318,4 @@ public class LivroControllerUnitTest {
 		.andExpect(header().string("Access-Control-Max-Age", "3600"));
 	}
 
-	public static String asJsonString(final Object obj) {
-		try {
-			final ObjectMapper mapper = new ObjectMapper();
-			return mapper.writeValueAsString(obj);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
 }

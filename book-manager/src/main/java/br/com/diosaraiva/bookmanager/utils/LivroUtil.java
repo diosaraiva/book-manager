@@ -8,7 +8,7 @@ import br.com.diosaraiva.bookmanager.model.LivroExtenso;
 
 public class LivroUtil {
 	
-	public static List<LivroExtenso> ConverteParaListaExtenso (List<Livro> listaLivros) {
+	public static List<LivroExtenso> ConverteListaLivroParaListaLivroExtenso (List<Livro> listaLivros) {
 
 		List<LivroExtenso> listaLivroExtenso = new ArrayList<>();
 
