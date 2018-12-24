@@ -8,9 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
-import java.util.List;
 
 import br.com.diosaraiva.bookmanager.model.Livro;
 import br.com.diosaraiva.bookmanager.model.LivroExtenso;
@@ -42,35 +47,22 @@ public class LivroController {
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 
-	//RETRIEVE - Selcionar livro por ISBN
+	//RETRIEVE - Selcionar livro por extenso por ISBN
 	@GetMapping("/livros/{isbn}")
-	public ResponseEntity<Livro> get(@PathVariable("isbn") long isbn){
-		LOG.info("Selecionando Livro com o ISBN: {}", isbn);
-		Livro livro = livroService.selecionarLivroPorISBN(isbn);
+	public ResponseEntity<LivroExtenso> selecionarExtensoLivroPorISBN(@PathVariable("isbn") long isbn){
+		LOG.info("Selecionando Livro com valor por extenso com o ISBN: {}", isbn);
 
-		if (livro == null){
+		LivroExtenso livroExtenso = livroService.selecionarLivroExtensoPorISBN(isbn);
+
+		if (livroExtenso == null){
 			LOG.info("Livro com o ISBN: {} nao encontrado.", isbn);
-			return new ResponseEntity<Livro>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<LivroExtenso>(HttpStatus.NOT_FOUND);
 		}
 
-		return new ResponseEntity<Livro>(livro, HttpStatus.OK);
+		return new ResponseEntity<LivroExtenso>(livroExtenso, HttpStatus.OK);
 	}
 
-	//RETRIEVE - Listar todos os Livros (Redundante e Deprecado)
-	@GetMapping("/lista")
-	public ResponseEntity<List<Livro>> listarLivros() {
-		LOG.info("Listando todos os Livros disponiveis");
-		List<Livro> livros = livroService.listarLivros();
-
-		if (livros == null || livros.isEmpty()){
-			LOG.info("Nenhum Livro encontrado.");
-			return new ResponseEntity<List<Livro>>(HttpStatus.NO_CONTENT);
-		}
-
-		return new ResponseEntity<List<Livro>>(livros, HttpStatus.OK);
-	}
-
-	//RETRIEVE - Listar todos os Livros com Valor por extenso
+	//RETRIEVE - Listar todos os Livros com valor por extenso
 	@GetMapping("/livros")
 	public ResponseEntity<List<LivroExtenso>> listarLivrosExtenso() {
 		LOG.info("Listando todos os Livros disponiveis com valor por extenso");
@@ -126,4 +118,33 @@ public class LivroController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
+	///////////////////////////////// DEPRECADOS /////////////////////////////////
+
+	//RETRIEVE - Selcionar livro por ISBN (Redundante e Deprecado)
+	@GetMapping("/lista/{isbn}")
+	public ResponseEntity<Livro> selecionarLivroPorISBN(@PathVariable("isbn") long isbn){
+		LOG.info("Selecionando Livro com o ISBN: {}", isbn);
+		Livro livro = livroService.selecionarLivroPorISBN(isbn);
+
+		if (livro == null){
+			LOG.info("Livro com o ISBN: {} nao encontrado.", isbn);
+			return new ResponseEntity<Livro>(HttpStatus.NOT_FOUND);
+		}
+
+		return new ResponseEntity<Livro>(livro, HttpStatus.OK);
+	}
+
+	//RETRIEVE - Listar todos os Livros (Redundante e Deprecado)
+	@GetMapping("/lista")
+	public ResponseEntity<List<Livro>> listarLivros() {
+		LOG.info("Listando todos os Livros disponiveis");
+		List<Livro> livros = livroService.listarLivros();
+
+		if (livros == null || livros.isEmpty()){
+			LOG.info("Nenhum Livro encontrado.");
+			return new ResponseEntity<List<Livro>>(HttpStatus.NO_CONTENT);
+		}
+
+		return new ResponseEntity<List<Livro>>(livros, HttpStatus.OK);
+	}
 }

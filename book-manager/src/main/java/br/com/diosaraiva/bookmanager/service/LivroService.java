@@ -7,11 +7,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.diosaraiva.bookmanager.model.Autor;
 import br.com.diosaraiva.bookmanager.model.Livro;
 import br.com.diosaraiva.bookmanager.model.LivroExtenso;
-import br.com.diosaraiva.bookmanager.model.Autor;
 import br.com.diosaraiva.bookmanager.repository.LivroRepository;
-import br.com.diosaraiva.bookmanager.utils.ValorPorExtenso;
 
 @Service
 public class LivroService implements ILivroService {
@@ -32,6 +31,14 @@ public class LivroService implements ILivroService {
 		Livro obj = livroRepository.findById(isbn).get();
 		return obj;
 	}
+	
+	@Override
+	public LivroExtenso selecionarLivroExtensoPorISBN(long isbn) {
+		
+		LivroExtenso livroExtenso = new LivroExtenso(livroRepository.findById(isbn).get());
+		
+		return livroExtenso;
+	}
 
 	@Override
 	public List<Livro> listarLivros() {
@@ -39,18 +46,20 @@ public class LivroService implements ILivroService {
 		livroRepository.findAll().forEach(e -> livros.add(e));
 		return livros;
 	}
-	
+
 	@Override
 	public List<LivroExtenso> listarLivrosExtenso() {
+
 		List<Livro> livros = new ArrayList<>();
+
 		livroRepository.findAll().forEach(e -> livros.add(e));
-		
+
 		List<LivroExtenso> livrosExtenso = new ArrayList<>();
-		
+
 		for (Livro livro : livros) {
 			livrosExtenso.add(new LivroExtenso(livro));
 		}
-		
+
 		return livrosExtenso;
 	}
 
@@ -67,24 +76,19 @@ public class LivroService implements ILivroService {
 	//Requisito 009: OK
 	@Override
 	public List<Livro> listarLivrosPorAutor(long id_autor) {
-		
+
 		List<Livro> livros = new ArrayList<>();
 		livroRepository.findAll().forEach(e -> livros.add(e));
-		
+
 		List<Livro> listaLivros = new ArrayList<>();
-		
+
 		for (Livro livro : livros) {
 			for (Autor autor : livro.getAutores()) {
 				if(autor.getId() == id_autor) listaLivros.add(livro);
 			}
 		}
-		
-		return listaLivros;
-	}
 
-	//Requisito 012: OK
-	public String valorPorExtenso(double valor) {
-		return valorPorExtenso(valor);
+		return listaLivros;
 	}
 
 	@Override

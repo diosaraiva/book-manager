@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.diosaraiva.bookmanager.model.Livro;
 import br.com.diosaraiva.bookmanager.model.LivroExtenso;
 
-public class LivroUtils {
+public class LivroUtil {
 	
 	public static List<LivroExtenso> ConverteParaListaExtenso (List<Livro> listaLivros) {
 

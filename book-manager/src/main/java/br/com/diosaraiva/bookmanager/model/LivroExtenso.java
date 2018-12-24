@@ -6,6 +6,7 @@ public class LivroExtenso extends Livro {
 
 	private static final long serialVersionUID = 7242794978474869804L;
 	
+	@SuppressWarnings("unused")
 	private String valorPorExtenso; 
 
 	//Construtores
@@ -14,6 +15,7 @@ public class LivroExtenso extends Livro {
 
 	public LivroExtenso(Livro livro) {
 		this.setIsbn(livro.getIsbn());
+		this.setTitulo(livro.getTitulo());
 		this.setDataPublicacao(livro.getDataPublicacao());
 		this.setPreco(livro.getPreco());
 		this.setSinopse(livro.getSinopse());
@@ -23,11 +25,6 @@ public class LivroExtenso extends Livro {
 		
 		//Requisito 012 OK
 		this.valorPorExtenso = ValorPorExtenso.valorPorExtenso(livro.getPreco());
-	}
-
-	//Getter
-	public String getValorPorExtenso() {
-		return valorPorExtenso;
 	}
 
 }

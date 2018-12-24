@@ -47,7 +47,7 @@ import br.com.diosaraiva.bookmanager.model.Editora;
 import br.com.diosaraiva.bookmanager.model.Livro;
 import br.com.diosaraiva.bookmanager.model.LivroExtenso;
 import br.com.diosaraiva.bookmanager.service.LivroService;
-import br.com.diosaraiva.bookmanager.utils.LivroUtils;
+import br.com.diosaraiva.bookmanager.utils.LivroUtil;
 
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -154,7 +154,7 @@ public class LivroControllerUnitTest {
 
 		when(livroService.selecionarLivroPorISBN(1)).thenReturn(livro);
 
-		mockMvc.perform(get("/livros/{isbn}", 1))
+		mockMvc.perform(get("/lista/{isbn}", 1))
 		.andExpect(status().isOk())
 		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
 		.andExpect(jsonPath("$.isbn", is(1)))
@@ -163,18 +163,46 @@ public class LivroControllerUnitTest {
 		verify(livroService, times(1)).selecionarLivroPorISBN(1);
 		verifyNoMoreInteractions(livroService);
 	}
+	
+	@Test
+	public void testarSelecionarLivroExtensoPorISBN() throws Exception {
+
+		LivroExtenso livroExtenso = new LivroExtenso(criarCenarioTesteLivro());
+
+		when(livroService.selecionarLivroExtensoPorISBN(1)).thenReturn(livroExtenso);
+
+		mockMvc.perform(get("/livros/{isbn}", 1))
+		.andExpect(status().isOk())
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+		.andExpect(jsonPath("$.isbn", is(1)))
+		.andExpect(jsonPath("$.titulo", is("Titulo 1")));
+
+		verify(livroService, times(1)).selecionarLivroExtensoPorISBN(1);
+		verifyNoMoreInteractions(livroService);
+	}
 
 	@Test
-	public void testarSelecionarLivroPorISBNFail_404_not_found() throws Exception {
+	public void testarSelecionarLivroExtensoPorISBNFail_404_not_found() throws Exception {
 		when(livroService.selecionarLivroPorISBN(1)).thenReturn(null);
 
 		mockMvc.perform(get("/livros/{isbn}", 1))
 		.andExpect(status().isNotFound());
 
-		verify(livroService, times(1)).selecionarLivroPorISBN(1);
+		verify(livroService, times(1)).selecionarLivroExtensoPorISBN(1);
 		verifyNoMoreInteractions(livroService);
 	}
 
+	@Test
+	public void testarSelecionarLivroPorISBNFail_404_not_found() throws Exception {
+		when(livroService.selecionarLivroPorISBN(1)).thenReturn(null);
+
+		mockMvc.perform(get("/lista/{isbn}", 1))
+		.andExpect(status().isNotFound());
+
+		verify(livroService, times(1)).selecionarLivroPorISBN(1);
+		verifyNoMoreInteractions(livroService);
+	}
+	
 	@Test
 	public void testarListarLivros() throws Exception {
 
@@ -197,7 +225,7 @@ public class LivroControllerUnitTest {
 	public void testarListarLivrosExtenso() throws Exception {
 
 		List<LivroExtenso> listaLivrosExtenso = 
-				LivroUtils.ConverteParaListaExtenso(criarCenarioTesteLista());
+				LivroUtil.ConverteParaListaExtenso(criarCenarioTesteLista());
 
 		when(livroService.listarLivrosExtenso()).thenReturn(listaLivrosExtenso);
 
