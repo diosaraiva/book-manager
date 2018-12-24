@@ -22,10 +22,11 @@ public class TestController {
 
 	}
 
+	//Funcionalidade de Teste, deve ser removida em Produção!
 	@RequestMapping("/test/{quantidade}")
 	public String criarLivrosAleatorios(@PathVariable("quantidade") Integer quantidade) {
 
-		livroService.adicionarListaLivros(LivroUtil.criarCenarioListaLivroTeste(quantidade));
+		livroService.adicionarListaLivros(LivroUtil.criarListaLivroTeste(quantidade));
 
 		return quantidade.toString() + " livros aleatórios criados!";
 

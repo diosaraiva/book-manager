@@ -25,48 +25,8 @@ public class LivroUtil {
 		return listaLivroExtenso;
 	}
 
-	//Cria lista objetos para Testes
-	public static List<Livro> criarCenarioTesteListaLivro() {
-
-		Set<Critica> criticas = new HashSet<Critica>();
-		criticas.add(new Critica("Critico 1", 5, "Texto 1"));
-		criticas.add(new Critica("Critico 2", 0, "Texto 2"));
-
-		Editora editora = new Editora("Editora 1", "http://localhost:8080/");
-
-		Set<Autor> autores = new HashSet<Autor>();
-		autores.add(new Autor("Diogo 1", "Brasileiro", new Date(), null));
-		autores.add(new Autor("Autor 2", "Brasileiro", new Date(), null));
-
-		Set<Livro> livros = new HashSet<Livro>();
-		livros.add(new Livro(1, "Titulo 1", new Date(), 10.00, "Sinopse 1", autores, 
-				editora, criticas));
-
-		List<Livro> listaLivros = new ArrayList<Livro>();
-		listaLivros.addAll(livros);
-
-		return listaLivros;
-	}
-
-	//Cria objetos para Testes
-	public static Livro criarCenarioTesteLivro() {
-
-		Set<Critica> criticas = new HashSet<Critica>();
-		criticas.add(new Critica("Critico 1", 5, "Texto 1"));
-		criticas.add(new Critica("Critico 2", 0, "Texto 2"));
-
-		Editora editora = new Editora("Editora 1", "http://localhost:8080/");
-
-		Set<Autor> autores = new HashSet<Autor>();
-		autores.add(new Autor("Diogo 1", "Brasileiro", new Date(), null));
-		autores.add(new Autor("Autor 2", "Brasileiro", new Date(), null));
-
-		return new Livro(1, "Titulo 1", new Date(), 10.00, "Sinopse 1", autores, 
-				editora, criticas);
-	}
-
 	//Cria objetos ilimitados para Testes
-	public static Livro criarCenarioLivroTeste(Integer num) {
+	public static Livro criarLivroTeste(Integer num) {
 
 		Set<Critica> criticas = new HashSet<Critica>();
 		criticas.add(new Critica("Critico " +num.toString()+"a", 5, "Texto " +num.toString()));
@@ -83,12 +43,12 @@ public class LivroUtil {
 	}
 	
 	//Cria lista de objetos ilimitados para Testes
-	public static List<Livro> criarCenarioListaLivroTeste(int num){
+	public static List<Livro> criarListaLivroTeste(int num){
 		
 		List<Livro> listaLivro = new ArrayList<>();
 		
 		for (int i = 1; i <= num; i++) {
-			listaLivro.add(criarCenarioLivroTeste(i));
+			listaLivro.add(criarLivroTeste(i));
 		}
 		
 		return listaLivro;

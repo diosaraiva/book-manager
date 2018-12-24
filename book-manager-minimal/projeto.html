@@ -64,16 +64,6 @@
 					<li><a href="./sobre.html"><i class="icon-question"></i>
 							Sobre</a></li>
 				</ul>
-
-				<!-- LOGIN E SIGNUP [WIP]
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
-							Sign Up</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
-							Login</a></li>
-				</ul>
-				-->
-
 			</nav>
 		</div>
 	</header>
@@ -247,8 +237,7 @@
 						<span class="icon-lightbulb"></span> Créditos
 					</h3>
 					<ul class="list-unstyled">
-						<li>Spring Framework &copy; <strong class="text-info">Rod
-								Johnson</strong> 2002 - 2018.
+						<li>Spring Framework &copy; <strong class="text-info">Rod Johnson</strong> 2002 - 2018.
 						</li>
 						<li>jQuery UI Bootstrap &copy; <strong class="text-info">Addy
 								Osmani</strong> 2012 - 2018.
@@ -290,30 +279,6 @@
 
 
 	<!-- ############################# LISTAR LIVROS AJAX ############################# -->
-	<script>
-		function listarLivrosAjax() {
-			$.ajax({
-				type : 'GET',
-				url : 'http://localhost:8080/livros',
-				dataType : 'json', // use json only, not jsonp
-				crossDomain : true, // tell browser to allow cross domain
-				xhrFields : {
-					'withCredentials' : true
-				// tell the client to send the cookies if any for the requested domain
-				},
-				success : successResopnse,
-				error : failureFunction
-			});
-		}
-
-		successResponse = function(data) {
-			//functionality goes here;
-		}
-
-		failureFunction = function(data) {
-			//functionality goes here;
-		}
-	</script>
 
 
 	<!-- ############################# CONSULTAR POR ISBN AJAX ############################# -->

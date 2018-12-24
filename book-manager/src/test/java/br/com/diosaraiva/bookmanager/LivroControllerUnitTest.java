@@ -68,7 +68,7 @@ public class LivroControllerUnitTest {
 	@Test
 	public void testarAdicionarLivro() throws Exception {
 
-		Livro livro = LivroUtil.criarCenarioTesteLivro();
+		Livro livro = LivroUtil.criarLivroTeste(1);
 
 		when(livroService.exists(livro)).thenReturn(false);
 		doNothing().when(livroService).adicionarLivro(livro);
@@ -88,7 +88,7 @@ public class LivroControllerUnitTest {
 	@Test
 	public void testarAdicionarLivroFail_404_not_found() throws Exception {
 
-		Livro livro = LivroUtil.criarCenarioTesteLivro();
+		Livro livro = LivroUtil.criarLivroTeste(1);
 
 		when(livroService.exists(livro)).thenReturn(true);
 
@@ -103,27 +103,10 @@ public class LivroControllerUnitTest {
 	}
 
 	@Test
-	public void testarSelecionarLivroPorISBN() throws Exception {
-
-		Livro livro = LivroUtil.criarCenarioTesteLivro();
-
-		when(livroService.selecionarLivroPorISBN(1)).thenReturn(livro);
-
-		mockMvc.perform(get("/lista/{isbn}", 1))
-		.andExpect(status().isOk())
-		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-		.andExpect(jsonPath("$.isbn", is(1)))
-		.andExpect(jsonPath("$.titulo", is("Titulo 1")));
-
-		verify(livroService, times(1)).selecionarLivroPorISBN(1);
-		verifyNoMoreInteractions(livroService);
-	}
-	
-	@Test
 	public void testarSelecionarLivroExtensoPorISBN() throws Exception {
 
 		LivroExtenso livroExtenso = 
-				new LivroExtenso(LivroUtil.criarCenarioTesteLivro());
+				new LivroExtenso(LivroUtil.criarLivroTeste(1));
 
 		when(livroService.selecionarLivroExtensoPorISBN(1)).thenReturn(livroExtenso);
 
@@ -158,38 +141,20 @@ public class LivroControllerUnitTest {
 		verify(livroService, times(1)).selecionarLivroPorISBN(1);
 		verifyNoMoreInteractions(livroService);
 	}
-	
-	@Test
-	public void testarListarLivros() throws Exception {
-
-		List<Livro> listaLivros = LivroUtil.criarCenarioTesteListaLivro();
-
-		when(livroService.listarLivros()).thenReturn(listaLivros);
-
-		mockMvc.perform(get("/lista"))
-		.andExpect(status().isOk())
-		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-		.andExpect(jsonPath("$", hasSize(1)))
-		.andExpect(jsonPath("$[0].isbn", is(1)));
-
-		verify(livroService, times(1)).listarLivros();
-		verifyNoMoreInteractions(livroService);
-
-	}
 
 	@Test
 	public void testarListarLivrosExtenso() throws Exception {
 
 		List<LivroExtenso> listaLivrosExtenso = 
 				LivroUtil.ConverteListaLivroParaListaLivroExtenso
-				(LivroUtil.criarCenarioTesteListaLivro());
+				(LivroUtil.criarListaLivroTeste(10));
 
 		when(livroService.listarLivrosExtenso()).thenReturn(listaLivrosExtenso);
 
 		mockMvc.perform(get("/livros"))
 		.andExpect(status().isOk())
 		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-		.andExpect(jsonPath("$", hasSize(1)))
+		.andExpect(jsonPath("$", hasSize(10)))
 		.andExpect(jsonPath("$[0].isbn", is(1)));
 
 		verify(livroService, times(1)).listarLivrosExtenso();
@@ -200,7 +165,7 @@ public class LivroControllerUnitTest {
 	@Test
 	public void testarAtualizarLivro() throws Exception {
 
-		Livro livro = LivroUtil.criarCenarioTesteLivro();
+		Livro livro = LivroUtil.criarLivroTeste(1);
 
 		when(livroService.selecionarLivroPorISBN(livro.getIsbn())).thenReturn(livro);
 		doNothing().when(livroService).atualizarLivro(livro);
@@ -219,7 +184,7 @@ public class LivroControllerUnitTest {
 	@Test
 	public void testarAtualizarLivroFail_404_not_found() throws Exception {
 
-		Livro livro = LivroUtil.criarCenarioTesteLivro();
+		Livro livro = LivroUtil.criarLivroTeste(1);
 
 		when(livroService.selecionarLivroPorISBN(livro.getIsbn())).thenReturn(null);
 
@@ -236,7 +201,7 @@ public class LivroControllerUnitTest {
 	@Test
 	public void testarRemoverLivro() throws Exception {
 
-		Livro livro = LivroUtil.criarCenarioTesteLivro();
+		Livro livro = LivroUtil.criarLivroTeste(1);
 
 		when(livroService.selecionarLivroPorISBN(livro.getIsbn())).thenReturn(livro);
 		doNothing().when(livroService).removerLivro(livro.getIsbn());
@@ -253,7 +218,7 @@ public class LivroControllerUnitTest {
 	@Test
 	public void testarRemoverLivroFail_404_not_found() throws Exception {
 
-		Livro livro = LivroUtil.criarCenarioTesteLivro();
+		Livro livro = LivroUtil.criarLivroTeste(1);
 
 		when(livroService.selecionarLivroPorISBN(livro.getIsbn())).thenReturn(null);
 
@@ -274,4 +239,40 @@ public class LivroControllerUnitTest {
 		.andExpect(header().string("Access-Control-Max-Age", "3600"));
 	}
 
+	///////////////////////////////// DEPRECADOS /////////////////////////////////
+
+	@Test
+	public void testarSelecionarLivroPorISBN() throws Exception {
+
+		Livro livro = LivroUtil.criarLivroTeste(1);
+
+		when(livroService.selecionarLivroPorISBN(1)).thenReturn(livro);
+
+		mockMvc.perform(get("/lista/{isbn}", 1))
+		.andExpect(status().isOk())
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+		.andExpect(jsonPath("$.isbn", is(1)))
+		.andExpect(jsonPath("$.titulo", is("Titulo 1")));
+
+		verify(livroService, times(1)).selecionarLivroPorISBN(1);
+		verifyNoMoreInteractions(livroService);
+	}
+
+	@Test
+	public void testarListarLivros() throws Exception {
+
+		List<Livro> listaLivros = LivroUtil.criarListaLivroTeste(10);
+
+		when(livroService.listarLivros()).thenReturn(listaLivros);
+
+		mockMvc.perform(get("/lista"))
+		.andExpect(status().isOk())
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+		.andExpect(jsonPath("$", hasSize(10)))
+		.andExpect(jsonPath("$[0].isbn", is(1)));
+
+		verify(livroService, times(1)).listarLivros();
+		verifyNoMoreInteractions(livroService);
+
+	}
 }
