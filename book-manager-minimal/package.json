@@ -2,7 +2,8 @@
   "name": "jquery-bootstrap-theme",
   "version": "1.0.0",
   "dependencies": {
-    "express": "^4.12.2",
+    "cors": "^2.8.5",
+    "express": "^3.21.0",
     "less": "latest"
   }
 }

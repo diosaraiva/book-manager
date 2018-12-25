@@ -127,7 +127,7 @@
 					</ul>
 				</div>
 			</div>
-			
+
 			<!-- ///////////////////////////// INTERFACE PRINCIPAL ///////////////////////////// -->
 			<div class="col-lg-9 col-sm-9" id="article">
 
@@ -137,43 +137,49 @@
 					<div class="page-header">
 						<h3>Consultar Livros</h3>
 					</div>
-					
+
 					<div class="row">
-						<div class="col-lg-12 col-sm-12">
-							Texto aqui.
-						</div>
+						<div class="col-lg-12 col-sm-12">Texto aqui.</div>
 					</div>
 					<p>&nbsp;</p>
 				</section>
-				
+
 				<!-- ///////////////////////////// LISTAR LIVROS ///////////////////////////// -->
 				<section id="listar-livros">
 					<div class="page-header">
 						<h3>Listar Livros</h3>
 					</div>
-					
+
+					<table>
+						<tr>
+						<td>ISBN</td>
+						<td>titulo</td>
+						<td>data publicacao</td>
+						<td>preco</td>
+						<td>sinopse</td>
+						</tr>
+						<tr id="listarLivros"></tr>
+					</table>
+					<button onclick="listarLivrosAjax()">Listar</button>
+
 					<div class="row">
 						<div class="col-lg-12 col-sm-12">
-							<table id="jqGrid01"></table>
-							<div id="jqGridPager01"></div>
+							<table id="jqGridLivros"></table>
+							<div id="jqGridPagerLivros"></div>
 						</div>
 					</div>
-					
-					<p>&nbsp;</p>
 				</section>
-				
+
 				<!-- ///////////////////////////// GERENCIAR LIVROS ///////////////////////////// -->
 				<section id="gerenciar-livros">
 					<div class="page-header">
 						<h3>Gerenciar Livros</h3>
 					</div>
-					
+
 					<div class="row">
-						<div class="col-lg-12 col-sm-12">
-							Texto aqui.
-						</div>
+						<div class="col-lg-12 col-sm-12">Texto aqui.</div>
 					</div>
-					
+
 					<p>&nbsp;</p>
 				</section>
 
@@ -220,7 +226,7 @@
 				<!-- ///////////////////////////// RODAPE: CREDITOS ///////////////////////////// -->
 				<div class="col-lg-5 col-sm-5">
 					<h3>
-						<span class="icon-lightbulb"></span> Créditos
+						<span class="icon-lightbulb"></span> CrĂ©ditos
 					</h3>
 					<ul class="list-unstyled">
 						<li>Spring Framework &copy; <strong class="text-info">Rod
@@ -237,7 +243,7 @@
 			</div>
 		</div>
 	</footer>
-	
+
 	<!-- SCRIPTS JQUERY-UI_BOOTSTRAP -->
 	<script src="assets/js/vendor/jquery-1.9.1.min.js"
 		type="text/javascript"></script>
@@ -269,20 +275,49 @@
 		type="text/javascript"></script>
 	<!--end jqGrid-->
 	<script src="assets/js/demo-extra.js" type="text/javascript"></script>
-	
+
 	<!-- ############################# LISTAR LIVROS AJAX ############################# -->
-<script src="dao/listarLivros.js" type="text/javascript"></script>
+	<script src="dao/listarLivros.js" type="text/javascript"></script>
+	
+	<script>
+	function listarLivrosAjax() {
+		var listarLivros = $("#listarLivros")
+		$.ajax({
+			url: "http://localhost:8080/livros"
+		}).then(function(data) {
+			
+			for (let i in data) {
+				listarLivros.append("<td>" + data[i].isbn + "</td>" +
+									"<td>" + data[i].titulo + "</td>" + 
+									"<td>" + data[i].dataPublicacao + "</td>" +
+									"<td>" + data[i].preco + "</td>" + 
+									"<td>" + data[i].sinopse + "</td>")
+			}
+		});
+	}
 
-	<!-- ############################# CONSULTAR POR ISBN AJAX ############################# -->
+	successResponse = function(data) {
+		console.log("entrei no sucesso")
+		var lista = $('#listaLivros');
+		arr.forEach(data => {
+			lista.append(data.titulo)
+		});
+		
+	}
 
+	failureFunction = function(jqXHR, textStatus, errorThrown) {
+		console.log(errorThrown);
+	}
+</script>
 
-	<!-- ############################# CONSULTAR POR AUTOR AJAX ############################# -->
-
+	<!-- ############################# CONSULTAR POR ISBN/AUTOR AJAX ############################# -->
+	<script src="dao/selecionarLivro.js" type="text/javascript"></script>
 
 	<!-- ############################# ATUALIZAR LIVRO AJAX ############################# -->
-
+	<script src="dao/editarLivro.js" type="text/javascript"></script>
 
 	<!-- ############################# REMOVER LIVRO AJAX ############################# -->
-	
+	<script src="dao/removerLivro.js" type="text/javascript"></script>
+
 </body>
 </html>
