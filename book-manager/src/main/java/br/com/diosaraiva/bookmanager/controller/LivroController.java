@@ -76,6 +76,22 @@ public class LivroController {
 
 		return new ResponseEntity<List<LivroExtenso>>(livros, HttpStatus.OK);
 	}
+	
+	//RETRIEVE - Listar todos os Livros por Autor
+		@GetMapping("/livros/autores/{idAutor}")
+		public ResponseEntity<List<LivroExtenso>> listarLivrosExtensoPorAutor(@PathVariable("idAutor") long idAutor) {
+			
+			LOG.info("Listando todos os Livros disponiveis de um determinado Autor");
+
+			List<LivroExtenso> livros = livroService.listarLivrosExtensoPorAutor(idAutor);
+
+			if (livros == null || livros.isEmpty()){
+				LOG.info("Nenhum Livro encontrado do Autor especificado.");
+				return new ResponseEntity<List<LivroExtenso>>(HttpStatus.NO_CONTENT);
+			}
+
+			return new ResponseEntity<List<LivroExtenso>>(livros, HttpStatus.OK);
+		}
 
 	//UPDATE - Atualizar Livro
 	@PutMapping("/livros/{isbn}")

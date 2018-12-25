@@ -139,7 +139,29 @@
 					</div>
 
 					<div class="row">
-						<div class="col-lg-12 col-sm-12">Texto aqui.</div>
+						<form id="consultar-livro" action="http://localhost:8080/"
+							title="" method="post">
+							<table>
+								<tr>
+									<td><input type="radio" id="radioIsbn" name="radioIsbn"></td>
+									<td>Por ISBN:</td>
+									<td><input type="text" id="isbn" name="isbn"></td>
+								</tr>
+								<tr>
+									<td><input type="radio" id="radioIsbn" name="radioIsbn"></td>
+									<td>Por Autor:</td>
+									<td><input type="text" id="titulo" name="titulo"></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td><input type="submit" id="submitButton"
+										name="submitButton" value="Pesquisar"> <input
+										type="submit" id="submitButton" name="submitButton"
+										value="Limpar"></td>
+								</tr>
+							</table>
+						</form>
 					</div>
 					<p>&nbsp;</p>
 				</section>
@@ -152,11 +174,11 @@
 
 					<table>
 						<tr>
-						<td>ISBN</td>
-						<td>titulo</td>
-						<td>data publicacao</td>
-						<td>preco</td>
-						<td>sinopse</td>
+							<td>ISBN</td>
+							<td>titulo</td>
+							<td>data publicacao</td>
+							<td>preco</td>
+							<td>sinopse</td>
 						</tr>
 						<tr id="listarLivros"></tr>
 					</table>
@@ -177,11 +199,48 @@
 					</div>
 
 					<div class="row">
-						<div class="col-lg-12 col-sm-12">Texto aqui.</div>
-					</div>
-
-					<p>&nbsp;</p>
+						<form id="formoid" action="http://localhost:8080/" title=""
+							method="post">
+							<table>
+								<tr>
+									<td>ISBN:</td>
+									<td><input type="text" id="isbn" name="isbn"></td>
+								</tr>
+								<tr>
+									<td>Titulo:</td>
+									<td><input type="text" id="titulo" name="titulo"></td>
+								</tr>
+								<tr>
+									<td>Data de Publicação:</td>
+									<td><input type="text" id="dataPublicacao"
+										name="dataPublicacao"></td>
+								</tr>
+								<tr>
+									<td>Preço:</td>
+									<td><input type="text" id="preco" name="preco"></td>
+								</tr>
+								<tr>
+									<td>Valor em Reais:</td>
+									<td><input type="text" id="valorPorExtenso"
+										name="valorPorExtenso" disabled="true"></td>
+								</tr>
+								<tr>
+									<td>Sinopse:</td>
+									<td><input type="text" id="sinpose" name="sinopse"></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><input type="submit" id="submitButton"
+										name="submitButton" value="Salvar"> <input
+										type="submit" id="submitButton" name="submitButton"
+										value="Remover"> <input type="submit"
+										id="submitButton" name="submitButton" value="Limpar"></td>
+								</tr>
+							</table>
+						</form>
+					</div>	
 				</section>
+
 
 			</div>
 		</div>
@@ -226,7 +285,7 @@
 				<!-- ///////////////////////////// RODAPE: CREDITOS ///////////////////////////// -->
 				<div class="col-lg-5 col-sm-5">
 					<h3>
-						<span class="icon-lightbulb"></span> CrĂ©ditos
+						<span class="icon-lightbulb"></span> Créditos
 					</h3>
 					<ul class="list-unstyled">
 						<li>Spring Framework &copy; <strong class="text-info">Rod
@@ -278,7 +337,7 @@
 
 	<!-- ############################# LISTAR LIVROS AJAX ############################# -->
 	<script src="dao/listarLivros.js" type="text/javascript"></script>
-	
+
 	<script>
 	function listarLivrosAjax() {
 		var listarLivros = $("#listarLivros")
@@ -308,7 +367,7 @@
 	failureFunction = function(jqXHR, textStatus, errorThrown) {
 		console.log(errorThrown);
 	}
-</script>
+	</script>
 
 	<!-- ############################# CONSULTAR POR ISBN/AUTOR AJAX ############################# -->
 	<script src="dao/selecionarLivro.js" type="text/javascript"></script>

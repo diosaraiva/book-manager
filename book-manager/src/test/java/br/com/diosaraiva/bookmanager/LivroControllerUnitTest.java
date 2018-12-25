@@ -18,6 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -35,6 +36,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import br.com.diosaraiva.bookmanager.config.WebConfig;
 import br.com.diosaraiva.bookmanager.controller.LivroController;
 import br.com.diosaraiva.bookmanager.filter.CORSFilter;
+import br.com.diosaraiva.bookmanager.model.Autor;
 import br.com.diosaraiva.bookmanager.model.Livro;
 import br.com.diosaraiva.bookmanager.model.LivroExtenso;
 import br.com.diosaraiva.bookmanager.service.LivroService;
@@ -230,6 +232,12 @@ public class LivroControllerUnitTest {
 		verifyNoMoreInteractions(livroService);
 	}
 
+	@Test
+	public void testarListarLivrosExtensoPorAutor() throws Exception {
+
+		//
+
+	}
 
 	///////////////////////////////// DEPRECADOS /////////////////////////////////
 

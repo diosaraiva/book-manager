@@ -7,21 +7,21 @@ import br.com.diosaraiva.bookmanager.model.LivroExtenso;
 
 public interface ILivroService {
 	
-	void adicionarLivro(Livro livro);						//Create
-	void adicionarListaLivros(List<Livro> listaLivro);		//Create
+	void adicionarLivro(Livro livro);								//Create
+	void adicionarListaLivros(List<Livro> listaLivro);				//Create
 	
-	List<Livro> listarLivros();								//Retrieve
-    Livro selecionarLivroPorISBN(long isbn);				//Retrieve
+	List<Livro> listarLivros();										//Retrieve
+    Livro selecionarLivroPorISBN(long isbn);						//Retrieve
     
-    void atualizarLivro(Livro livro);						//Update
+    void atualizarLivro(Livro livro);								//Update
     
-    void removerLivro(long isbn);							//Delete
+    void removerLivro(long isbn);									//Delete
     
     boolean exists(Livro livro);
     
-    List<Livro> listarLivrosPorAutor(long id_autor);		//Requisito 009
+    List<LivroExtenso> listarLivrosExtensoPorAutor(long idAutor);	//Requisito 009
     
-    LivroExtenso selecionarLivroExtensoPorISBN(long isbn);	//Requisito 012
-	List<LivroExtenso> listarLivrosExtenso();				//Requisito 012
+    LivroExtenso selecionarLivroExtensoPorISBN(long isbn);			//Requisito 012
+	List<LivroExtenso> listarLivrosExtenso();						//Requisito 012
 	
 }

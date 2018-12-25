@@ -11,6 +11,7 @@ import br.com.diosaraiva.bookmanager.model.Autor;
 import br.com.diosaraiva.bookmanager.model.Livro;
 import br.com.diosaraiva.bookmanager.model.LivroExtenso;
 import br.com.diosaraiva.bookmanager.repository.LivroRepository;
+import br.com.diosaraiva.bookmanager.utils.LivroUtil;
 
 @Service
 public class LivroService implements ILivroService {
@@ -86,7 +87,7 @@ public class LivroService implements ILivroService {
 
 	//Requisito 009: OK
 	@Override
-	public List<Livro> listarLivrosPorAutor(long id_autor) {
+	public List<LivroExtenso> listarLivrosExtensoPorAutor(long idAutor) {
 
 		List<Livro> livros = new ArrayList<>();
 		livroRepository.findAll().forEach(e -> livros.add(e));
@@ -95,11 +96,11 @@ public class LivroService implements ILivroService {
 
 		for (Livro livro : livros) {
 			for (Autor autor : livro.getAutores()) {
-				if(autor.getId() == id_autor) listaLivros.add(livro);
+				if(autor.getId() == idAutor) listaLivros.add(livro);
 			}
 		}
 
-		return listaLivros;
+		return LivroUtil.ConverteListaLivroParaListaLivroExtenso(listaLivros);
 	}
 
 	@Override
