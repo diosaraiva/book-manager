@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_dksn8ABjEemHs4ezSHmv-g" name="UML">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_dksn8ABjEemHs4ezSHmv-g" name="UML" URI="">
   <ownedComment xmi:type="uml:Comment" xmi:id="_gVL7UACfEemfZYeC4JvFUw">
     <body>Requisito 011: OK</body>
+  </ownedComment>
+  <ownedComment xmi:type="uml:Comment" xmi:id="_r5rp0AkREemHEv2fLNRyrg" annotatedElement="_yAilQAkPEemHEv2fLNRyrg">
+    <body>O retorno em JSON permite a completa abstração da camada de apresentação, se limitando a controlar as requisições/respostas com seus objetos de envio (também em JSON), além de enviar um cabeçalho (CORS Header) para evitar acessos indevidos pelo uso de XSS (troca de dominios na resposta da requisição).</body>
+  </ownedComment>
+  <ownedComment xmi:type="uml:Comment" xmi:id="_WU7ScAkSEemHEv2fLNRyrg" annotatedElement="_e3AvoAkPEemHEv2fLNRyrg">
+    <body>O Servidor mapeia as requisições no domínio, recebendo as mesmas pela URI e direcionando as classes de serviço apropriadas a responder com o objeto de interesse, que é serializado em um JSON para envio.</body>
   </ownedComment>
   <packageImport xmi:type="uml:PackageImport" xmi:id="_eBobkABjEemHs4ezSHmv-g">
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -113,10 +119,81 @@
     <packagedElement xmi:type="uml:Package" xmi:id="__xs2IAR8EemnuIcXXcJ0Zw" name="service"/>
     <packagedElement xmi:type="uml:Package" xmi:id="_C5GPcAR-EemnuIcXXcJ0Zw" name="utils"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_PijDQAR-EemnuIcXXcJ0Zw" name="br.com.diosaraiva.bookmanager.book-manager-minimal">
-    <packagedElement xmi:type="uml:Package" xmi:id="_vdAQEAcjEem92d-vN2aveQ" name="assets"/>
-    <packagedElement xmi:type="uml:Package" xmi:id="_zAF8UAcjEem92d-vN2aveQ" name="css"/>
-    <packagedElement xmi:type="uml:Package" xmi:id="_1sOLYAcjEem92d-vN2aveQ" name="third-party"/>
+  <packagedElement xmi:type="uml:Component" xmi:id="_fEV6oAkHEemHEv2fLNRyrg" name="Tomcat">
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_Se4nQAkNEemHEv2fLNRyrg" name="http://localhost:8080" aggregation="composite"/>
+    <ownedConnector xmi:type="uml:Connector" xmi:id="_zDxOwAkNEemHEv2fLNRyrg" name="Connector3">
+      <end xmi:type="uml:ConnectorEnd" xmi:id="_zDxOwQkNEemHEv2fLNRyrg" role="_Se4nQAkNEemHEv2fLNRyrg"/>
+      <end xmi:type="uml:ConnectorEnd" xmi:id="_zDxOwgkNEemHEv2fLNRyrg" role="_q3X1EAkNEemHEv2fLNRyrg"/>
+    </ownedConnector>
+    <packagedElement xmi:type="uml:Component" xmi:id="_J3JEcAkEEemHEv2fLNRyrg" name="SpringBoot">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_2SYDUAkOEemHEv2fLNRyrg" name="Connector13">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_2SYDUQkOEemHEv2fLNRyrg" role="_lIhmcAkOEemHEv2fLNRyrg"/>
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_2SYDUgkOEemHEv2fLNRyrg" role="_opnHkAkOEemHEv2fLNRyrg"/>
+      </ownedConnector>
+      <packagedElement xmi:type="uml:Component" xmi:id="_G-rCgAkEEemHEv2fLNRyrg" name="JPA">
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_lIhmcAkOEemHEv2fLNRyrg" name="org.h2.Driver" aggregation="composite"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_2prQYAkLEemHEv2fLNRyrg" client="_G-rCgAkEEemHEv2fLNRyrg" supplier="_FCLgoAkEEemHEv2fLNRyrg"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="_FCLgoAkEEemHEv2fLNRyrg" name="Hibernate"/>
+      <packagedElement xmi:type="uml:Component" xmi:id="_SafBsAkIEemHEv2fLNRyrg" name="@RestController">
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_q3X1EAkNEemHEv2fLNRyrg" name="RequestMappings" aggregation="composite"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_ZlYQMAkKEemHEv2fLNRyrg" client="_SafBsAkIEemHEv2fLNRyrg" supplier="_XEdLkAkKEemHEv2fLNRyrg"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_leeTMAkMEemHEv2fLNRyrg" client="_SafBsAkIEemHEv2fLNRyrg" supplier="_BeHVQAkKEemHEv2fLNRyrg"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="_UE7uIAkEEemHEv2fLNRyrg" name="H2">
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_opnHkAkOEemHEv2fLNRyrg" name="jdbc:h2:mem:testdb" aggregation="composite"/>
+        <packagedElement xmi:type="uml:Manifestation" xmi:id="__KRjAAkMEemHEv2fLNRyrg" client="_UE7uIAkEEemHEv2fLNRyrg" supplier="_KQPusAkJEemHEv2fLNRyrg" utilizedElement="_KQPusAkJEemHEv2fLNRyrg"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="_KQPusAkJEemHEv2fLNRyrg" name="@Service">
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_b1SdUAkKEemHEv2fLNRyrg" client="_KQPusAkJEemHEv2fLNRyrg" supplier="_XEdLkAkKEemHEv2fLNRyrg"/>
+        <realization xmi:type="uml:ComponentRealization" xmi:id="_EQ-ecAkKEemHEv2fLNRyrg" name="Implements" client="_BeHVQAkKEemHEv2fLNRyrg" supplier="_KQPusAkJEemHEv2fLNRyrg" realizingClassifier="_BeHVQAkKEemHEv2fLNRyrg"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="_0ZoLQAkJEemHEv2fLNRyrg" name="IRepository">
+        <packagedElement xmi:type="uml:Usage" xmi:id="_yXlToAkMEemHEv2fLNRyrg" client="_0ZoLQAkJEemHEv2fLNRyrg" supplier="_XEdLkAkKEemHEv2fLNRyrg"/>
+        <packagedElement xmi:type="uml:Manifestation" xmi:id="_cr0VUAkNEemHEv2fLNRyrg" client="_0ZoLQAkJEemHEv2fLNRyrg" supplier="_G-rCgAkEEemHEv2fLNRyrg" utilizedElement="_G-rCgAkEEemHEv2fLNRyrg"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="_BeHVQAkKEemHEv2fLNRyrg" name="IService">
+        <packagedElement xmi:type="uml:Usage" xmi:id="_dRIeUAkMEemHEv2fLNRyrg" client="_BeHVQAkKEemHEv2fLNRyrg" supplier="_XEdLkAkKEemHEv2fLNRyrg"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_m4Jb4AkMEemHEv2fLNRyrg" client="_BeHVQAkKEemHEv2fLNRyrg" supplier="_0ZoLQAkJEemHEv2fLNRyrg"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="_HqQucAkKEemHEv2fLNRyrg" name="CrudRepository">
+        <realization xmi:type="uml:ComponentRealization" xmi:id="_KRiSsAkKEemHEv2fLNRyrg" name="Implements" client="_0ZoLQAkJEemHEv2fLNRyrg" supplier="_HqQucAkKEemHEv2fLNRyrg" realizingClassifier="_0ZoLQAkJEemHEv2fLNRyrg"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="_XEdLkAkKEemHEv2fLNRyrg" name="@Entity"/>
+      <packagedElement xmi:type="uml:Component" xmi:id="_580RkAkKEemHEv2fLNRyrg" name="UnitTest">
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_-wLLgAkNEemHEv2fLNRyrg" client="_580RkAkKEemHEv2fLNRyrg" supplier="_WTgaUAkLEemHEv2fLNRyrg"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_hzZdsAkOEemHEv2fLNRyrg" client="_580RkAkKEemHEv2fLNRyrg" supplier="_KQPusAkJEemHEv2fLNRyrg"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="_WTgaUAkLEemHEv2fLNRyrg" name="Mockito">
+        <substitution xmi:type="uml:Substitution" xmi:id="_7avgwAkNEemHEv2fLNRyrg" client="_WTgaUAkLEemHEv2fLNRyrg" supplier="_SafBsAkIEemHEv2fLNRyrg" contract="_SafBsAkIEemHEv2fLNRyrg"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="_5JvZYAkLEemHEv2fLNRyrg" name="CORSFilter"/>
+    </packagedElement>
   </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_ROM5sAckEem92d-vN2aveQ" name="br.com.diosaraiva.bookmanager.documents"/>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_TaEZ8AkJEemHEv2fLNRyrg" name="REST API">
+    <protocol xmi:type="uml:ProtocolStateMachine" xmi:id="_cmma8AkJEemHEv2fLNRyrg" name="HTML"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Manifestation" xmi:id="_1p0D8AkNEemHEv2fLNRyrg" client="_Se4nQAkNEemHEv2fLNRyrg" supplier="_TaEZ8AkJEemHEv2fLNRyrg" utilizedElement="_TaEZ8AkJEemHEv2fLNRyrg"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_MsVkYAkOEemHEv2fLNRyrg" client="_Se4nQAkNEemHEv2fLNRyrg" supplier="_5JvZYAkLEemHEv2fLNRyrg"/>
+  <packagedElement xmi:type="uml:Device" xmi:id="_e3AvoAkPEemHEv2fLNRyrg" name="book-manager server">
+    <nestedNode xmi:type="uml:Node" xmi:id="_3vd28AkPEemHEv2fLNRyrg" name="Tomcat"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Device" xmi:id="_yAilQAkPEemHEv2fLNRyrg" name="Client (JSON Consumer)">
+    <nestedNode xmi:type="uml:Node" xmi:id="_GIlcIAkREemHEv2fLNRyrg" name="book-manager-minimal"/>
+    <nestedNode xmi:type="uml:Node" xmi:id="_RdEBEAkREemHEv2fLNRyrg" name="book-manager-client"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_m3380AkREemHEv2fLNRyrg" memberEnd="_m4Q-YgkREemHEv2fLNRyrg _m4Q-YwkREemHEv2fLNRyrg">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_m4Q-YAkREemHEv2fLNRyrg" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_m4Q-YQkREemHEv2fLNRyrg" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_m4Q-YgkREemHEv2fLNRyrg" name="tomcat" type="_3vd28AkPEemHEv2fLNRyrg" association="_m3380AkREemHEv2fLNRyrg"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_m4Q-YwkREemHEv2fLNRyrg" name="book-manager-minimal" type="_GIlcIAkREemHEv2fLNRyrg" association="_m3380AkREemHEv2fLNRyrg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_U8T5sAkSEemHEv2fLNRyrg" memberEnd="_U8T5swkSEemHEv2fLNRyrg _U8T5tAkSEemHEv2fLNRyrg">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_U8T5sQkSEemHEv2fLNRyrg" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_U8T5sgkSEemHEv2fLNRyrg" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_U8T5swkSEemHEv2fLNRyrg" name="tomcat" type="_3vd28AkPEemHEv2fLNRyrg" association="_U8T5sAkSEemHEv2fLNRyrg"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_U8T5tAkSEemHEv2fLNRyrg" name="book-manager-client" type="_RdEBEAkREemHEv2fLNRyrg" association="_U8T5sAkSEemHEv2fLNRyrg"/>
+  </packagedElement>
 </uml:Model>
