@@ -22,16 +22,10 @@ public class CORSFilter extends OncePerRequestFilter {
 		LOG.info("Adding CORS Headers ........................");
 
 		response.setHeader("Access-Control-Allow-Origin", "*");
-
-		//Tipos permitidos: "GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT"
-		response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+	    response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
+	    response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 		response.setHeader("Access-Control-Max-Age", "3600");
-		response.setHeader("Access-Control-Allow-Headers", "authorization, content-type, xsrf-token");
-		response.addHeader("Access-Control-Expose-Headers", "xsrf-token");
-		if ("OPTIONS".equals(request.getMethod())) {
-			response.setStatus(HttpServletResponse.SC_OK);
-		} else { 
-			filterChain.doFilter(request, response);
-		}
+		
+		filterChain.doFilter(request, response);
 	}
 }

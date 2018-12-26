@@ -89,15 +89,20 @@
 						</div>
 						<h5>Livros Registrados:</h5>
 
-						<table>
-							<th>
-							<td>ISBN</td>
-							<td>titulo</td>
-							<td>data publicacao</td>
-							<td>preco</td>
-							<td>sinopse</td>
-							</th>
-							<th id="listarLivros"></th>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>ISBN</th>
+									<th>titulo</th>
+									<th>data publicacao</th>
+									<th>preco</th>
+									<th>sinopse</th>
+								</tr>
+							</thead>
+							<tbody id="listarLivros">
+							
+							</tbody>
+							
 						</table>
 
 						<button onclick="listarLivrosAjax()">Listar</button>
@@ -210,13 +215,40 @@
 	<script src="js/freelancer.min.js"></script>
 
 
-	<!-- ///////////////////////// SCRIPT AJAX-CORS-ORIGIN ///////////////////////// -->
-	<script type="text/javascript" src="js/jquery.ajax-cross-origin.min.js"></script>
-
-
 	<!-- ///////////////////////// SCRIPTS BOOKMANAGER ///////////////////////// -->
-	
-	
+	<script>
+	function listarLivrosAjax() {
+		var listarLivros = $("#listarLivros")
+		$.ajax({
+			url: "http://localhost:8080/livros"
+		}).then(function(data) {
+			
+			console.log(data);
+			
+			for (let i in data) {
+				listarLivros.append("<tr><td>" + data[i].isbn + "</td>" +
+									"<td>" + data[i].titulo + "</td>" + 
+									"<td>" + data[i].dataPublicacao + "</td>" +
+									"<td>" + data[i].preco + "</td>" + 
+									"<td>" + data[i].sinopse + "</td></tr>")
+			}
+		});
+	}
+
+	successResponse = function(data) {
+		console.log("entrei no sucesso")
+		var lista = $('#listaLivros');
+		arr.forEach(data => {
+			lista.append(data.titulo)
+		});
+		
+	}
+
+	failureFunction = function(jqXHR, textStatus, errorThrown) {
+		console.log(errorThrown);
+	}
+</script>
+
 	<!-- ############################# LISTAR LIVROS AJAX ############################# -->
 	<script src="dao/listarLivros.js" type="text/javascript"></script>
 
