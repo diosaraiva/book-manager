@@ -2,8 +2,8 @@ package br.com.diosaraiva.bookmanager.service;
 
 import java.util.List;
 
-import br.com.diosaraiva.bookmanager.model.Livro;
-import br.com.diosaraiva.bookmanager.model.LivroExtenso;
+import br.com.diosaraiva.bookmanager.entity.Livro;
+import br.com.diosaraiva.bookmanager.entity.LivroExtenso;
 
 public interface ILivroService {
 	

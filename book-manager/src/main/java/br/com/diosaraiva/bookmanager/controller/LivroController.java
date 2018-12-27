@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.diosaraiva.bookmanager.model.Livro;
-import br.com.diosaraiva.bookmanager.model.LivroExtenso;
+import br.com.diosaraiva.bookmanager.entity.Livro;
+import br.com.diosaraiva.bookmanager.entity.LivroExtenso;
 import br.com.diosaraiva.bookmanager.service.ILivroService;
 
 @RestController

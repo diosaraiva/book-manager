@@ -7,9 +7,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.diosaraiva.bookmanager.model.Autor;
-import br.com.diosaraiva.bookmanager.model.Livro;
-import br.com.diosaraiva.bookmanager.model.LivroExtenso;
+import br.com.diosaraiva.bookmanager.entity.Autor;
+import br.com.diosaraiva.bookmanager.entity.Livro;
+import br.com.diosaraiva.bookmanager.entity.LivroExtenso;
 import br.com.diosaraiva.bookmanager.repository.LivroRepository;
 import br.com.diosaraiva.bookmanager.utils.LivroUtil;
 
@@ -54,9 +54,12 @@ public class LivroService implements ILivroService {
 
 	@Override
 	public List<Livro> listarLivros() {
+		
 		List<Livro> livros = new ArrayList<>();
 		livroRepository.findAll().forEach(e -> livros.add(e));
+		
 		return livros;
+		
 	}
 
 	@Override
@@ -77,12 +80,16 @@ public class LivroService implements ILivroService {
 
 	@Override
 	public void atualizarLivro(Livro livro) {
+		
 		livroRepository.save(livro);
+		
 	}
 
 	@Override
 	public void removerLivro(long isbn) {
+		
 		livroRepository.delete(selecionarLivroPorISBN(isbn));
+		
 	}
 
 	//Requisito 009: OK

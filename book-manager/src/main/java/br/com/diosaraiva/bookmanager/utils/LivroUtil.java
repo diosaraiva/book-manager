@@ -6,11 +6,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import br.com.diosaraiva.bookmanager.model.Autor;
-import br.com.diosaraiva.bookmanager.model.Critica;
-import br.com.diosaraiva.bookmanager.model.Editora;
-import br.com.diosaraiva.bookmanager.model.Livro;
-import br.com.diosaraiva.bookmanager.model.LivroExtenso;
+import br.com.diosaraiva.bookmanager.entity.Autor;
+import br.com.diosaraiva.bookmanager.entity.Critica;
+import br.com.diosaraiva.bookmanager.entity.Editora;
+import br.com.diosaraiva.bookmanager.entity.Livro;
+import br.com.diosaraiva.bookmanager.entity.LivroExtenso;
 
 public class LivroUtil {
 
@@ -35,8 +35,8 @@ public class LivroUtil {
 		Editora editora = new Editora("Editora " +num.toString(), "http://localhost:8080/");
 
 		Set<Autor> autores = new HashSet<Autor>();
-		autores.add(new Autor("Autor " +num.toString()+"a", "Brasileiro", new Date(), null));
-		autores.add(new Autor("Autor " +num.toString()+"b", "Brasileiro", new Date(), null));
+		autores.add(new Autor("Autor " +num.toString()+"a", "Brasileiro"));
+		autores.add(new Autor("Autor " +num.toString()+"b", "Brasileiro"));
 
 		return new Livro(num, StringUtil.gerarTituloLivro(), new Date(), ValorUtil.criarValorAleatorio(0.00,1300.00,2), "Sinopse " +num.toString(),
 				autores, editora, criticas);
