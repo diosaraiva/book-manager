@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 //AJAX para multiplos dominios simultaneos
@@ -16,6 +17,11 @@ public class CORSFilter extends OncePerRequestFilter {
 
 	private final Logger LOG = LoggerFactory.getLogger(CORSFilter.class);
 
+	@Override
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        return new AntPathMatcher().match("/livros", request.getServletPath());
+    }
+	
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 

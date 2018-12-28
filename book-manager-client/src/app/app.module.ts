@@ -6,10 +6,12 @@ import { VisualizarLivrosPage } from '../pages/visualizar-livros/visualizar-livr
 import { EditarLivroPage } from '../pages/editar-livro/editar-livro';
 import { PorAutorPage } from '../pages/por-autor/por-autor';
 import { TabsPage } from '../pages/tabs/tabs';
+import { HttpClientModule } from '@angular/common/http'; 
 
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { RestProvider } from '../providers/rest/rest';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabsPage
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     IonicModule.forRoot(MyApp)
   ],
@@ -34,7 +37,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    RestProvider
   ]
 })
 export class AppModule {}

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +31,7 @@ public class LivroController {
 	private ILivroService livroService;
 
 	//CREATE - Adicionar Livro
+	@CrossOrigin
 	@PostMapping("/livros/novo")
 	public ResponseEntity<Void> adicionarLivro(@RequestBody Livro livro, 
 			UriComponentsBuilder ucBuilder){
@@ -48,6 +50,7 @@ public class LivroController {
 	}
 
 	//RETRIEVE - Selcionar livro por extenso por ISBN
+	@CrossOrigin
 	@GetMapping("/livros/{isbn}")
 	public ResponseEntity<LivroExtenso> selecionarExtensoLivroPorISBN(@PathVariable("isbn") long isbn){
 		LOG.info("Selecionando Livro com valor por extenso com o ISBN: {}", isbn);
@@ -63,6 +66,7 @@ public class LivroController {
 	}
 
 	//RETRIEVE - Listar todos os Livros com valor por extenso
+	@CrossOrigin
 	@GetMapping("/livros")
 	public ResponseEntity<List<LivroExtenso>> listarLivrosExtenso() {
 		LOG.info("Listando todos os Livros disponiveis com valor por extenso");
@@ -76,26 +80,28 @@ public class LivroController {
 
 		return new ResponseEntity<List<LivroExtenso>>(livros, HttpStatus.OK);
 	}
-	
+
 	//RETRIEVE - Listar todos os Livros por Autor
-		@GetMapping("/livros/autores/{idAutor}")
-		public ResponseEntity<List<LivroExtenso>> listarLivrosExtensoPorAutor(@PathVariable("idAutor") long idAutor) {
-			
-			LOG.info("Listando todos os Livros disponiveis de um determinado Autor");
+	@CrossOrigin
+	@GetMapping("/livros/autores/{idAutor}")
+	public ResponseEntity<List<LivroExtenso>> listarLivrosExtensoPorAutor(@PathVariable("idAutor") long idAutor) {
 
-			List<LivroExtenso> livros = livroService.listarLivrosExtensoPorAutor(idAutor);
+		LOG.info("Listando todos os Livros disponiveis de um determinado Autor");
 
-			if (livros == null || livros.isEmpty()){
-				LOG.info("Nenhum Livro encontrado do Autor especificado.");
-				return new ResponseEntity<List<LivroExtenso>>(HttpStatus.NO_CONTENT);
-			}
+		List<LivroExtenso> livros = livroService.listarLivrosExtensoPorAutor(idAutor);
 
-			return new ResponseEntity<List<LivroExtenso>>(livros, HttpStatus.OK);
+		if (livros == null || livros.isEmpty()){
+			LOG.info("Nenhum Livro encontrado do Autor especificado.");
+			return new ResponseEntity<List<LivroExtenso>>(HttpStatus.NO_CONTENT);
 		}
 
+		return new ResponseEntity<List<LivroExtenso>>(livros, HttpStatus.OK);
+	}
+
 	//UPDATE - Atualizar Livro
+	@CrossOrigin
 	@PutMapping("/livros/{isbn}")
-	public ResponseEntity<Livro> update(@PathVariable long isbn, @RequestBody Livro livro){
+	public ResponseEntity<Livro> atualizarLivro(@PathVariable long isbn, @RequestBody Livro livro){
 		LOG.info("Atualizando Livro: {}", livro);
 		Livro livroAtual = livroService.selecionarLivroPorISBN(isbn);
 
@@ -119,8 +125,9 @@ public class LivroController {
 	}
 
 	//DELETE - Remover Livro
+	@CrossOrigin
 	@DeleteMapping("/livros/{isbn}")
-	public ResponseEntity<Void> delete(@PathVariable("isbn") long isbn){
+	public ResponseEntity<Void> removerLivro(@PathVariable("isbn") long isbn){
 		LOG.info("Removendo Livro com o ISBN: {}", isbn);
 		Livro livro = livroService.selecionarLivroPorISBN(isbn);
 
@@ -137,6 +144,7 @@ public class LivroController {
 	///////////////////////////////// DEPRECADOS /////////////////////////////////
 
 	//RETRIEVE - Selcionar livro por ISBN (Sem valor por extenso, redundante e deprecado)
+	@CrossOrigin
 	@GetMapping("/lista/{isbn}")
 	public ResponseEntity<Livro> selecionarLivroPorISBN(@PathVariable("isbn") long isbn){
 		LOG.info("Selecionando Livro com o ISBN: {}", isbn);
@@ -151,6 +159,7 @@ public class LivroController {
 	}
 
 	//RETRIEVE - Listar todos os Livros (Sem valor por extenso, redundante e deprecado)
+	@CrossOrigin
 	@GetMapping("/lista")
 	public ResponseEntity<List<Livro>> listarLivros() {
 		LOG.info("Listando todos os Livros disponiveis");
@@ -163,5 +172,5 @@ public class LivroController {
 
 		return new ResponseEntity<List<Livro>>(livros, HttpStatus.OK);
 	}
-	
+
 }
