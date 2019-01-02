@@ -14,16 +14,16 @@ import 'rxjs/add/operator/map';
 export class RestProvider {
     
     data:any;
-    novo:any;
+novo:any;
 
 constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
 }
 
-editarLivro(data){
+editarLivro(livro){
     return new Promise((resolve, reject) => {
         
-        this.http.put("http://localhost:8080/livros/"+data.isbn, data)
+        this.http.put("http://localhost:8080/livros/"+livro.isbn, livro)
         .subscribe((result: any) => {
             resolve(result.json());
         },
@@ -33,9 +33,9 @@ editarLivro(data){
     });
 }
 
-adicionarLivro(novo){
+adicionarLivro(livro){
     return new Promise((resolve, reject) => {
-        this.http.post("http://localhost:8080/livros/novo", novo)
+        this.http.post("http://localhost:8080/livros/novo", livro)
         .subscribe((result: any) => {
             resolve(result.json());
         },
@@ -45,7 +45,7 @@ adicionarLivro(novo){
     }); 
 }
 
-getIsbn(isbn: number) {
+selecionarLivroPorIsbn(isbn: number) {
     return new Promise(resolve => {
         this.http
         .get(
@@ -59,7 +59,7 @@ getIsbn(isbn: number) {
     });
 }
 
-deleteLivro(isbn:number){
+removerLivro(isbn:number){
     
     return new Promise((resolve, reject) => {
         this.http.delete("http://localhost:8080/livros/"+isbn)
@@ -72,7 +72,7 @@ deleteLivro(isbn:number){
     });
 }
 
-getAll(){ 
+listarLivros(){ 
     if (this.data)
     {
         return Promise.resolve(this.data);  

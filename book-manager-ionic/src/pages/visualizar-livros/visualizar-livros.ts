@@ -19,7 +19,7 @@ export class VisualizarLivrosPage {
     
     //
     getLivros() {
-        this.rp.getAll()
+        this.rp.listarLivros()
         .then(
                 data => {
                     

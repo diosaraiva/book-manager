@@ -1,5 +1,5 @@
 {
-  "name": "book-manager-client",
+  "name": "book-manager-ionic",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
@@ -34,5 +34,5 @@
     "@ionic/app-scripts": "3.2.1",
     "typescript": "~2.6.2"
   },
-  "description": "An Ionic project"
+  "description": "book-manager ionic client."
 }

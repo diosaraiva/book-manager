@@ -19,7 +19,7 @@ export class EditarLivroPage {
     }
     
     getIsbn(isbn:number) {
-        this.rp.getIsbn(isbn)
+        this.rp.selecionarLivroPorIsbn(isbn)
         .then(
                 data => {
                     
@@ -31,7 +31,7 @@ export class EditarLivroPage {
     
     deleteLivro(isbn:number){
         
-        this.rp.deleteLivro(isbn);
+        this.rp.removerLivro(isbn);
     
     }
 }
