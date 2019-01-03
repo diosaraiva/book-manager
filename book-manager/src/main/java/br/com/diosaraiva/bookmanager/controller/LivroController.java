@@ -7,14 +7,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -23,6 +23,7 @@ import br.com.diosaraiva.bookmanager.entity.LivroExtenso;
 import br.com.diosaraiva.bookmanager.service.ILivroService;
 
 @RestController
+@RequestMapping(value= "/livros")
 public class LivroController {
 
 	private final Logger LOG = LoggerFactory.getLogger(LivroController.class);
@@ -32,9 +33,11 @@ public class LivroController {
 
 	//CREATE - Adicionar Livro
 	@CrossOrigin
-	@PostMapping("/livros/novo")
+	@RequestMapping(value= "/novo", method = RequestMethod.POST,  
+	produces= { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Void> adicionarLivro(@RequestBody Livro livro, 
 			UriComponentsBuilder ucBuilder){
+
 		LOG.info("Adicionando novo Livro: {}", livro);
 
 		if (livroService.exists(livro)){
@@ -46,13 +49,16 @@ public class LivroController {
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(ucBuilder.path("/livros/{isbn}").buildAndExpand(livro.getIsbn()).toUri());
+		
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 
 	//RETRIEVE - Selcionar livro por extenso por ISBN
 	@CrossOrigin
-	@GetMapping("/livros/{isbn}")
+	@RequestMapping(value= "/{isbn}", method = RequestMethod.GET,  
+	produces= { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<LivroExtenso> selecionarExtensoLivroPorISBN(@PathVariable("isbn") long isbn){
+
 		LOG.info("Selecionando Livro com valor por extenso com o ISBN: {}", isbn);
 
 		LivroExtenso livroExtenso = livroService.selecionarLivroExtensoPorISBN(isbn);
@@ -67,8 +73,10 @@ public class LivroController {
 
 	//RETRIEVE - Listar todos os Livros com valor por extenso
 	@CrossOrigin
-	@GetMapping("/livros")
+	@RequestMapping(method = RequestMethod.GET,  
+	produces= { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<List<LivroExtenso>> listarLivrosExtenso() {
+
 		LOG.info("Listando todos os Livros disponiveis com valor por extenso");
 
 		List<LivroExtenso> livros = livroService.listarLivrosExtenso();
@@ -83,7 +91,8 @@ public class LivroController {
 
 	//RETRIEVE - Listar todos os Livros por Autor
 	@CrossOrigin
-	@GetMapping("/livros/autores/{idAutor}")
+	@RequestMapping(value= "/autores/{idAutor}", method = RequestMethod.GET,  
+	produces= { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<List<LivroExtenso>> listarLivrosExtensoPorAutor(@PathVariable("idAutor") long idAutor) {
 
 		LOG.info("Listando todos os Livros disponiveis de um determinado Autor");
@@ -100,9 +109,12 @@ public class LivroController {
 
 	//UPDATE - Atualizar Livro
 	@CrossOrigin
-	@PutMapping("/livros/{isbn}")
+	@RequestMapping(value= "/{isbn}", method = RequestMethod.PUT,  
+	produces= { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Livro> atualizarLivro(@PathVariable long isbn, @RequestBody Livro livro){
+
 		LOG.info("Atualizando Livro: {}", livro);
+		
 		Livro livroAtual = livroService.selecionarLivroPorISBN(isbn);
 
 		if (livroAtual == null){
@@ -119,16 +131,19 @@ public class LivroController {
 		livroAtual.setEditora(livro.getEditora());
 		livroAtual.setCriticas(livro.getCriticas());
 
-		livroService.atualizarLivro(livro);
+		livroService.atualizarLivro(livroAtual);
 
 		return new ResponseEntity<Livro>(livroAtual, HttpStatus.OK);
 	}
 
 	//DELETE - Remover Livro
 	@CrossOrigin
-	@DeleteMapping("/livros/{isbn}")
+	@RequestMapping(value= "/{isbn}", method = RequestMethod.DELETE,  
+	produces= { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Void> removerLivro(@PathVariable("isbn") long isbn){
+
 		LOG.info("Removendo Livro com o ISBN: {}", isbn);
+		
 		Livro livro = livroService.selecionarLivroPorISBN(isbn);
 
 		if (livro == null){

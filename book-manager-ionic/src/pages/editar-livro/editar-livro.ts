@@ -23,7 +23,7 @@ export class EditarLivroPage {
         .then(
                 data => {
                     
-                    //this.data = data;
+                    this.data = data;
                     console.log(this.data);
                 }
         );

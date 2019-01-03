@@ -14,7 +14,7 @@ import 'rxjs/add/operator/map';
 export class RestProvider {
     
     data:any;
-novo:any;
+    novo:any;
 
 constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
@@ -46,7 +46,7 @@ adicionarLivro(livro){
 }
 
 selecionarLivroPorIsbn(isbn: number) {
-    return new Promise(resolve => {
+    return new Promise<any[]>(resolve => {
         this.http
         .get(
                 `http://localhost:8080/livros/`+isbn

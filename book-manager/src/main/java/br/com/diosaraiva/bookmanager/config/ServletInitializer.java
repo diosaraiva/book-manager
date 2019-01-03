@@ -1,8 +1,5 @@
 package br.com.diosaraiva.bookmanager.config;
 
-import javax.servlet.Filter;
-
-import br.com.diosaraiva.bookmanager.filter.CORSFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 
@@ -21,11 +18,6 @@ public class ServletInitializer extends AbstractAnnotationConfigDispatcherServle
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return null;
-    }
-
-    @Override
-    protected Filter[] getServletFilters() {
-        return new Filter[]{ new CORSFilter()};
     }
 
 }

@@ -36,7 +36,6 @@ import br.com.diosaraiva.bookmanager.config.WebConfig;
 import br.com.diosaraiva.bookmanager.controller.LivroController;
 import br.com.diosaraiva.bookmanager.entity.Livro;
 import br.com.diosaraiva.bookmanager.entity.LivroExtenso;
-import br.com.diosaraiva.bookmanager.filter.CORSFilter;
 import br.com.diosaraiva.bookmanager.service.LivroService;
 import br.com.diosaraiva.bookmanager.utils.LivroUtil;
 import br.com.diosaraiva.bookmanager.utils.StringUtil;
@@ -61,7 +60,6 @@ public class LivroControllerUnitTest {
 		MockitoAnnotations.initMocks(this);
 		mockMvc = MockMvcBuilders
 				.standaloneSetup(livroController)
-				.addFilters(new CORSFilter())
 				.build();
 	}
 
@@ -135,7 +133,7 @@ public class LivroControllerUnitTest {
 	public void testarSelecionarLivroPorISBNFail_404_not_found() throws Exception {
 		when(livroService.selecionarLivroPorISBN(1)).thenReturn(null);
 
-		mockMvc.perform(get("/lista/{isbn}", 1))
+		mockMvc.perform(get("/livros/lista/{isbn}", 1))
 		.andExpect(status().isNotFound());
 
 		verify(livroService, times(1)).selecionarLivroPorISBN(1);
@@ -246,7 +244,7 @@ public class LivroControllerUnitTest {
 
 		when(livroService.selecionarLivroPorISBN(1)).thenReturn(livro);
 
-		mockMvc.perform(get("/lista/{isbn}", 1))
+		mockMvc.perform(get("/livros/lista/{isbn}", 1))
 		.andExpect(status().isOk())
 		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
 		.andExpect(jsonPath("$.isbn", is(1)))
@@ -263,7 +261,7 @@ public class LivroControllerUnitTest {
 
 		when(livroService.listarLivros()).thenReturn(listaLivros);
 
-		mockMvc.perform(get("/lista"))
+		mockMvc.perform(get("/livros/lista"))
 		.andExpect(status().isOk())
 		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
 		.andExpect(jsonPath("$", hasSize(10)))

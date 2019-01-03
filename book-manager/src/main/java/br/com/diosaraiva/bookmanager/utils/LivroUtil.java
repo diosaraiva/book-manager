@@ -38,19 +38,20 @@ public class LivroUtil {
 		autores.add(new Autor("Autor " +num.toString()+"a", "Brasileiro"));
 		autores.add(new Autor("Autor " +num.toString()+"b", "Brasileiro"));
 
-		return new Livro(num, StringUtil.gerarTituloLivro(), new Date(), ValorUtil.criarValorAleatorio(0.00,1300.00,2), "Sinopse " +num.toString(),
-				autores, editora, criticas);
+		return new Livro(num, StringUtil.gerarTituloLivro(), new Date(),
+				ValorUtil.criarValorAleatorio(0.00,1300.00,2), "Sinopse " +
+						num.toString(),	autores, editora, criticas);
 	}
-	
+
 	//Cria lista de objetos ilimitados para Testes
 	public static List<Livro> criarListaLivroTeste(int num){
-		
+
 		List<Livro> listaLivro = new ArrayList<>();
-		
+
 		for (int i = 1; i <= num; i++) {
 			listaLivro.add(criarLivroTeste(i));
 		}
-		
+
 		return listaLivro;
 	}
 
