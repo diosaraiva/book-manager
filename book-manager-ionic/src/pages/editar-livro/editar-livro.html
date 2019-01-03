@@ -1,70 +1,60 @@
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>
-      Editar Livro
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-header> <ion-navbar>
+<button ion-button menuToggle>
+	<ion-icon name="menu"></ion-icon>
+</button>
+<ion-title> Editar Livro </ion-title> </ion-navbar> </ion-header>
 <ion-content padding id="page3">
-  <button id="editarLivro-button11" ion-button color="stable" block>
-    Livros
-  </button>
-  <button id="editarLivro-button10" ion-button color="stable" block>
-    Autores
-  </button>
-  <button id="editarLivro-button9" ion-button color="stable" block>
-    Críticas
-  </button>
-  <form id="editarLivro-form5">
-    <ion-item id="editarLivro-input5">
-      <ion-label>
-        ISBN
-      </ion-label>
-      <ion-input type="text" placeholder="" value="{{data.isbn}}">
-      {{data.id}}
-      </ion-input>
-    </ion-item>
-    <ion-item id="editarLivro-input6">
-      <ion-label>
-        Título
-      </ion-label>
-      <ion-input type="text" placeholder="" value="{{data.titulo}}"></ion-input>
-    </ion-item>
-    <ion-item id="editarLivro-input8">
-      <ion-label>
-        Data de Publicação
-      </ion-label>
-      <ion-input type="text" placeholder="" value="{{data.dataPublicacao}}"></ion-input>
-    </ion-item>
-    <ion-item id="editarLivro-input9">
-      <ion-label>
-        Preço
-      </ion-label>
-      <ion-input type="text" placeholder="" value="{{data.preco}}"></ion-input>
-    </ion-item>
-    <ion-item id="editarLivro-input7">
-      <ion-label>
-        Valor em Reais (R$)
-      </ion-label>
-      <ion-input type="text" placeholder="" value="{{data.valorPorExtenso}}"></ion-input>
-    </ion-item>
-    <ion-item id="editarLivro-textarea1">
-      <ion-label>
-        Sinopse
-      </ion-label>
-      <ion-textarea placeholder="" value="{{data.sinopse}}"></ion-textarea>
-    </ion-item>
-    <button id="editarLivro-button4" ion-button color="balanced" block>
-      Adicionar Livro
-    </button>
-    <button id="editarLivro-button5" ion-button color="energized" block>
-      Editar Livro
-    </button>
-    <button id="editarLivro-button6" (click)="deleteLivro(data.isbn)" ion-button color="assertive" block>
-      Remover Livro
-    </button>
-  </form>
+<div>
+  <ion-segment [(ngModel)]="opcoes">
+    <ion-segment-button value="livro">Livro</ion-segment-button>
+    <ion-segment-button value="autores">Autores</ion-segment-button>
+    <ion-segment-button value="criticas">Criticas</ion-segment-button>
+  </ion-segment>
+</div>
+
+<div [ngSwitch]="opcoes">
+
+	<ion-list *ngSwitchCase="'livro'"> <ion-item>
+	<h2>Livro</h2>
+	</ion-item>
+
+	<form id="editarLivro-form5">
+		<ion-item id="editarLivro-input5"> <ion-label>
+		ISBN </ion-label> <ion-input type="text" placeholder="" value="{{data.isbn}}">
+		{{data.id}} </ion-input> </ion-item>
+		<ion-item id="editarLivro-input6"> <ion-label>
+		Título </ion-label> <ion-input type="text" placeholder="" value="{{data.titulo}}"></ion-input>
+		</ion-item>
+		<ion-item id="editarLivro-input8"> <ion-label>
+		Data de Publicação </ion-label> <ion-input type="text" placeholder=""
+			value="{{data.dataPublicacao}}"></ion-input> </ion-item>
+		<ion-item id="editarLivro-input9"> <ion-label>
+		Preço </ion-label> <ion-input type="text" placeholder="" value="{{data.preco}}"></ion-input>
+		</ion-item>
+		<ion-item id="editarLivro-input7"> <ion-label>
+		Valor em Reais (R$) </ion-label> <ion-input type="text" placeholder=""
+			value="{{data.valorPorExtenso}}"></ion-input> </ion-item>
+		<ion-item id="editarLivro-textarea1"> <ion-label>
+		Sinopse </ion-label> <ion-textarea placeholder="" value="{{data.sinopse}}"></ion-textarea>
+		</ion-item>
+		<button id="editarLivro-button4" ion-button color="secondary" block>
+			Adicionar Livro</button>
+		<button id="editarLivro-button5" ion-button color="dark" block>
+			Atualizar Livro</button>
+		<button id="editarLivro-button6" (click)="deleteLivro(data.isbn)"
+			ion-button color="danger" block>Remover Livro</button>
+	</form>
+
+	</ion-list>
+
+	<ion-list *ngSwitchCase="'autores'"> <ion-item>
+	<h2>Autores</h2>
+	</ion-item> ... </ion-list>
+
+	<ion-list *ngSwitchCase="'criticas'"> <ion-item>
+	<h2>Criticas</h2>
+	</ion-item> ... </ion-list>
+
+</div>
+
 </ion-content>

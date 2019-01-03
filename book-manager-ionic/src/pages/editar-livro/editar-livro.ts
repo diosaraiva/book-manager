@@ -11,11 +11,13 @@ import { RestProvider } from '../../providers/rest/rest';
 export class EditarLivroPage {
     
     isbn;
+    opcoes;
     data = [];
     
     constructor(public navCtrl: NavController, nav:NavParams, public rp:RestProvider) {
         this.isbn = nav.get("item");
         this.getIsbn(this.isbn);
+        this.opcoes = "livro";
     }
     
     getIsbn(isbn:number) {

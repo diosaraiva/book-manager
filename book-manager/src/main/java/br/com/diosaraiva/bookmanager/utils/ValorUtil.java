@@ -1,6 +1,5 @@
 package br.com.diosaraiva.bookmanager.utils;
 
-import java.text.DecimalFormat;
 import java.util.Random;
 
 public class ValorUtil {

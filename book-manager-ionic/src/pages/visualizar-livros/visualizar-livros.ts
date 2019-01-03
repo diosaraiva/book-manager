@@ -17,7 +17,6 @@ export class VisualizarLivrosPage {
         
     }
     
-    //
     getLivros() {
         this.rp.listarLivros()
         .then(
@@ -29,7 +28,6 @@ export class VisualizarLivrosPage {
         );
     }
     
-    //
     pushLivro(item) {
         this.navCtrl.push(EditarLivroPage, {item:item});
     }

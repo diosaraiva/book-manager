@@ -20,9 +20,11 @@ public class StringUtil {
 		String[] Comeco = { "Amanhecer", "Despertar", "Jornada", "Descoberta", "A História",
 				"A Busca", "A Casa", "Experiências", "Contatos", "O Diário", "O Assassinato",
 				"A Cura" };
+		
 		String[] Meio = { "sem", "da", "de", "com", "contra" };
+		
 		String[] Fim = { "Ariel", "Alex", "Pântano", "Salvação", "Esperança", "Morte",
-				"Vida", "Felicidade", "Batalha" };
+				"Vida", "Felicidade", "Batalha", "Fogo", "Gelo" };
 
 		Random rand = new Random();
 

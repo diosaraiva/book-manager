@@ -20,22 +20,10 @@ constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
 }
 
-editarLivro(livro){
-    return new Promise((resolve, reject) => {
-        
-        this.http.put("http://localhost:8080/livros/"+livro.isbn, livro)
-        .subscribe((result: any) => {
-            resolve(result.json());
-        },
-        (error) => {
-            reject(error.json());
-        });
-    });
-}
-
 adicionarLivro(livro){
+    
     return new Promise((resolve, reject) => {
-        this.http.post("http://localhost:8080/livros/novo", livro)
+        this.http.post('http://localhost:8080/livros/novo', livro)
         .subscribe((result: any) => {
             resolve(result.json());
         },
@@ -45,12 +33,15 @@ adicionarLivro(livro){
     }); 
 }
 
-selecionarLivroPorIsbn(isbn: number) {
+listarLivros(){
+    
+    if (this.data)
+    {
+        return Promise.resolve(this.data);  
+    }
+    
     return new Promise<any[]>(resolve => {
-        this.http
-        .get(
-                `http://localhost:8080/livros/`+isbn
-        )
+        this.http.get('http://localhost:8080/livros')
         .subscribe(data => {
             this.data = data;
             console.log(data);
@@ -59,10 +50,35 @@ selecionarLivroPorIsbn(isbn: number) {
     });
 }
 
+selecionarLivroPorIsbn(isbn: number) {
+    
+    return new Promise<any[]>(resolve => {
+        this.http.get('http://localhost:8080/livros/'+isbn)
+        .subscribe(data => {
+            this.data = data;
+            console.log(data);
+            resolve(this.data);
+        });
+    });
+}
+
+editarLivro(livro){
+    
+    return new Promise((resolve, reject) => {
+        this.http.put('http://localhost:8080/livros/'+livro.isbn, livro)
+        .subscribe((result: any) => {
+            resolve(result.json());
+        },
+        (error) => {
+            reject(error.json());
+        });
+    });
+}
+
 removerLivro(isbn:number){
     
     return new Promise((resolve, reject) => {
-        this.http.delete("http://localhost:8080/livros/"+isbn)
+        this.http.delete('http://localhost:8080/livros/'+isbn)
         .subscribe((result: any) => {
             resolve(result);
         },
@@ -72,18 +88,4 @@ removerLivro(isbn:number){
     });
 }
 
-listarLivros(){ 
-    if (this.data)
-    {
-        return Promise.resolve(this.data);  
-    }
-    
-    return new Promise(resolve => {
-        this.http.get('http://localhost:8080/livros')
-        .subscribe(data => {
-            this.data = data;
-            console.log(data);
-            resolve(this.data);
-        });
-    });
-}}
+}
