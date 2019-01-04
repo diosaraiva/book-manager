@@ -14,33 +14,35 @@ import 'rxjs/add/operator/map';
 export class RestProvider {
     
     data:any;
-    novo:any;
+novo:any;
 
 constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
 }
 
-adicionarLivro(livro){
+adicionarLivro(isbn, titulo, dataPublicacao, preco, sinopse){
     
     return new Promise((resolve, reject) => {
+        var livro = {
+            isbn: isbn,
+            titulo: titulo,
+            dataPublicacao: dataPublicacao,
+            preco: preco,
+            sinopse: sinopse
+        }
         this.http.post('http://localhost:8080/livros/novo', livro)
-        .subscribe((result: any) => {
-            resolve(result.json());
+        .subscribe((result) => {
+            resolve(result);
         },
         (error) => {
-            reject(error.json());
+            reject(error);
         });
     }); 
 }
 
 listarLivros(){
     
-    if (this.data)
-    {
-        return Promise.resolve(this.data);  
-    }
-    
-    return new Promise<any[]>(resolve => {
+    return new Promise((resolve,reject) => {
         this.http.get('http://localhost:8080/livros')
         .subscribe(data => {
             this.data = data;
@@ -52,7 +54,7 @@ listarLivros(){
 
 selecionarLivroPorIsbn(isbn: number) {
     
-    return new Promise<any[]>(resolve => {
+    return new Promise((resolve, reject) => {
         this.http.get('http://localhost:8080/livros/'+isbn)
         .subscribe(data => {
             this.data = data;
@@ -67,10 +69,10 @@ editarLivro(livro){
     return new Promise((resolve, reject) => {
         this.http.put('http://localhost:8080/livros/'+livro.isbn, livro)
         .subscribe((result: any) => {
-            resolve(result.json());
+            resolve(result);
         },
         (error) => {
-            reject(error.json());
+            reject(error);
         });
     });
 }

@@ -34,4 +34,24 @@ public class StringUtil {
 
 	}
 
+	public static String gerarNome (){
+
+		String[] Comeco = { "João", "José", "Antonio", "Alberto", "Clarissa",
+				"Amanda", "Olivia", "Jussara", "Carolina", "Cássia", "Rodolfo",
+				"Roberto" };
+		
+		String[] Meio = { "Teixeira", "Braga", "Oliveira", "Silva", "Antero", 
+				"Alencar" };
+		
+		String[] Fim = { "Carvalho", "dos Santos", "Becker", "Salomão", "Lourenço", "Matias",
+				"Machado", "Materazzo", "Salim", "Consuelo", "Joana" };
+
+		Random rand = new Random();
+
+		return Comeco[rand.nextInt(Comeco.length)] + " " +
+				Meio[rand.nextInt(Meio.length)]+ " " +
+				Fim[rand.nextInt(Fim.length)];
+
+	}
+	
 }

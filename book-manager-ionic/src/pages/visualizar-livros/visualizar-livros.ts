@@ -10,7 +10,7 @@ import { RestProvider } from '../../providers/rest/rest';
 })
 export class VisualizarLivrosPage {
     
-    data = [];
+    data;
     
     constructor(public navCtrl: NavController, public rp:RestProvider) {
         this.getLivros();
@@ -21,7 +21,6 @@ export class VisualizarLivrosPage {
         this.rp.listarLivros()
         .then(
                 data => {
-                    
                     this.data = data;
                     console.log(this.data);
                 }

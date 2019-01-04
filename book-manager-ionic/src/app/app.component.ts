@@ -26,8 +26,7 @@ export class MyApp {
       splashScreen.hide();
     });
   }
-  goToVisualizarLivros(params){
-    if (!params) params = {};
+  goToVisualizarLivros(){
     this.navCtrl.setRoot(VisualizarLivrosPage);
   }goToEditarLivro(params){
     if (!params) params = {};
