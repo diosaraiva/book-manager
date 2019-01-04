@@ -20,6 +20,7 @@ public class LivroExtenso extends Livro {
 	public LivroExtenso(Livro livro) {
 		this.setIsbn(livro.getIsbn());
 		this.setTitulo(livro.getTitulo());
+		this.setLinkImg(livro.getLinkImg());
 		this.setDataPublicacao(livro.getDataPublicacao());
 		this.setPreco(livro.getPreco());
 		this.setSinopse(livro.getSinopse());

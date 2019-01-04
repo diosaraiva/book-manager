@@ -19,6 +19,7 @@ public class Livro {
 	//@GeneratedValue(strategy=GenerationType.AUTO) --> Deve ser fornecido pelo Usuário cadastrante.
 	private Long isbn;
 	private String titulo;
+	private String linkImg;
 	private Date dataPublicacao;
 	private double preco;
 	private String sinopse;
@@ -45,9 +46,10 @@ public class Livro {
 	public Livro() {
 	}
 
-	public Livro(String titulo, Date dataPublicacao, double preco, String sinopse, 
+	public Livro(String titulo, String linkImg, Date dataPublicacao, double preco, String sinopse, 
 			Set<Autor> autores, Editora editora, Set<Critica> criticas) {
 		this.titulo = titulo;
+		this.linkImg = linkImg;
 		this.dataPublicacao = dataPublicacao;
 		this.preco = preco;
 		this.sinopse = sinopse;
@@ -56,10 +58,12 @@ public class Livro {
 		this.criticas = criticas;
 	}
 
-	public Livro(long isbn, String titulo, Date dataPublicacao, double preco, 
-			String sinopse, Set<Autor> autores, Editora editora, Set<Critica> criticas) {
+	public Livro(long isbn, String titulo, String linkImg, Date dataPublicacao, 
+			double preco, String sinopse, Set<Autor> autores, Editora editora, 
+			Set<Critica> criticas) {
 		this.isbn = isbn;
 		this.titulo = titulo;
+		this.linkImg = linkImg;
 		this.dataPublicacao = dataPublicacao;
 		this.preco = preco;
 		this.sinopse = sinopse;
@@ -83,6 +87,14 @@ public class Livro {
 
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
+	}
+	
+	public String getLinkImg() {
+		return linkImg;
+	}
+
+	public void setLinkImg(String linkImg) {
+		this.linkImg = linkImg;
 	}
 
 	public Date getDataPublicacao() {
@@ -133,34 +145,6 @@ public class Livro {
 		this.criticas = criticas;
 	}
 
-	//Overrides
-	@Override
-	public String toString() {
-		String livro = "Livro{" +
-				"isbn=" + isbn +
-				", titulo='" + titulo +
-				", dataPublicacao='" + dataPublicacao + 
-				", preco='" + preco +
-				", sinopse='" + sinopse;
-
-		for (Autor autor : autores) {
-			livro = livro + 
-					", autor='" + autor;
-		}
-
-		livro = livro + 
-				", editora='" + editora;
-
-		for (Critica critica : criticas) {
-			livro = livro + 
-					", critica='" + critica;
-		}
-
-		livro = livro +	'\'' + '}';
-
-		return livro;
-	}
-
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -178,6 +162,7 @@ public class Livro {
 		long result = isbn;
 		result = 31 * result 
 				+ (titulo != null ? titulo.hashCode() : 0)
+				+ (linkImg != null ? linkImg.hashCode() : 0)
 				+ (dataPublicacao != null ? dataPublicacao.hashCode() : 0)
 				+ (preco != 0 ? 1 : 0)
 				+ (sinopse != null ? sinopse.hashCode() : 0)

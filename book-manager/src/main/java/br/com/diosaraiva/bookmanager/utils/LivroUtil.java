@@ -38,7 +38,7 @@ public class LivroUtil {
 		autores.add(new Autor("Autor " +num.toString()+"a", "Brasileiro"));
 		autores.add(new Autor("Autor " +num.toString()+"b", "Brasileiro"));
 
-		return new Livro(num, StringUtil.gerarTituloLivro(), new Date(),
+		return new Livro(num, StringUtil.gerarTituloLivro(), "http://localhost:8080/img/", new Date(),
 				ValorUtil.criarValorAleatorio(0.00,1300.00,2), "Sinopse " +
 						num.toString(),	autores, editora, criticas);
 	}

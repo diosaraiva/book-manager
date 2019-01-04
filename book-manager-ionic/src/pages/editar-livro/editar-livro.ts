@@ -14,6 +14,7 @@ export class EditarLivroPage {
     id;
     isbn;
     titulo;
+    linkImg;
     dataPublicacao;
     preco;
     valorPorExtenso;
@@ -40,6 +41,7 @@ export class EditarLivroPage {
                 data => {
                     this.isbn = data["isbn"];
                     this.titulo = data["titulo"];
+                    this.linkImg = data["linkImg"];
                     this.dataPublicacao = new Date(data["dataPublicacao"]).toISOString;
                     this.preco = data["preco"];
                     this.valorPorExtenso = data["valorPorExtenso"];
@@ -111,6 +113,10 @@ export class EditarLivroPage {
     }
     
     editarEditora(id: number){
+        
+    }
+    
+    alterarEditora(id: number){
         
     }
     
