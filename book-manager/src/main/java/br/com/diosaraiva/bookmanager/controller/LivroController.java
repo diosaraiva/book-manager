@@ -53,7 +53,7 @@ public class LivroController {
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 
-	//RETRIEVE - Selcionar livro por extenso por ISBN
+	//RETRIEVE - Selcionar Livro por extenso por ISBN
 	@CrossOrigin
 	@RequestMapping(value= "/{isbn}", method = RequestMethod.GET,  
 	produces= { MediaType.APPLICATION_JSON_VALUE })
