@@ -36,7 +36,7 @@ import br.com.diosaraiva.bookmanager.config.WebConfig;
 import br.com.diosaraiva.bookmanager.controller.LivroController;
 import br.com.diosaraiva.bookmanager.entity.Livro;
 import br.com.diosaraiva.bookmanager.entity.LivroExtenso;
-import br.com.diosaraiva.bookmanager.service.LivroService;
+import br.com.diosaraiva.bookmanager.service.LivroServiceImpl;
 import br.com.diosaraiva.bookmanager.utils.LivroUtil;
 import br.com.diosaraiva.bookmanager.utils.StringUtil;
 
@@ -50,7 +50,7 @@ public class LivroControllerUnitTest {
 	private MockMvc mockMvc;
 
 	@Mock
-	private LivroService livroService;
+	private LivroServiceImpl livroService;
 
 	@InjectMocks
 	private LivroController livroController;

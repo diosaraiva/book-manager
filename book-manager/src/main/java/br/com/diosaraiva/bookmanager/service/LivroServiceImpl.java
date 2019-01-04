@@ -10,14 +10,14 @@ import org.springframework.stereotype.Service;
 import br.com.diosaraiva.bookmanager.entity.Autor;
 import br.com.diosaraiva.bookmanager.entity.Livro;
 import br.com.diosaraiva.bookmanager.entity.LivroExtenso;
-import br.com.diosaraiva.bookmanager.repository.LivroRepository;
+import br.com.diosaraiva.bookmanager.repository.ILivroRepository;
 import br.com.diosaraiva.bookmanager.utils.LivroUtil;
 
 @Service
-public class LivroService implements ILivroService {
+public class LivroServiceImpl implements ILivroService {
 
 	@Autowired
-	private LivroRepository livroRepository;
+	private ILivroRepository livroRepository;
 
 	@Override
 	public void adicionarLivro(Livro livro) {
@@ -40,8 +40,10 @@ public class LivroService implements ILivroService {
 
 	@Override
 	public Livro selecionarLivroPorISBN(long isbn) {
-		Livro obj = livroRepository.findById(isbn).get();
-		return obj;
+		
+		Livro livro = livroRepository.findById(isbn).get();
+		return livro;
+		
 	}
 
 	@Override
@@ -112,7 +114,9 @@ public class LivroService implements ILivroService {
 
 	@Override
 	public boolean exists(Livro livro) {
+		
 		return selecionarLivroPorISBN(livro.getIsbn()) != null;
+		
 	}
 
 }

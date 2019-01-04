@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import br.com.diosaraiva.bookmanager.entity.Livro;
 
-public interface LivroRepository extends CrudRepository<Livro, Long>  {
+public interface ILivroRepository extends CrudRepository<Livro, Long>  {
 	
 }

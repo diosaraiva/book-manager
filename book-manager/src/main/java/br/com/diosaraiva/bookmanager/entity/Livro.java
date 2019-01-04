@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 public class Livro {
 
 	@Id
-	//@GeneratedValue(strategy=GenerationType.AUTO) //--> Deve ser fornecido pelo Usuário cadastrante.
+	//@GeneratedValue(strategy=GenerationType.AUTO) --> Deve ser fornecido pelo Usuário cadastrante.
 	private Long isbn;
 	private String titulo;
 	private Date dataPublicacao;

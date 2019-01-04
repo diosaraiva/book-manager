@@ -5,11 +5,10 @@
 <ion-title> Editar Livro </ion-title> </ion-navbar> </ion-header>
 <ion-content padding id="page3">
 <div>
-  <ion-segment [(ngModel)]="opcoes">
-    <ion-segment-button value="livro">Livro</ion-segment-button>
-    <ion-segment-button value="autores">Autores</ion-segment-button>
-    <ion-segment-button value="criticas">Criticas</ion-segment-button>
-  </ion-segment>
+	<ion-segment [(ngModel)]="opcoes"> <ion-segment-button
+		value="livro">Livro</ion-segment-button> <ion-segment-button
+		value="autores">Autores</ion-segment-button> <ion-segment-button
+		value="criticas">Criticas</ion-segment-button> </ion-segment>
 </div>
 
 <div [ngSwitch]="opcoes">
