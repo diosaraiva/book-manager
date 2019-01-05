@@ -11,7 +11,8 @@ import { RestProvider } from '../../providers/rest/rest';
 })
 export class EditarLivroPage {
     
-    id;
+    
+    //////////////// OBJETOS DE LIVRO ////////////////
     isbn;
     titulo;
     linkImg;
@@ -20,17 +21,23 @@ export class EditarLivroPage {
     valorPorExtenso;
     sinopse;
     
+    id;
     opcoes;
     data;
     
     constructor(public navCtrl: NavController, nav:NavParams, public rp:RestProvider, public alertCtrl: AlertController) {
-        this.id = nav.get("item");
+        
         this.getIsbn(this.id);
+        
+        this.id = nav.get("item");
         this.opcoes = "livro";
+        
     }
     
+    
+    //////////////// INFORMACOES DO LIVRO ////////////////
     adicionarLivro(){
-        this.rp.adicionarLivro(this.isbn, this.titulo, this.dataPublicacao, this.preco, this.sinopse).then(data=>{
+        this.rp.adicionarLivro(this.isbn, this.titulo, this.linkImg, this.dataPublicacao, this.preco, this.sinopse).then(data=>{
             console.log("sucesso");
         });
     }
@@ -53,15 +60,62 @@ export class EditarLivroPage {
         );
     }
     
-    deleteLivro(isbn:number){
+    removerLivro(isbn:number){
         
         this.rp.removerLivro(isbn).then(result=>{
             this.alertaExcluir();
         }).then(
                 result => {this.navCtrl.setRoot(VisualizarLivrosPage)});
+    }
+    
+    
+    //////////////// AUTOR ////////////////
+    adicionarAutor(){
         
     }
     
+    editarAutor(id: number){
+        
+    }
+    
+    removerAutor(id: number){
+        
+    }
+    
+    
+    //////////////// EDITORA ////////////////
+    adicionarEditora(){
+        
+    }
+    
+    editarEditora(id: number){
+        
+    }
+    
+    alterarEditora(id: number){
+        
+    }
+    
+    removerEditora(id: number){
+        
+    }
+    
+    
+    //////////////// CRITICA ////////////////
+    adicionarCritica(){
+        
+    }
+    
+    editarCritica(id: number){
+        
+    }
+    
+    removerCritica(id: number){
+        
+    }
+    
+    
+    //////////////// OUTROS METODOS ////////////////
     formatarData(date){
         
         let formatado = new Date(date);
@@ -70,13 +124,13 @@ export class EditarLivroPage {
     
     alerta(isbn:number) {
         const confirm = this.alertCtrl.create({
-            title: 'Alerta!',
-            message: 'Você tem certeza disso?',
+            title: 'Confirmação',
+            message: 'Confirma a ação?',
             buttons: [
                       {
                           text: 'Sim',
                           handler: () => {
-                              this.deleteLivro(isbn);
+                              this.removerLivro(isbn);
                           }
                       },
                       {
@@ -94,46 +148,6 @@ export class EditarLivroPage {
             buttons: ["OK"]
         });
         confirm.present();
-    }
-    
-    adicionarAutor(){
-        
-    }
-    
-    editarAutor(id: number){
-        
-    }
-    
-    removerAutor(id: number){
-        
-    }
-    
-    adicionarEditora(){
-        
-    }
-    
-    editarEditora(id: number){
-        
-    }
-    
-    alterarEditora(id: number){
-        
-    }
-    
-    removerEditora(id: number){
-        
-    }
-    
-    adicionarCritica(){
-        
-    }
-    
-    editarCritica(id: number){
-        
-    }
-    
-    removerCritica(id: number){
-        
     }
     
 }

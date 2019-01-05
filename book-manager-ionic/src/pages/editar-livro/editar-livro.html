@@ -16,14 +16,14 @@
 
 
 	<!-- ///////////////////////////// INFORMAÇÕES DE LIVRO ///////////////////////////// -->
-	<ion-list *ngSwitchCase="'livro'"> <ion-item>
+	<ion-list *ngSwitchCase="'livro'"> <br>
 
 	<button ion-button color="secondary" (click)="adicionarLivro()">Novo
 		Livro</button>
 
 	<br>
+
 	<h2>Informacoes do Livro</h2>
-	</ion-item>
 
 	<form #form="ngForm" (ngSubmit)="adicionarLivro()">
 		<ion-item id="editarLivro-input5"> <ion-label>
@@ -32,9 +32,9 @@
 		<ion-item id="editarLivro-input6"> <ion-label>
 		Titulo </ion-label> <ion-input type="text" placeholder="" [(ngModel)]="titulo"
 			name="titulo"></ion-input> </ion-item>
-			<ion-item id="editarLivro-input6"> <ion-label>
-		Link da Foto </ion-label> <ion-input type="text" placeholder="" [(ngModel)]="linkImg"
-			name="linkImg"></ion-input> </ion-item>
+		<ion-item id="editarLivro-input6"> <ion-label>
+		Link da Foto </ion-label> <ion-input type="text" placeholder=""
+			[(ngModel)]="linkImg" name="linkImg"></ion-input> </ion-item>
 		<ion-item id="editarLivro-input8"> <ion-label>
 		Data de Publicação </ion-label> <ion-datetime placeholder=""
 			[(ngModel)]="dataPublicacao" name="dataPublicacao"
@@ -59,14 +59,15 @@
 
 
 	<!-- ///////////////////////////// AUTORES ///////////////////////////// -->
-	<ion-list *ngSwitchCase="'autores'"> <ion-item>
+	<ion-list *ngSwitchCase="'autores'"> <br>
 
 	<button ion-button color="secondary" (click)="adicionarAutor()">Novo
 		Autor</button>
 
 	<br>
+
 	<h2>Autores</h2>
-	</ion-item> <ion-grid> <ion-row> <ion-col> ID </ion-col> <ion-col>
+	<ion-grid> <ion-row> <ion-col> ID </ion-col> <ion-col>
 	Nome do Autor </ion-col> <ion-col> Nacionalidade </ion-col> <ion-col>
 	Acoes </ion-col> </ion-row> <ion-row *ngFor="let a of data.autores"> <ion-col>
 	{{a.id}} </ion-col> <ion-col> {{a.nomeAutor}} </ion-col> <ion-col>
@@ -79,32 +80,55 @@
 
 
 	<!-- ///////////////////////////// EDITORA ///////////////////////////// -->
-	<ion-list *ngSwitchCase="'editora'"> <ion-item>
+	<ion-list *ngSwitchCase="'editora'"> <br>
 
-	<button ion-button color="secondary" (click)="adicionarEditora()">Nova Editora</button>
-	<button ion-button color="light" (click)="alterarEditora()">Alterar Editora</button>
+	<button ion-button color="secondary" (click)="adicionarEditora()">Nova
+		Editora</button>
+	<button ion-button color="light" (click)="alterarEditora()">Alterar
+		Editora do Livro</button>
 
 	<br>
+
+	<form #form="ngForm" (ngSubmit)="adicionarEditora()">
+		<ion-item id="editarLivro-input5"> <ion-label>
+		ID </ion-label> <ion-input type="text" placeholder="" [(ngModel)]="isbn"
+			name="isbn"> </ion-input> </ion-item>
+		<ion-item id="editarLivro-input6"> <ion-label>
+		Nome da Editora </ion-label> <ion-input type="text" placeholder=""
+			[(ngModel)]="titulo" name="titulo"></ion-input> </ion-item>
+		<ion-item id="editarLivro-input6"> <ion-label>
+		Site </ion-label> <ion-input type="text" placeholder="" [(ngModel)]="linkImg"
+			name="linkImg"></ion-input> </ion-item>
+	</form>
 
 	<button ion-button color="primary" (click)="editarEditora()">Atualizar
 		Editora</button>
-	</ion-item></ion-list>
+	<button ion-button color="danger" (click)="alerta(data.isbn)">Remover
+		Editora</button>
+
+	</ion-list>
 
 
 	<!-- ///////////////////////////// CRITICAS ///////////////////////////// -->
-	<ion-list *ngSwitchCase="'criticas'"> <ion-item>
+	<ion-list *ngSwitchCase="'criticas'"> <br>
 
-	<button ion-button color="secondary" (click)="adicionarCritica()">Nova Critica</button>
+	<button ion-button color="secondary" (click)="adicionarCritica()">Nova
+		Critica</button>
 
 	<br>
-	<h2>Criticas</h2>
-	</ion-item> <ion-row> <ion-col> ID </ion-col> <ion-col> Nome
-	do Crítico </ion-col> <ion-col> Nota </ion-col> <ion-col> Comentário </ion-col> <ion-col>
-	Ações </ion-col> </ion-row> <ion-row> <ion-col> A </ion-col> <ion-col>
-	B </ion-col> <ion-col> C </ion-col> <ion-col> D </ion-col> <ion-col>
+
+	<h2>Críticas</h2>
+	<ion-grid> <ion-row> <ion-col> ID </ion-col> <ion-col>
+	Nome do Crítico </ion-col> <ion-col> Nota </ion-col> <ion-col>
+	Comentários </ion-col> <ion-col> Acoes </ion-col> </ion-row> <ion-row
+		*ngFor="let a of data.criticas"> <ion-col>
+	{{a.id}} </ion-col> <ion-col> {{a.nomeCritico}} </ion-col> <ion-col>
+	{{a.nota}} </ion-col> <ion-col> {{a.texto}} </ion-col> <ion-col>
+
 	<button ion-button color="primary" (click)="editarCritica(a.id)">Editar</button>
 	<button ion-button color="danger" (click)="removerCritica(a.id)">Remover</button>
-	</ion-col> </ion-row> </ion-list>
+
+	</ion-col> </ion-row> </ion-grid> </ion-list>
 
 </div>
 

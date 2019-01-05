@@ -31,19 +31,19 @@ public class LivroServiceImpl implements ILivroService {
 
 	@Override
 	public void adicionarListaLivros(List<Livro> listaLivro) {
-		
+
 		for (Livro livro : listaLivro) {
 			adicionarLivro(livro);
 		}
-		
+
 	}
 
 	@Override
 	public Livro selecionarLivroPorISBN(long isbn) {
-		
+
 		Livro livro = livroRepository.findById(isbn).get();
 		return livro;
-		
+
 	}
 
 	@Override
@@ -56,12 +56,12 @@ public class LivroServiceImpl implements ILivroService {
 
 	@Override
 	public List<Livro> listarLivros() {
-		
+
 		List<Livro> livros = new ArrayList<>();
 		livroRepository.findAll().forEach(e -> livros.add(e));
-		
+
 		return livros;
-		
+
 	}
 
 	@Override
@@ -82,16 +82,16 @@ public class LivroServiceImpl implements ILivroService {
 
 	@Override
 	public void atualizarLivro(Livro livro) {
-		
+
 		livroRepository.save(livro);
-		
+
 	}
 
 	@Override
 	public void removerLivro(long isbn) {
-		
+
 		livroRepository.delete(selecionarLivroPorISBN(isbn));
-		
+
 	}
 
 	//Requisito 009: OK
@@ -114,9 +114,9 @@ public class LivroServiceImpl implements ILivroService {
 
 	@Override
 	public boolean exists(Livro livro) {
-		
+
 		return selecionarLivroPorISBN(livro.getIsbn()) != null;
-		
+
 	}
 
 }

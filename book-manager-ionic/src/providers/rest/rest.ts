@@ -20,7 +20,7 @@ constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
 }
 
-adicionarLivro(isbn, titulo, dataPublicacao, preco, sinopse){
+adicionarLivro(isbn, titulo, linkImg, dataPublicacao, preco, sinopse){
     
     return new Promise((resolve, reject) => {
         var livro = {

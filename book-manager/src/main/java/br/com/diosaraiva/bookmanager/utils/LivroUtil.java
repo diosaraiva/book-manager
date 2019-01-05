@@ -27,7 +27,7 @@ public class LivroUtil {
 
 	//Cria objetos ilimitados para Testes
 	public static Livro criarLivroTeste(Integer num) {
-
+		
 		Set<Critica> criticas = new HashSet<Critica>();
 		criticas.add(new Critica("Critico " +num.toString()+"a", (int)ValorUtil.criarValorAleatorio(0.00,5.00,2), "Texto " +num.toString()));
 		criticas.add(new Critica("Critico " +num.toString()+"b", (int)ValorUtil.criarValorAleatorio(0.00,5.00,2), "Texto " +num.toString()));

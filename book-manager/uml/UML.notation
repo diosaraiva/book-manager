@@ -22,15 +22,6 @@
           <element xmi:type="uml:Package" href="UML.uml#_gfxEQAR8EemnuIcXXcJ0Zw"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gf8qcQR8EemnuIcXXcJ0Zw" x="14" y="92" width="121" height="61"/>
         </children>
-        <children xmi:type="notation:Shape" xmi:id="_kStKYAR8EemnuIcXXcJ0Zw" type="Package_Shape_CN">
-          <children xmi:type="notation:DecorationNode" xmi:id="_kStxcAR8EemnuIcXXcJ0Zw" type="Package_NameLabel_CN"/>
-          <children xmi:type="notation:BasicCompartment" xmi:id="_kStxcQR8EemnuIcXXcJ0Zw" type="Package_PackagedElementCompartment_CN">
-            <styles xmi:type="notation:TitleStyle" xmi:id="_kStxcgR8EemnuIcXXcJ0Zw"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kStxcwR8EemnuIcXXcJ0Zw"/>
-          </children>
-          <element xmi:type="uml:Package" href="UML.uml#_kSl1oAR8EemnuIcXXcJ0Zw"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kStKYQR8EemnuIcXXcJ0Zw" x="14" y="172" width="121" height="61"/>
-        </children>
         <children xmi:type="notation:Shape" xmi:id="_rbOsQAR8EemnuIcXXcJ0Zw" type="Package_Shape_CN">
           <children xmi:type="notation:DecorationNode" xmi:id="_rbPTUAR8EemnuIcXXcJ0Zw" type="Package_NameLabel_CN"/>
           <children xmi:type="notation:BasicCompartment" xmi:id="_rbPTUQR8EemnuIcXXcJ0Zw" type="Package_PackagedElementCompartment_CN">
@@ -38,7 +29,7 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rbPTUwR8EemnuIcXXcJ0Zw"/>
           </children>
           <element xmi:type="uml:Package" href="UML.uml#_rbDGEAR8EemnuIcXXcJ0Zw"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rbOsQQR8EemnuIcXXcJ0Zw" x="14" y="252" width="121" height="61"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rbOsQQR8EemnuIcXXcJ0Zw" x="14" y="172" width="121" height="61"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_6RQsYAR8EemnuIcXXcJ0Zw" type="Package_Shape_CN">
           <children xmi:type="notation:DecorationNode" xmi:id="_6RRTcAR8EemnuIcXXcJ0Zw" type="Package_NameLabel_CN"/>
@@ -71,7 +62,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_D9ldMwR8EemnuIcXXcJ0Zw"/>
       </children>
       <element xmi:type="uml:Package" href="UML.uml#_D812UAR8EemnuIcXXcJ0Zw"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_D9ZP8QR8EemnuIcXXcJ0Zw" width="321" height="361"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_D9ZP8QR8EemnuIcXXcJ0Zw" width="321" height="281"/>
     </children>
     <styles xmi:type="notation:StringValueStyle" xmi:id="_dv2vEQBjEemHs4ezSHmv-g" name="diagram_compatibility_version" stringValue="1.4.0"/>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_dv2vEgBjEemHs4ezSHmv-g"/>
