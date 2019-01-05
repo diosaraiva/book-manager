@@ -21,17 +21,29 @@ export class EditarLivroPage {
     valorPorExtenso;
     sinopse;
     
+    
+    //////////////// OBJETOS DE AUTOR ////////////////
+    
+    
+    //////////////// OBJETOS DE EDITORA ////////////////
+    
+    
+    //////////////// OBJETOS DE CRÍTICA ////////////////
+    
+    
+    //////////////// OUTROS OBJETOS ////////////////
     id;
     opcoes;
     data;
     
+    
     constructor(public navCtrl: NavController, nav:NavParams, public rp:RestProvider, public alertCtrl: AlertController) {
         
-        this.getIsbn(this.id);
-        
         this.id = nav.get("item");
+        
         this.opcoes = "livro";
         
+        this.getIsbn(this.id);
     }
     
     
@@ -49,7 +61,7 @@ export class EditarLivroPage {
                     this.isbn = data["isbn"];
                     this.titulo = data["titulo"];
                     this.linkImg = data["linkImg"];
-                    this.dataPublicacao = new Date(data["dataPublicacao"]).toISOString;
+                    this.dataPublicacao = this.formatarData(data["dataPublicacao"]);
                     this.preco = data["preco"];
                     this.valorPorExtenso = data["valorPorExtenso"];
                     this.sinopse = data["sinopse"];
@@ -118,8 +130,8 @@ export class EditarLivroPage {
     //////////////// OUTROS METODOS ////////////////
     formatarData(date){
         
-        let formatado = new Date(date);
-        return formatado.getFullYear()+"-"+(formatado.getMonth()+1)+"-"+formatado.getDay();
+        let formatado = new Date(date).toISOString().substr(0,10);
+        return formatado;
     }
     
     alerta(isbn:number) {

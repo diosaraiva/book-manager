@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RequestOptions, Request, RequestMethod} from '@angular/http';
 import { Injectable } from '@angular/core';
+import { concat } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
 
 /*
@@ -13,24 +14,30 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class RestProvider {
     
-    data:any;
+    //String de URL do Servidor BookManager
+    URL:string = 'http://localhost:8080'; 
+
+data:any;
 novo:any;
 
 constructor(public http: HttpClient) {
-    console.log('Hello RestProvider Provider');
+    console.log('============== BookManager REST Provider ==============');
 }
 
+
+///////////////////////// LIVRO /////////////////////////
 adicionarLivro(isbn, titulo, linkImg, dataPublicacao, preco, sinopse){
     
     return new Promise((resolve, reject) => {
         var livro = {
-            isbn: isbn,
-            titulo: titulo,
-            dataPublicacao: dataPublicacao,
-            preco: preco,
-            sinopse: sinopse
+                isbn: isbn,
+                titulo: titulo,
+                linkImg: linkImg,
+                dataPublicacao: dataPublicacao,
+                preco: preco,
+                sinopse: sinopse
         }
-        this.http.post('http://localhost:8080/livros/novo', livro)
+        this.http.post(this.URL+'/livros/novo', livro)
         .subscribe((result) => {
             resolve(result);
         },
@@ -43,7 +50,7 @@ adicionarLivro(isbn, titulo, linkImg, dataPublicacao, preco, sinopse){
 listarLivros(){
     
     return new Promise((resolve,reject) => {
-        this.http.get('http://localhost:8080/livros')
+        this.http.get(this.URL+'/livros')
         .subscribe(data => {
             this.data = data;
             console.log(data);
@@ -55,7 +62,7 @@ listarLivros(){
 selecionarLivroPorIsbn(isbn: number) {
     
     return new Promise((resolve, reject) => {
-        this.http.get('http://localhost:8080/livros/'+isbn)
+        this.http.get(this.URL+'/livros/'+isbn)
         .subscribe(data => {
             this.data = data;
             console.log(data);
@@ -67,7 +74,7 @@ selecionarLivroPorIsbn(isbn: number) {
 editarLivro(livro){
     
     return new Promise((resolve, reject) => {
-        this.http.put('http://localhost:8080/livros/'+livro.isbn, livro)
+        this.http.put(this.URL+'/livros/'+livro.isbn, livro)
         .subscribe((result: any) => {
             resolve(result);
         },
@@ -80,7 +87,7 @@ editarLivro(livro){
 removerLivro(isbn:number){
     
     return new Promise((resolve, reject) => {
-        this.http.delete('http://localhost:8080/livros/'+isbn)
+        this.http.delete(this.URL+'/livros/'+isbn)
         .subscribe((result: any) => {
             resolve(result);
         },
@@ -89,5 +96,113 @@ removerLivro(isbn:number){
         });
     });
 }
+
+
+///////////////////////// AUTOR /////////////////////////
+adicionarAutor(id, nomeAutor, nacionalidade) {
+    return new Promise((resolve, reject) => {
+        var autor = {
+                id: id,
+                nomeAutor: nomeAutor,
+                nacionalidade: nacionalidade,  
+        }
+        this.http.post(this.URL+'/autores/novo', autor)
+        .subscribe(dados => {
+            console.log(dados);
+            resolve(dados);
+        }, error => {
+            console.log(error);
+            reject(error);
+        });
+    });
+}
+
+editarAutor(id, nomeAutor, nacionalidade) {
+    return new Promise((resolve, reject) => {
+        var data = {
+                id: id,
+                nomeAutor: nomeAutor,
+                nacionalidade: nacionalidade
+        }
+        this.http.put(this.URL+'', data)
+        .subscribe(dados => {
+            console.log(dados);
+            resolve(dados);
+        }, error => {
+            console.log(error);
+            reject(error);
+        });
+    });
+}
+
+removerAutor(id){
+    return new Promise((resolve, reject) => {
+        this.http.delete(this.URL+''+id)
+        .subscribe(dados => {
+            console.log(dados);
+            resolve(dados);
+        }, error => {
+            console.log(error);
+            reject(error);
+        });
+    });
+}
+
+///////////////////////// EDITORA /////////////////////////
+adicionarEditora(id, nomeEditora, site) {
+    return new Promise((resolve, reject) => {
+        var data = {
+                id: id,
+                nomeEditora: nomeEditora,
+                site: site,
+        }
+        this.http.post(this.URL+'', data)
+        .subscribe(dados => {
+            console.log(dados);
+            resolve(dados);
+        }, error => {
+            console.log(error);
+            reject(error);
+        });
+    });
+}
+
+editarEditora(id, nomeEditora, site) {
+    return new Promise((resolve, reject) => {
+        var data = {
+                id: id,
+                nomeEditora: nomeEditora,
+                site: site
+        }
+        this.http.put(this.URL+'', data)
+        .subscribe(dados => {
+            console.log(dados);
+            resolve(dados);
+        }, error => {
+            console.log(error);
+            reject(error);
+        });
+    });
+}
+
+removerEditora(id){
+    return new Promise((resolve, reject) => {
+        this.http.delete(this.URL+''+id)
+        .subscribe(dados => {
+            console.log(dados);
+            resolve(dados);
+        }, error => {
+            console.log(error);
+            reject(error);
+        });
+    });
+}
+
+
+///////////////////////// CRÍTICA /////////////////////////
+
+
+///////////////////////// OUTROS /////////////////////////
+
 
 }
