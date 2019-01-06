@@ -21,8 +21,12 @@ public class EditoraServiceImpl implements IEditoraService {
 
 		Optional<Editora> editoraConsultada = editoraRepository.findById(editora.getId()); 	
 
+		System.out.println(editoraConsultada);
+		
 		if (editoraConsultada != null) {
+			
 			editoraRepository.save(editora);
+			
 		}
 		
 	}

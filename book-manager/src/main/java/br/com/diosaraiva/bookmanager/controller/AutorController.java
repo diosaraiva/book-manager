@@ -39,10 +39,10 @@ public class AutorController {
 
 		LOG.info("Adicionando novo Autor: {}", autor);
 
-		if (autorService.exists(autor)){
+		/*if (autorService.exists(autor)){
 			LOG.info("Ja existem um Autor com o ID: " + autor.getId() + " a ser cadastrado.");
 			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-		}
+		}*/
 
 		autorService.adicionarAutor(autor);
 

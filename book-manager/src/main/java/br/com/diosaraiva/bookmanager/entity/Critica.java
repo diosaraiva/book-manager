@@ -1,16 +1,22 @@
 package br.com.diosaraiva.bookmanager.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.springframework.core.style.ToStringCreator;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
-public class Critica {
+public class Critica implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -63,5 +69,15 @@ public class Critica {
 	}
 
 	//Overrides
+	@Override
+	public String toString() {
+		return new ToStringCreator(this)
 
+		.append("id", this.getId())
+		.append("nomeCritico", this.getNomeCritico())
+		.append("nota", this.getNota())
+		.append("texto", this.getTexto())
+
+		.toString();
+	}
 }

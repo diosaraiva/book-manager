@@ -11,9 +11,11 @@ import { RestProvider } from '../../providers/rest/rest';
 export class VisualizarLivrosPage {
     
     data;
+    datas;
     
     constructor(public navCtrl: NavController, public rp:RestProvider) {
-        this.getLivros();
+        
+        this.getLivros();      
         
     }
     
@@ -24,11 +26,36 @@ export class VisualizarLivrosPage {
                     this.data = data;
                     console.log(this.data);
                 }
-        );
+        ).then(()=>this.initializeLivros());
     }
+    
     
     pushLivro(item) {
         this.navCtrl.push(EditarLivroPage, {item:item});
+    }
+    
+    initializeLivros() {
+        
+        
+        this.datas = this.data;
+        
+        console.log(this.datas);
+    }    
+    
+    findLivros(ev) {
+        
+        // Reset items back to all of the items
+        this.initializeLivros();
+        
+        // Set val to the value of the Search Bar
+        let val = ev.target.value;
+        
+        // If the value is an empty string don't filter the items
+        if (val && val.trim() != '') {
+            this.datas = this.datas.filter((item) => {
+                return (item.titulo.toLowerCase().indexOf(val.toLowerCase()) > -1);
+            })
+        }
     }
     
 }

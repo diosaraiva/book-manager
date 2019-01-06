@@ -59,6 +59,18 @@ listarLivros(){
     });
 }
 
+listarLivrosPorAutor(id: number){
+    
+    return new Promise((resolve,reject) => {
+        this.http.get(this.URL+'/livros/autores/'+id)
+        .subscribe(data => {
+            this.data = data;
+            console.log(data);
+            resolve(this.data);
+        });
+    });
+}
+
 selecionarLivroPorIsbn(isbn: number) {
     
     return new Promise((resolve, reject) => {
@@ -143,6 +155,18 @@ editarAutor(id, nomeAutor, nacionalidade) {
     });
 }
 
+listarAutores(){
+    
+    return new Promise((resolve,reject) => {
+        this.http.get(this.URL+'/autores')
+        .subscribe(data => {
+            this.data = data;
+            console.log(data);
+            resolve(this.data);
+        });
+    });
+}
+
 removerAutor(id){
     return new Promise((resolve, reject) => {
         this.http.delete(this.URL+'/autores/'+id)
@@ -157,9 +181,10 @@ removerAutor(id){
 }
 
 ///////////////////////// EDITORA /////////////////////////
-adicionarEditora(nomeEditora, site) {
+adicionarEditora(id, nomeEditora, site) {
     return new Promise((resolve, reject) => {
         var editora = {
+                id: id,
                 nomeEditora: nomeEditora,
                 site: site,
         }
@@ -181,7 +206,7 @@ editarEditora(id, nomeEditora, site) {
                 nomeEditora: nomeEditora,
                 site: site
         }
-        this.http.put(this.URL+'/editoras/', editora)
+        this.http.put(this.URL+'/editoras/'+id, editora)
         .subscribe(dados => {
             console.log(dados);
             resolve(dados);
@@ -256,6 +281,28 @@ removerCritica(id){
 }
 
 ///////////////////////// OUTROS /////////////////////////
+testarConexao() {
+    
+    return new Promise((resolve, reject) => {
+        this.http.get(this.URL+'/')
+        .subscribe(data => {
+            this.data = data;
+            console.log(data);
+            resolve(this.data);
+        });
+    });
+}
 
+criarLivrosTeste(num: number) {
+    
+    return new Promise((resolve, reject) => {
+        this.http.get(this.URL+'/test/'+num)
+        .subscribe(data => {
+            this.data = data;
+            console.log(data);
+            resolve(this.data);
+        });
+    });
+}
 
 }

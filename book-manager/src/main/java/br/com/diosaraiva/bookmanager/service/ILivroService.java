@@ -11,7 +11,7 @@ public interface ILivroService {
 	void adicionarListaLivros(List<Livro> listaLivro);
 
 	LivroExtenso selecionarLivroExtensoPorISBN(long isbn);
-	List<LivroExtenso> listarLivrosExtensoPorAutor(long idAutor);
+	List<LivroExtenso> listarLivrosExtensoPorAutor(long id);
 	List<LivroExtenso> listarLivrosExtenso();
 
 	void atualizarLivro(Livro livro);

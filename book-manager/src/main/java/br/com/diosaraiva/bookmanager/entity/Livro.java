@@ -1,5 +1,6 @@
 package br.com.diosaraiva.bookmanager.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -12,9 +13,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-@Entity
-public class Livro {
+import org.springframework.core.style.ToStringCreator;
 
+@Entity
+public class Livro implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	//@GeneratedValue(strategy=GenerationType.AUTO) --> Deve ser fornecido pelo Usuário cadastrante.
 	private Long isbn;
@@ -145,6 +150,7 @@ public class Livro {
 		this.criticas = criticas;
 	}
 
+	//Overrides
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -171,5 +177,22 @@ public class Livro {
 				+ (criticas != null ? criticas.hashCode() : 0);
 
 		return (int)result;
+	}
+	
+	public String toString() {
+		return new ToStringCreator(this)
+
+		.append("isbn", this.getIsbn())
+		.append("titulo", this.getTitulo())
+		.append("linkImg", this.getLinkImg())
+		.append("dataPublicacao", this.getDataPublicacao())
+		.append("preco", this.getPreco())
+		.append("sinopse", this.getSinopse())
+		
+		.append("sinopse", this.getAutores())
+		.append("sinopse", this.getEditora())
+		.append("sinopse", this.getCriticas())
+
+		.toString();
 	}
 }

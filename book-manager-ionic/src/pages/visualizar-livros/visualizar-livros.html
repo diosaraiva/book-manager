@@ -2,12 +2,22 @@
 <button ion-button menuToggle>
 	<ion-icon name="menu"></ion-icon>
 </button>
-<ion-title> Visualizar Livros </ion-title> </ion-navbar> </ion-header>
+<ion-title>Visualizar Livros</ion-title> <ion-buttons end>
+<button ion-button (click)="getLivros()" icon-only>
+	<ion-icon name="refresh"></ion-icon>
+</button>
+</ion-buttons> </ion-navbar> </ion-header>
 <ion-content padding id="page2">
 <form id="visualizarLivros-form4">
-	<ion-searchbar placeholder="" name="" id="visualizarLivros-search2"></ion-searchbar>
-	<div id="visualizarLivros-container1">
-		<ion-list> <ion-item *ngFor="let l of data" (click)="pushLivro(l.isbn)" text-wrap>
+	<ion-searchbar placeholder="Buscar Livro pelo Título" (ionInput)="findLivros($event)" name="" id="visualizarLivros-search2"></ion-searchbar>
+	<div>
+		<ion-list> <ion-item *ngFor="let l of datas"
+			(click)="pushLivro(l.isbn)" text-wrap>
+			
+		<ion-thumbnail item-start >
+        <img src="{{l.linkImg}}">
+      	</ion-thumbnail>
+		
 		<h2>ISBN: {{l.isbn}}</h2>
 		<p>{{l.titulo}}</p>
 		<p>Editora: {{l.editora.nomeEditora}}</p>

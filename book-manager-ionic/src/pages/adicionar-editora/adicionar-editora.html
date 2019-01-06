@@ -1,0 +1,23 @@
+<ion-header> <ion-toolbar> <ion-title>
+Adicionar Editora </ion-title> <ion-buttons start>
+<button ion-button (click)="dismiss()">
+	<ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+</button>
+</ion-buttons> </ion-toolbar> </ion-header>
+
+<ion-content>
+
+<form #form="ngForm" (ngSubmit)="adicionarEditora()">
+
+	<ion-item> <ion-label> Nome da Editora </ion-label> <ion-input
+		type="text" placeholder="" [(ngModel)]="nomeEditora"
+		name="nomeEditora"></ion-input> </ion-item>
+	<ion-item> <ion-label> Site </ion-label> <ion-input
+		type="text" placeholder="" [(ngModel)]="site" name="site"></ion-input>
+	</ion-item>
+
+	<button ion-button color="secondary">Nova Editora</button>
+
+</form>
+
+</ion-content>

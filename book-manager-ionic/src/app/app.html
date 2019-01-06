@@ -1,39 +1,29 @@
-<ion-menu [content]="mainContent">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>
-        BookManager v0.1
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content id="side-menu21">
-    <button id="menu-button12" ion-button color="positive" block menuClose="" on-click="goToVisualizarLivros()">
-      Visualizar Livros
-    </button>
-    <button id="menu-button13" ion-button color="positive" block menuClose="" on-click="goToEditarLivro()">
-      Editar Livro
-    </button>
-    <button id="menu-button14" ion-button color="positive" block menuClose="" on-click="goToPorAutor()">
-      Busca por Autor
-    </button>
-    <div class="spacer" style="height:60px;" id="menu-spacer3"></div>
-    <button id="menu-button1" ion-button color="light" block style="font-style:italic;">
-      Testar Conex„o
-    </button>
-    <div class="spacer" style="height:20px;" id="menu-spacer1"></div>
-    <form id="menu-form2">
-      <ion-item id="menu-input3">
-        <ion-input type="text" placeholder="Numero de Testes"></ion-input>
-      </ion-item>
-      <button id="menu-button2" ion-button color="light" block style="font-style:italic;">
-        Gerar Livros
-      </button>
-    </form>
-    <div class="spacer" style="height:20px;" id="menu-spacer2"></div>
-    <button id="menu-button3" ion-button color="light" block style="font-style:italic;">
-      GitHub
-    </button>
-  </ion-content>
-</ion-menu>
+<ion-menu [content]="mainContent"> <ion-header>
+<ion-toolbar> <ion-title> BookManager v0.1 </ion-title> </ion-toolbar> </ion-header>
+<ion-content>
+<button ion-button color="positive" block menuClose=""
+	on-click="goToVisualizarLivros()">Visualizar Livros</button>
+<button ion-button color="positive" block menuClose=""
+	on-click="goToEditarLivro()">Editar Livro</button>
+<button ion-button color="positive" block menuClose=""
+	on-click="goToPorAutor()">Busca por Autor</button>
+<div class="spacer" style="height: 60px;"></div>
+
+<button ion-button color="light" block style="font-style: italic;">Testar
+	Conex√£o</button>
+	
+<div class="spacer" style="height: 20px;" id="menu-spacer1"></div>
+
+<form #form="ngForm" (ngSubmit)="criarLivrosTeste()">
+	<ion-item> <ion-input [(ngModel)]="num" name="num"
+		type="number" placeholder="Numero de Testes"></ion-input> </ion-item>
+	<button ion-button color="light" block style="font-style: italic;"
+		type="submit">Gerar Livros</button>
+</form>
+
+<div class="spacer" style="height: 20px;" id="menu-spacer2"></div>
+
+<button ion-button color="light" block style="font-style: italic;">GitHub</button>
+</ion-content> </ion-menu>
 
 <ion-nav #mainContent [root]="rootPage"></ion-nav>

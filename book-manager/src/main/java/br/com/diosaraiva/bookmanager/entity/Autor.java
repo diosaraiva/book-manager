@@ -1,5 +1,6 @@
 package br.com.diosaraiva.bookmanager.entity;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -8,13 +9,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import org.springframework.core.style.ToStringCreator;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
-public class Autor {
+public class Autor implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -77,5 +82,14 @@ public class Autor {
 	}
 
 	//Overrides
+	@Override
+	public String toString() {
+		return new ToStringCreator(this)
 
+				.append("id", this.getId())
+				.append("nomeAutor", this.getNomeAutor())
+				.append("nacionalidade", this.getNacionalidade())
+
+				.toString();
+	}
 }

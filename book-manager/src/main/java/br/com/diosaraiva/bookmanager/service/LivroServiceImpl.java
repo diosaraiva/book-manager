@@ -98,6 +98,11 @@ public class LivroServiceImpl implements ILivroService {
 	@Override
 	public List<LivroExtenso> listarLivrosExtensoPorAutor(long idAutor) {
 
+		//Warning
+		if (idAutor == 0) {
+			return listarLivrosExtenso();
+		}
+		
 		List<Livro> livros = new ArrayList<>();
 		livroRepository.findAll().forEach(e -> livros.add(e));
 

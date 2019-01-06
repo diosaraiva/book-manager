@@ -38,10 +38,10 @@ public class EditoraController {
 
 		LOG.info("Adicionando nova Editora: {}", editora);
 
-		if (editoraService.exists(editora)){
+		/*if (editoraService.exists(editora)){
 			LOG.info("Ja existem uma Editora com o ID: " + editora.getId() + " a ser cadastrado.");
 			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-		}
+		}*/
 
 		editoraService.adicionarEditora(editora);
 

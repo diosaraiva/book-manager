@@ -27,7 +27,7 @@ public class LivroUtil {
 
 	//Cria objetos ilimitados para Testes
 	public static Livro criarLivroTeste(Integer num) {
-		
+
 		Set<Critica> criticas = new HashSet<Critica>();
 		criticas.add(new Critica("Critico " +num.toString()+"a", (int)ValorUtil.criarValorAleatorio(0.00,5.00,2), "Texto " +num.toString()));
 		criticas.add(new Critica("Critico " +num.toString()+"b", (int)ValorUtil.criarValorAleatorio(0.00,5.00,2), "Texto " +num.toString()));
@@ -38,7 +38,7 @@ public class LivroUtil {
 		autores.add(new Autor("Autor " +num.toString()+"a", "Brasileiro"));
 		autores.add(new Autor("Autor " +num.toString()+"b", "Brasileiro"));
 
-		return new Livro(num, StringUtil.gerarTituloLivro(), "http://localhost:8080/img/", new Date(),
+		return new Livro(num, StringUtil.gerarTituloLivro(), "assets/imgs/book.png", new Date(),
 				ValorUtil.criarValorAleatorio(0.00,1300.00,2), "Sinopse " +
 						num.toString(),	autores, editora, criticas);
 	}

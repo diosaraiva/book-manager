@@ -1,2 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/app/app.html=UTF-8
+encoding//src/pages/editar-livro/editar-livro.html=UTF-8
+encoding//src/pages/visualizar-livros/visualizar-livros.html=UTF-8
 encoding/<project>=UTF-8

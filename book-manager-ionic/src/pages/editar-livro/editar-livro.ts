@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, ModalController, NavParams, AlertController } from 'ionic-angular';
 import { VisualizarLivrosPage } from "../visualizar-livros/visualizar-livros";
+
+import { AdicionarAutorPage } from "../adicionar-autor/adicionar-autor";
+import { AdicionarEditoraPage } from "../adicionar-editora/adicionar-editora";
+import { AdicionarCriticaPage } from "../adicionar-critica/adicionar-critica";
+
 import { Observable } from 'rxjs';
 
 import { RestProvider } from '../../providers/rest/rest';
@@ -32,6 +37,7 @@ export class EditarLivroPage {
     nomeEditora;
     site;
     
+    
     //////////////// OBJETOS DE CRÍTICA ////////////////
     criticas;
     idCritica;
@@ -39,18 +45,17 @@ export class EditarLivroPage {
     nota;
     texto;
     
+    
     //////////////// OUTROS OBJETOS ////////////////
     id;
     opcoes;
     data;
     
     
-    constructor(public navCtrl: NavController, nav:NavParams, public rp:RestProvider, public alertCtrl: AlertController) {
+    constructor(public navCtrl: NavController, nav:NavParams, public modalCtrl: ModalController, public rp:RestProvider, public alertCtrl: AlertController) {
         
         this.id = nav.get("item");
-        
         this.opcoes = "livro";
-        
         this.getIsbn(this.id);
     }
     
@@ -69,6 +74,7 @@ export class EditarLivroPage {
         this.rp.selecionarLivroPorIsbn(isbn)
         .then(
                 data => {
+                    
                     this.isbn = data["isbn"];
                     this.titulo = data["titulo"];
                     this.linkImg = data["linkImg"];
@@ -76,7 +82,6 @@ export class EditarLivroPage {
                     this.preco = data["preco"];
                     this.valorPorExtenso = data["valorPorExtenso"];
                     this.sinopse = data["sinopse"];
-                    
                     
                     this.editora = data["editora"];
                     
@@ -126,43 +131,61 @@ export class EditarLivroPage {
     
     
     //////////////// AUTOR ////////////////
-    adicionarAutor(){
+    openNovoAutor() {
+        
+        let modal = this.modalCtrl.create(AdicionarAutorPage);
+        modal.present();
         
     }
     
-    editarAutor(id: number){
+    openEditarAutor(item) {
+        
+        let modal = this.modalCtrl.create(AdicionarAutorPage, {item:item});
+        modal.present();
         
     }
     
     removerAutor(id: number){
-        
+        this.rp.removerAutor(id).then(result=>{
+            this.alertaExcluir();
+        }).then(
+                result => {this.navCtrl.setRoot(VisualizarLivrosPage)});
     }
     
     
-    //////////////// EDITORA ////////////////
-    adicionarEditora(){
-        console.log(this.nomeEditora);
-        console.log(this.site);
+    //////////////// EDITORA ////////////////    
+    openNovaEditora() {
         
-        this.rp.adicionarEditora(this.nomeEditora, this.site).then(data=>{
-            console.log("sucesso");
-        });
+        let modal = this.modalCtrl.create(AdicionarEditoraPage);
+        modal.present();
+        
     }
     
-    editarEditora(idEditora: number){
+    editarEditora(){
         
         this.rp.editarEditora(this.idEditora, this.nomeEditora, this.site).then(data=>{
-            console.log("sucesso");
+            console.log(data);
         });
     }
     
-    removerEditora(idEditora: number){
+    removerEditora(){
+        
+        console.log(this.idEditora);
+        
+        this.rp.removerEditora(this.idEditora).then(result=>{
+            this.alertaExcluir();
+        }).then(
+                
+                result => {this.navCtrl.setRoot(VisualizarLivrosPage)});
         
     }
     
     
     //////////////// CRITICA ////////////////
-    adicionarCritica(){
+    openNovaCritica() {
+        
+        let modal = this.modalCtrl.create(AdicionarCriticaPage);
+        modal.present();
         
     }
     

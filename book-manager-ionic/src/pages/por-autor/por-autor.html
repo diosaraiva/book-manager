@@ -1,16 +1,30 @@
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>
-      Pesquisa de Livros por Autor
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-header> <ion-navbar>
+<button ion-button menuToggle>
+	<ion-icon name="menu"></ion-icon>
+</button>
+<ion-title> Pesquisa de Livros por Autor </ion-title> </ion-navbar> </ion-header>
 <ion-content padding id="page4">
-  <form id="porAutor-form3">
-    <ion-searchbar placeholder="" name="" id="porAutor-search1"></ion-searchbar>
-    <div id="porAutor-container2"></div>
-  </form>
+<form id="porAutor-form3">
+
+	<form #form="ngForm" (ngSubmit)="getAutores()">
+		<ion-searchbar placeholder="Digite o ID do Autor (0 para TODOS)" type="number"
+			[(ngModel)]="id" name="id"></ion-searchbar>
+
+		<button type="submit">PESQUISAR</button>
+
+	</form>
+
+	<ion-list> <ion-item *ngFor="let l of data"
+		(click)="pushLivro(l.isbn)" text-wrap>
+
+	<h2>
+		Autores ID: <strong *ngFor="let a of l.autores">{{a.nomeAutor}}
+			(ID:{{a.id}}) </strong>
+	</h2>
+	<p>ISBN: {{l.isbn}}</p>
+	<p>{{l.titulo}}</p>
+	<p>Editora: {{l.editora.nomeEditora}}</p>
+	</ion-item> </ion-list>
+
+</form>
 </ion-content>
