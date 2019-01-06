@@ -23,13 +23,21 @@ export class EditarLivroPage {
     
     
     //////////////// OBJETOS DE AUTOR ////////////////
+    autores;
     
     
     //////////////// OBJETOS DE EDITORA ////////////////
-    
+    editora;
+    idEditora;
+    nomeEditora;
+    site;
     
     //////////////// OBJETOS DE CRÍTICA ////////////////
-    
+    criticas;
+    idCritica;
+    nomeCritico;
+    nota;
+    texto;
     
     //////////////// OUTROS OBJETOS ////////////////
     id;
@@ -49,7 +57,10 @@ export class EditarLivroPage {
     
     //////////////// INFORMACOES DO LIVRO ////////////////
     adicionarLivro(){
-        this.rp.adicionarLivro(this.isbn, this.titulo, this.linkImg, this.dataPublicacao, this.preco, this.sinopse).then(data=>{
+        
+        let date = new Date().setUTCMilliseconds(this.dataPublicacao);
+        
+        this.rp.adicionarLivro(this.isbn, this.titulo, this.linkImg, date, this.preco, this.sinopse).then(data=>{
             console.log("sucesso");
         });
     }
@@ -66,10 +77,43 @@ export class EditarLivroPage {
                     this.valorPorExtenso = data["valorPorExtenso"];
                     this.sinopse = data["sinopse"];
                     
+                    
+                    this.editora = data["editora"];
+                    
+                    this.idEditora = this.editora["id"];
+                    this.nomeEditora = this.editora["nomeEditora"];
+                    this.site = this.editora["site"];
+                    
+                    if(data["autores"].length>0){
+                        
+                        this.autores = data["autores"];
+                        
+                    }else{
+                        this.autores = "";
+                    }
+                    
+                    if(data["criticas"].length>0){
+                        
+                        this.criticas = data["criticas"];
+                        
+                    }else{
+                        this.criticas = "";
+                    }
+                    
                     this.data = data;
                     console.log(this.data);
+                    
                 }
         );
+    }
+    
+    editarLivro(){
+        
+        let date = new Date().setUTCMilliseconds(this.dataPublicacao);
+        
+        this.rp.editarLivro(this.isbn, this.titulo, this.linkImg, date, this.preco, this.sinopse).then(data=>{
+            console.log("sucesso");
+        });
     }
     
     removerLivro(isbn:number){
@@ -97,18 +141,22 @@ export class EditarLivroPage {
     
     //////////////// EDITORA ////////////////
     adicionarEditora(){
+        console.log(this.nomeEditora);
+        console.log(this.site);
         
+        this.rp.adicionarEditora(this.nomeEditora, this.site).then(data=>{
+            console.log("sucesso");
+        });
     }
     
-    editarEditora(id: number){
+    editarEditora(idEditora: number){
         
+        this.rp.editarEditora(this.idEditora, this.nomeEditora, this.site).then(data=>{
+            console.log("sucesso");
+        });
     }
     
-    alterarEditora(id: number){
-        
-    }
-    
-    removerEditora(id: number){
+    removerEditora(idEditora: number){
         
     }
     

@@ -71,9 +71,17 @@ selecionarLivroPorIsbn(isbn: number) {
     });
 }
 
-editarLivro(livro){
+editarLivro(isbn, titulo, linkImg, dataPublicacao, preco, sinopse){
     
     return new Promise((resolve, reject) => {
+        var livro = {
+                isbn: isbn,
+                titulo: titulo,
+                linkImg: linkImg,
+                dataPublicacao: dataPublicacao,
+                preco: preco,
+                sinopse: sinopse
+        }        
         this.http.put(this.URL+'/livros/'+livro.isbn, livro)
         .subscribe((result: any) => {
             resolve(result);
@@ -119,12 +127,12 @@ adicionarAutor(id, nomeAutor, nacionalidade) {
 
 editarAutor(id, nomeAutor, nacionalidade) {
     return new Promise((resolve, reject) => {
-        var data = {
+        var autor = {
                 id: id,
                 nomeAutor: nomeAutor,
                 nacionalidade: nacionalidade
         }
-        this.http.put(this.URL+'', data)
+        this.http.put(this.URL+'/autores/'+id, autor)
         .subscribe(dados => {
             console.log(dados);
             resolve(dados);
@@ -137,7 +145,7 @@ editarAutor(id, nomeAutor, nacionalidade) {
 
 removerAutor(id){
     return new Promise((resolve, reject) => {
-        this.http.delete(this.URL+''+id)
+        this.http.delete(this.URL+'/autores/'+id)
         .subscribe(dados => {
             console.log(dados);
             resolve(dados);
@@ -149,14 +157,13 @@ removerAutor(id){
 }
 
 ///////////////////////// EDITORA /////////////////////////
-adicionarEditora(id, nomeEditora, site) {
+adicionarEditora(nomeEditora, site) {
     return new Promise((resolve, reject) => {
-        var data = {
-                id: id,
+        var editora = {
                 nomeEditora: nomeEditora,
                 site: site,
         }
-        this.http.post(this.URL+'', data)
+        this.http.post(this.URL+'/editoras/novo', editora)
         .subscribe(dados => {
             console.log(dados);
             resolve(dados);
@@ -169,12 +176,12 @@ adicionarEditora(id, nomeEditora, site) {
 
 editarEditora(id, nomeEditora, site) {
     return new Promise((resolve, reject) => {
-        var data = {
+        var editora = {
                 id: id,
                 nomeEditora: nomeEditora,
                 site: site
         }
-        this.http.put(this.URL+'', data)
+        this.http.put(this.URL+'/editoras/', editora)
         .subscribe(dados => {
             console.log(dados);
             resolve(dados);
@@ -187,7 +194,7 @@ editarEditora(id, nomeEditora, site) {
 
 removerEditora(id){
     return new Promise((resolve, reject) => {
-        this.http.delete(this.URL+''+id)
+        this.http.delete(this.URL+'/editoras/'+id)
         .subscribe(dados => {
             console.log(dados);
             resolve(dados);
@@ -200,7 +207,53 @@ removerEditora(id){
 
 
 ///////////////////////// CRÍTICA /////////////////////////
+adicionarCritica(nomeCritica, site) {
+    return new Promise((resolve, reject) => {
+        var editora = {
+                nomeCritica: nomeCritica,
+                site: site,
+        }
+        this.http.post(this.URL+'/criticas/novo', editora)
+        .subscribe(dados => {
+            console.log(dados);
+            resolve(dados);
+        }, error => {
+            console.log(error);
+            reject(error);
+        });
+    });
+}
 
+editarCritica(id, nomeCritica, site) {
+    return new Promise((resolve, reject) => {
+        var editora = {
+                id: id,
+                nomeCritica: nomeCritica,
+                site: site
+        }
+        this.http.put(this.URL+'/criticas/', editora)
+        .subscribe(dados => {
+            console.log(dados);
+            resolve(dados);
+        }, error => {
+            console.log(error);
+            reject(error);
+        });
+    });
+}
+
+removerCritica(id){
+    return new Promise((resolve, reject) => {
+        this.http.delete(this.URL+'/criticas/'+id)
+        .subscribe(dados => {
+            console.log(dados);
+            resolve(dados);
+        }, error => {
+            console.log(error);
+            reject(error);
+        });
+    });
+}
 
 ///////////////////////// OUTROS /////////////////////////
 
